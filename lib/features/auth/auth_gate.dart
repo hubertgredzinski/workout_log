@@ -23,9 +23,9 @@ class AuthGate extends StatelessWidget {
         }
 
         // Render your application if authenticated
-        return const HomePage(
-            //    currentUser: snapshot.data!,
-            );
+        return HomePage(
+          currentUser: snapshot.data!,
+        );
       },
     );
   }
