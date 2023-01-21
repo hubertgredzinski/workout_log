@@ -1,0 +1,6 @@
+{
+    "helloWorld": "Create your training!",
+"@helloWorld": {
+    "description": "The tool to create training"
+    }
+}

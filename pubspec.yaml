@@ -28,14 +28,19 @@ environment:
 # dependencies can be manually updated by changing the version numbers below to
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
+
 dependencies:
-  flutter:
+  flutter: 
     sdk: flutter
+    
+  flutter_localizations: 
+    sdk: flutter  
   cupertino_icons: ^1.0.2
   firebase_core: ^2.4.1
   firebase_auth: ^4.2.5
   flutterfire_ui: ^0.4.3+20
   cloud_firestore: ^4.3.1
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:
@@ -53,6 +58,7 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+  generate: true
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
@@ -89,3 +95,4 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
