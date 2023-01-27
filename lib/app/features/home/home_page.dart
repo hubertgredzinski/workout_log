@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterfire_ui/firestore.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:workout_log/app/features/strength%20training/strength_training.dart';
 import '../auth/user_profile.dart';
+import '../cardio_training/cardio_training.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key, required this.currentUser}) : super(key: key);
@@ -30,12 +32,63 @@ class HomePage extends StatelessWidget {
           )
         ],
       ),
-      body: FirestoreListView<Map<String, dynamic>>(
-        query: usersQuery,
-        itemBuilder: (context, snapshot) {
-          Map<String, dynamic> user = snapshot.data();
-          return Text('User name is ${user['displayName']}');
-        },
+      body: Center(
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 100,
+            ),
+            Text(
+              'Choose your training',
+              style: GoogleFonts.robotoSlab(
+                  fontSize: 35, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(
+              height: 100,
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.orange,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              ),
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (_) => StrengthTrainingPage(key),
+                  ),
+                );
+              },
+              child: Text(
+                'Strength Training',
+                style: GoogleFonts.robotoSlab(
+                    fontSize: 30, fontWeight: FontWeight.bold),
+              ),
+            ),
+            const SizedBox(
+              height: 50,
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.orange,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              ),
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (_) => CardioTrainingPage(key),
+                  ),
+                );
+              },
+              child: Text(
+                'Cardio',
+                style: GoogleFonts.robotoSlab(
+                    fontSize: 30, fontWeight: FontWeight.bold),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
