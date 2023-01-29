@@ -56,6 +56,7 @@ class HomePage extends StatelessWidget {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (_) => StrengthTrainingPage(key),
+                    fullscreenDialog: false,
                   ),
                 );
               },
@@ -78,6 +79,7 @@ class HomePage extends StatelessWidget {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (_) => CardioTrainingPage(key),
+                    fullscreenDialog: false,
                   ),
                 );
               },
