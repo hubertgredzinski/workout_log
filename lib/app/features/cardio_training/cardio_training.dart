@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class CardioTrainingPage extends StatefulWidget {
-  const CardioTrainingPage(
+  const CardioTrainingPage({
     Key? key,
-  ) : super(key: key);
+  }) : super(key: key);
 
   @override
   State<CardioTrainingPage> createState() => _CardioTrainingPageState();

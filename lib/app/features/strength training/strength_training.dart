@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class StrengthTrainingPage extends StatefulWidget {
-  const StrengthTrainingPage(
+  const StrengthTrainingPage({
     Key? key,
-  ) : super(key: key);
+  }) : super(key: key);
 
   @override
   State<StrengthTrainingPage> createState() => _StrengthTrainingPageState();
@@ -15,7 +15,6 @@ class _StrengthTrainingPageState extends State<StrengthTrainingPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Add Strength Training"),
-        actions: const [],
       ),
       body: const Text('elo'),
     );
