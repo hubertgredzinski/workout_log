@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-class CardioTrainingPage extends StatefulWidget {
-  const CardioTrainingPage({
+class AddCardioTrainingPage extends StatefulWidget {
+  const AddCardioTrainingPage({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<CardioTrainingPage> createState() => _CardioTrainingPageState();
+  State<AddCardioTrainingPage> createState() => _AddCardioTrainingPageState();
 }
 
-class _CardioTrainingPageState extends State<CardioTrainingPage> {
+class _AddCardioTrainingPageState extends State<AddCardioTrainingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

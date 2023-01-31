@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:workout_log/app/features/history/history_page.dart';
-import 'package:workout_log/app/features/strength%20training/strength_training.dart';
+import '../add_strength training/add_strength_training.dart';
 import '../auth/user_profile.dart';
 import '../bmi/bmi_page.dart';
-import '../cardio_training/cardio_training.dart';
+import '../add_cardio_training/add_cardio_training.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key, required this.currentUser}) : super(key: key);
@@ -82,7 +82,7 @@ class _HomePageState extends State<HomePage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const StrengthTrainingPage(),
+                        builder: (context) => const AddStrengthTrainingPage(),
                       ),
                     );
                   },
@@ -104,7 +104,7 @@ class _HomePageState extends State<HomePage> {
                   onPressed: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => const CardioTrainingPage(),
+                        builder: (context) => const AddCardioTrainingPage(),
                         fullscreenDialog: false,
                       ),
                     );

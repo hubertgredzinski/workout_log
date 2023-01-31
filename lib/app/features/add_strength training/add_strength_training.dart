@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 
-class StrengthTrainingPage extends StatefulWidget {
-  const StrengthTrainingPage({
+class AddStrengthTrainingPage extends StatefulWidget {
+  const AddStrengthTrainingPage({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<StrengthTrainingPage> createState() => _StrengthTrainingPageState();
+  State<AddStrengthTrainingPage> createState() =>
+      _AddStrengthTrainingPageState();
 }
 
-class _StrengthTrainingPageState extends State<StrengthTrainingPage> {
+class _AddStrengthTrainingPageState extends State<AddStrengthTrainingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
