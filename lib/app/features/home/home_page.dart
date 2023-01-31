@@ -26,7 +26,17 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.helloWorld),
+        title: Builder(
+          builder: (context) {
+            if (currentIndex == 2) {
+              return const Text('See your BMI');
+            }
+            if (currentIndex == 1) {
+              return const Text('History');
+            }
+            return Text(AppLocalizations.of(context)!.helloWorld);
+          },
+        ),
         actions: [
           IconButton(
             onPressed: () {
@@ -40,74 +50,76 @@ class _HomePageState extends State<HomePage> {
           )
         ],
       ),
-      body: Builder(builder: (context) {
-        if (currentIndex == 2) {
-          return const BmiPage();
-        }
-        if (currentIndex == 1) {
-          return const HistoryPage();
-        }
-        return Center(
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 100,
-              ),
-              Text(
-                'Choose your training',
-                style: GoogleFonts.robotoSlab(
-                    fontSize: 35, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(
-                height: 100,
-              ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.orange,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      body: Builder(
+        builder: (context) {
+          if (currentIndex == 2) {
+            return const BmiPage();
+          }
+          if (currentIndex == 1) {
+            return const HistoryPage();
+          }
+          return Center(
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 100,
                 ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const StrengthTrainingPage(),
-                    ),
-                  );
-                },
-                child: Text(
-                  'Strength Training',
+                Text(
+                  'Choose your training',
                   style: GoogleFonts.robotoSlab(
-                      fontSize: 30, fontWeight: FontWeight.bold),
+                      fontSize: 35, fontWeight: FontWeight.bold),
                 ),
-              ),
-              const SizedBox(
-                height: 50,
-              ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.orange,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                const SizedBox(
+                  height: 100,
                 ),
-                onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => const CardioTrainingPage(),
-                      fullscreenDialog: false,
-                    ),
-                  );
-                },
-                child: Text(
-                  'Cardio',
-                  style: GoogleFonts.robotoSlab(
-                      fontSize: 30, fontWeight: FontWeight.bold),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.orange,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 10),
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const StrengthTrainingPage(),
+                      ),
+                    );
+                  },
+                  child: Text(
+                    'Strength Training',
+                    style: GoogleFonts.robotoSlab(
+                        fontSize: 30, fontWeight: FontWeight.bold),
+                  ),
                 ),
-              )
-            ],
-          ),
-        );
-      }),
+                const SizedBox(
+                  height: 50,
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.orange,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 10),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const CardioTrainingPage(),
+                        fullscreenDialog: false,
+                      ),
+                    );
+                  },
+                  child: Text(
+                    'Cardio',
+                    style: GoogleFonts.robotoSlab(
+                        fontSize: 30, fontWeight: FontWeight.bold),
+                  ),
+                )
+              ],
+            ),
+          );
+        },
+      ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.black12,
         currentIndex: currentIndex,
