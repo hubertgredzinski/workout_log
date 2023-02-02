@@ -133,7 +133,7 @@ class _HomePageState extends State<HomePage> {
               icon: Icon(Icons.fitness_center), label: 'Choose Training'),
           BottomNavigationBarItem(icon: Icon(Icons.history), label: 'History'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.scale), label: 'Check your BMI'),
+              icon: Icon(Icons.scale), label: 'See your BMI'),
         ],
       ),
     );
