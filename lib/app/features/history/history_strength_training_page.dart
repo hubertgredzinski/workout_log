@@ -35,10 +35,29 @@ class HistoryStrengthTrainingPage extends StatelessWidget {
                         .doc(document.id)
                         .delete();
                   },
-                  child: TrainingStrengthHistory(
-                    document['exercise'],
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        TrainingStrengthHistory(
+                          document['exercise'],
+                        ),
+                        TrainingStrengthHistory(
+                          document['bodypart'],
+                        ),
+                        TrainingStrengthHistory(
+                          document['reps'],
+                        ),
+                        TrainingStrengthHistory(
+                          document['sets'],
+                        ),
+                        TrainingStrengthHistory(
+                          document['weight'],
+                        ),
+                      ],
+                    ),
                   ),
-                ),
+                )
               ],
             ],
           );
