@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -20,7 +19,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   var currentIndex = 0;
-  final usersQuery = FirebaseFirestore.instance.collection('users');
 
   @override
   Widget build(BuildContext context) {
@@ -58,65 +56,65 @@ class _HomePageState extends State<HomePage> {
           if (currentIndex == 1) {
             return const HistoryPage();
           }
-          return Center(
-            child: Column(
-              children: [
-                const SizedBox(
-                  height: 100,
-                ),
-                Text(
+          return Column(
+            children: [
+              const SizedBox(
+                height: 100,
+              ),
+              Center(
+                child: Text(
                   'Choose your training',
                   style: GoogleFonts.robotoSlab(
                       fontSize: 35, fontWeight: FontWeight.bold),
                 ),
-                const SizedBox(
-                  height: 100,
+              ),
+              const SizedBox(
+                height: 100,
+              ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.orange,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 ),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.orange,
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 10),
-                  ),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const AddStrengthTrainingPage(),
-                      ),
-                    );
-                  },
-                  child: Text(
-                    'Strength Training',
-                    style: GoogleFonts.robotoSlab(
-                        fontSize: 30, fontWeight: FontWeight.bold),
-                  ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const AddStrengthTrainingPage(),
+                    ),
+                  );
+                },
+                child: Text(
+                  'Strength Training',
+                  style: GoogleFonts.robotoSlab(
+                      fontSize: 30, fontWeight: FontWeight.bold),
                 ),
-                const SizedBox(
-                  height: 50,
+              ),
+              const SizedBox(
+                height: 50,
+              ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.orange,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 ),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.orange,
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 10),
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => const AddCardioTrainingPage(),
-                        fullscreenDialog: false,
-                      ),
-                    );
-                  },
-                  child: Text(
-                    'Cardio',
-                    style: GoogleFonts.robotoSlab(
-                        fontSize: 30, fontWeight: FontWeight.bold),
-                  ),
-                )
-              ],
-            ),
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const AddCardioTrainingPage(),
+                      fullscreenDialog: false,
+                    ),
+                  );
+                },
+                child: Text(
+                  'Cardio',
+                  style: GoogleFonts.robotoSlab(
+                      fontSize: 30, fontWeight: FontWeight.bold),
+                ),
+              )
+            ],
           );
         },
       ),
