@@ -1,4 +1,4 @@
-part of 'history_strength_cubit.dart';
+part of 'strength_history_cubit.dart';
 
 @immutable
 class StrengthHistoryState {

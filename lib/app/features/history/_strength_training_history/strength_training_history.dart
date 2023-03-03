@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:workout_log/app/features/history/history_strength_training/cubit/history_strength_cubit.dart';
+import 'cubit/strength_history_cubit.dart';
 
 class StrengthHistoryTrainingPage extends StatelessWidget {
   const StrengthHistoryTrainingPage({

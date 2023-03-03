@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'cardio_history/history_cardio_page.dart';
-import 'history_strength_training/history_strength_training_page.dart';
+import '_strength_training_history/strength_training_history.dart';
+import 'cardio_history/cardio_history_page.dart';
 
 class HistoryPage extends StatelessWidget {
   const HistoryPage({
