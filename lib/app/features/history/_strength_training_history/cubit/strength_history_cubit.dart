@@ -39,6 +39,24 @@ class StrengthHistoryCubit extends Cubit<StrengthHistoryState> {
           );
   }
 
+  Future<void> remove({required String documentID}) async {
+    try {
+      await FirebaseFirestore.instance
+          .collection('strength')
+          .doc(documentID)
+          .delete();
+    } catch (error) {
+      emit(
+        StrengthHistoryState(
+          documents: const [],
+          isLoading: false,
+          errorMessage: error.toString(),
+        ),
+      );
+      start();
+    }
+  }
+
   @override
   Future<void> close() {
     _streamSubscription?.cancel();

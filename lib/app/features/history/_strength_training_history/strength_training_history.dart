@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'cubit/strength_history_cubit.dart';
@@ -47,10 +46,9 @@ class StrengthHistoryTrainingPage extends StatelessWidget {
                       return direction == DismissDirection.endToStart;
                     },
                     onDismissed: (direction) {
-                      FirebaseFirestore.instance
-                          .collection('strength')
-                          .doc(document.id)
-                          .delete();
+                      context
+                          .read<StrengthHistoryCubit>()
+                          .remove(documentID: document.id);
                     },
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
