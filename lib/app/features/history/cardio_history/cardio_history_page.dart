@@ -34,7 +34,22 @@ class CardioHistoryTrainingPage extends StatelessWidget {
                 for (final document in documents) ...[
                   Dismissible(
                     key: ValueKey(document.id),
-                    onDismissed: (_) {
+                    background: const DecoratedBox(
+                      decoration: BoxDecoration(color: Colors.red),
+                      child: Align(
+                        alignment: Alignment.centerRight,
+                        child: Padding(
+                          padding: EdgeInsets.only(right: 32.0),
+                          child: Icon(
+                            Icons.delete,
+                          ),
+                        ),
+                      ),
+                    ),
+                    confirmDismiss: (direction) async {
+                      return direction == DismissDirection.endToStart;
+                    },
+                    onDismissed: (direction) {
                       FirebaseFirestore.instance
                           .collection('cardio')
                           .doc(document.id)
