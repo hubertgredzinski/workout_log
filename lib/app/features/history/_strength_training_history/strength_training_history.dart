@@ -15,7 +15,7 @@ class StrengthHistoryTrainingPage extends StatelessWidget {
         title: const Text('Strength Training History'),
       ),
       body: BlocProvider(
-        create: (context) => StrengthHistoryCubit()..startStrengthHistory(),
+        create: (context) => StrengthHistoryCubit()..start(),
         child: BlocBuilder<StrengthHistoryCubit, StrengthHistoryState>(
           builder: (context, state) {
             if (state.errorMessage.isNotEmpty) {

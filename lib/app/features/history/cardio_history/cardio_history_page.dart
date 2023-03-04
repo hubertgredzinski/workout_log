@@ -17,7 +17,7 @@ class CardioHistoryTrainingPage extends StatelessWidget {
         title: const Text('Cardio Training History'),
       ),
       body: BlocProvider(
-        create: (context) => CardioHistoryCubit()..startCardioHistory(),
+        create: (context) => CardioHistoryCubit()..start(),
         child: BlocBuilder<CardioHistoryCubit, CardioHistoryState>(
           builder: (context, state) {
             if (state.errorMessage.isNotEmpty) {

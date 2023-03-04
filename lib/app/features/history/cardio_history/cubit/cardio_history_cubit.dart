@@ -13,7 +13,7 @@ class CardioHistoryCubit extends Cubit<CardioHistoryState> {
 
   StreamSubscription? _streamSubscription;
 
-  Future<void> startCardioHistory() async {
+  Future<void> start() async {
     emit(
       const CardioHistoryState(
           documents: [], isLoading: true, errorMessage: ''),

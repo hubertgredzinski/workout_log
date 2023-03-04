@@ -13,7 +13,7 @@ class StrengthHistoryCubit extends Cubit<StrengthHistoryState> {
 
   StreamSubscription? _streamSubscription;
 
-  Future<void> startStrengthHistory() async {
+  Future<void> start() async {
     emit(
       const StrengthHistoryState(
           documents: [], isLoading: true, errorMessage: ''),
