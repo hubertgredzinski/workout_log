@@ -39,6 +39,24 @@ class CardioHistoryCubit extends Cubit<CardioHistoryState> {
           );
   }
 
+  Future<void> remove({required String documentID}) async {
+    try {
+      await FirebaseFirestore.instance
+          .collection('cardio')
+          .doc(documentID)
+          .delete();
+    } catch (error) {
+      emit(
+        CardioHistoryState(
+          documents: const [],
+          isLoading: false,
+          errorMessage: error.toString(),
+        ),
+      );
+      start();
+    }
+  }
+
   @override
   Future<void> close() {
     _streamSubscription?.cancel();

@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -50,26 +49,25 @@ class CardioHistoryTrainingPage extends StatelessWidget {
                       return direction == DismissDirection.endToStart;
                     },
                     onDismissed: (direction) {
-                      FirebaseFirestore.instance
-                          .collection('cardio')
-                          .doc(document.id)
-                          .delete();
+                      context
+                          .read<CardioHistoryCubit>()
+                          .remove(documentID: document.id);
                     },
                     child: Padding(
                       padding: const EdgeInsets.all(8),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          TrainingCardioHistory(
+                          CardioTraining(
                             document['type'],
                           ),
-                          TrainingCardioHistory(
+                          CardioTraining(
                             document['time'],
                           ),
-                          TrainingCardioHistory(
+                          CardioTraining(
                             document['intensity'],
                           ),
-                          TrainingCardioHistory(
+                          CardioTraining(
                             document['kcal'],
                           )
                         ],
@@ -86,8 +84,8 @@ class CardioHistoryTrainingPage extends StatelessWidget {
   }
 }
 
-class TrainingCardioHistory extends StatelessWidget {
-  const TrainingCardioHistory(
+class CardioTraining extends StatelessWidget {
+  const CardioTraining(
     this.title, {
     super.key,
   });
