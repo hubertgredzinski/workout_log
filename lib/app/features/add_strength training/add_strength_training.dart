@@ -40,7 +40,7 @@ class _AddStrengthTrainingPageState extends State<AddStrengthTrainingPage> {
                     borderSide:
                         const BorderSide(color: Colors.orange, width: 3),
                   ),
-                  hintText: 'Exercise:'),
+                  hintText: 'Write Exercise e.g.: Squats'),
               onChanged: (newValue) {
                 setState(
                   () {
@@ -62,7 +62,7 @@ class _AddStrengthTrainingPageState extends State<AddStrengthTrainingPage> {
                     borderSide:
                         const BorderSide(color: Colors.orange, width: 3),
                   ),
-                  hintText: 'Part of working body:'),
+                  hintText: 'Write part of working body e.g.: Legs'),
               onChanged: (newValue) {
                 setState(
                   () {
@@ -84,7 +84,7 @@ class _AddStrengthTrainingPageState extends State<AddStrengthTrainingPage> {
                     borderSide:
                         const BorderSide(color: Colors.orange, width: 3),
                   ),
-                  hintText: 'Number of sets:'),
+                  hintText: 'Write number of sets e.g.: 3'),
               onChanged: (newValue) {
                 setState(
                   () {
@@ -106,7 +106,7 @@ class _AddStrengthTrainingPageState extends State<AddStrengthTrainingPage> {
                     borderSide:
                         const BorderSide(color: Colors.orange, width: 3),
                   ),
-                  hintText: 'Number of reps:'),
+                  hintText: 'Write number of reps e.g.: 8'),
               onChanged: (newValue) {
                 setState(
                   () {
@@ -128,7 +128,7 @@ class _AddStrengthTrainingPageState extends State<AddStrengthTrainingPage> {
                     borderSide:
                         const BorderSide(color: Colors.orange, width: 3),
                   ),
-                  hintText: ' Exercise weight:'),
+                  hintText: ' Write reps weight e.g.: 30 kg'),
               onChanged: (newValue) {
                 setState(
                   () {
