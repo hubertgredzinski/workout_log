@@ -8,7 +8,7 @@ class StrengthHistoryCubit extends Cubit<StrengthHistoryState> {
   StrengthHistoryCubit()
       : super(
           const StrengthHistoryState(
-              documents: [], isLoading: false, errorMessage: ''),
+              documents: null, isLoading: false, errorMessage: ''),
         );
 
   StreamSubscription? _streamSubscription;
@@ -16,21 +16,21 @@ class StrengthHistoryCubit extends Cubit<StrengthHistoryState> {
   Future<void> start() async {
     emit(
       const StrengthHistoryState(
-          documents: [], isLoading: true, errorMessage: ''),
+          documents: null, isLoading: true, errorMessage: ''),
     );
     _streamSubscription =
         FirebaseFirestore.instance.collection('strength').snapshots().listen(
       (data) {
         emit(
           StrengthHistoryState(
-              documents: data.docs, isLoading: false, errorMessage: ''),
+              documents: data, isLoading: false, errorMessage: ''),
         );
       },
     )..onError(
             (error) {
               emit(
                 StrengthHistoryState(
-                  documents: const [],
+                  documents: null,
                   isLoading: false,
                   errorMessage: error.toString(),
                 ),
@@ -48,7 +48,7 @@ class StrengthHistoryCubit extends Cubit<StrengthHistoryState> {
     } catch (error) {
       emit(
         StrengthHistoryState(
-          documents: const [],
+          documents: null,
           isLoading: false,
           errorMessage: error.toString(),
         ),
