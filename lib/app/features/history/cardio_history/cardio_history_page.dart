@@ -104,6 +104,7 @@ class CardioTraining extends StatelessWidget {
                     style: GoogleFonts.lato(
                         fontSize: 18, fontWeight: FontWeight.bold),
                   ),
+                  const SizedBox(height: 5),
                   Text(
                     document['intensity'],
                   ),
@@ -116,6 +117,7 @@ class CardioTraining extends StatelessWidget {
                     style: GoogleFonts.lato(
                         fontSize: 18, fontWeight: FontWeight.bold),
                   ),
+                  const SizedBox(height: 5),
                   Text(document['time'])
                 ],
               ),
@@ -126,6 +128,7 @@ class CardioTraining extends StatelessWidget {
                     style: GoogleFonts.lato(
                         fontSize: 18, fontWeight: FontWeight.bold),
                   ),
+                  const SizedBox(height: 5),
                   Text(
                     document['kcal'],
                   ),
@@ -134,7 +137,7 @@ class CardioTraining extends StatelessWidget {
             ],
           ),
           const Divider(
-            color: Color.fromARGB(155, 255, 225, 0),
+            color: Color.fromARGB(211, 255, 225, 0),
             indent: 20,
             endIndent: 20,
             height: 30,
