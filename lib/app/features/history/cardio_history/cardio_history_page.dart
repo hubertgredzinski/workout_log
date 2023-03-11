@@ -1,11 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'cubit/cardio_history_cubit.dart';
 
-class CardioHistoryTrainingPage extends StatelessWidget {
-  const CardioHistoryTrainingPage({
+class CardioHistoryPage extends StatelessWidget {
+  const CardioHistoryPage({
     Key? key,
   }) : super(key: key);
 
@@ -26,8 +27,10 @@ class CardioHistoryTrainingPage extends StatelessWidget {
               return const Center(child: CircularProgressIndicator());
             }
 
-            final documents = state.documents;
-
+            final documents = state.documents?.docs;
+            if (documents == null) {
+              return const SizedBox.shrink();
+            }
             return ListView(
               children: [
                 for (final document in documents) ...[
@@ -53,26 +56,7 @@ class CardioHistoryTrainingPage extends StatelessWidget {
                           .read<CardioHistoryCubit>()
                           .remove(documentID: document.id);
                     },
-                    child: Padding(
-                      padding: const EdgeInsets.all(8),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          CardioTraining(
-                            document['type'],
-                          ),
-                          CardioTraining(
-                            document['time'],
-                          ),
-                          CardioTraining(
-                            document['intensity'],
-                          ),
-                          CardioTraining(
-                            document['kcal'],
-                          )
-                        ],
-                      ),
-                    ),
+                    child: CardioTraining(document: document),
                   ),
                 ],
               ],
@@ -85,49 +69,76 @@ class CardioHistoryTrainingPage extends StatelessWidget {
 }
 
 class CardioTraining extends StatelessWidget {
-  const CardioTraining(
-    this.title, {
-    super.key,
-  });
+  const CardioTraining({
+    Key? key,
+    required this.document,
+  }) : super(key: key);
 
-  final String title;
+  final QueryDocumentSnapshot<Map<String, dynamic>> document;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
       child: Column(
         children: [
           Text(
-            title,
-            style: GoogleFonts.lato(fontSize: 20, fontWeight: FontWeight.bold),
+            document['type'],
+            style: GoogleFonts.lato(fontSize: 22, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 5),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Time',
-                style:
-                    GoogleFonts.lato(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              Text(
-                'Intensity',
-                style:
-                    GoogleFonts.lato(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              Text(
-                'Calories',
-                style:
-                    GoogleFonts.lato(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-            ],
-          ),
           Text(
             '22.04.23',
             style: GoogleFonts.lato(
-              fontSize: 15,
+              fontSize: 16,
             ),
+          ),
+          const SizedBox(height: 20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                children: [
+                  Text(
+                    'Intensity',
+                    style: GoogleFonts.lato(
+                        fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    document['intensity'],
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  Text(
+                    'Time',
+                    style: GoogleFonts.lato(
+                        fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  Text(document['time'])
+                ],
+              ),
+              Column(
+                children: [
+                  Text(
+                    'Calories',
+                    style: GoogleFonts.lato(
+                        fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    document['kcal'],
+                  ),
+                ],
+              ),
+            ],
+          ),
+          const Divider(
+            color: Color.fromARGB(155, 255, 225, 0),
+            indent: 20,
+            endIndent: 20,
+            height: 30,
+            thickness: 0.5,
           )
         ],
       ),
