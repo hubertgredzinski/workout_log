@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '_strength_training_history/strength_history.dart';
+import '_strength_training_history/strength_history_page.dart';
 import 'cardio_history/cardio_history_page.dart';
 
 class HistoryPage extends StatelessWidget {
@@ -35,7 +35,7 @@ class HistoryPage extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const StrengthHistoryTrainingPage(),
+                    builder: (context) => const StrengthHistoryPage(),
                   ),
                 );
               },
@@ -57,7 +57,7 @@ class HistoryPage extends StatelessWidget {
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => const CardioHistoryTrainingPage(),
+                    builder: (context) => const CardioHistoryPage(),
                     fullscreenDialog: false,
                   ),
                 );
