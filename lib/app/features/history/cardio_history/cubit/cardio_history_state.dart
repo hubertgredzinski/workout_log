@@ -1,8 +1,7 @@
 part of 'cardio_history_cubit.dart';
 
-@immutable
 class CardioHistoryState {
-  final List<QueryDocumentSnapshot<Object?>> documents;
+  final QuerySnapshot<Map<String, dynamic>>? documents;
   final bool isLoading;
   final String errorMessage;
 

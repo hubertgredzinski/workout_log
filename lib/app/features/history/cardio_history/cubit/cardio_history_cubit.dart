@@ -8,7 +8,7 @@ class CardioHistoryCubit extends Cubit<CardioHistoryState> {
   CardioHistoryCubit()
       : super(
           const CardioHistoryState(
-              documents: [], isLoading: false, errorMessage: ''),
+              documents: null, isLoading: false, errorMessage: ''),
         );
 
   StreamSubscription? _streamSubscription;
@@ -16,21 +16,21 @@ class CardioHistoryCubit extends Cubit<CardioHistoryState> {
   Future<void> start() async {
     emit(
       const CardioHistoryState(
-          documents: [], isLoading: true, errorMessage: ''),
+          documents: null, isLoading: true, errorMessage: ''),
     );
     _streamSubscription =
         FirebaseFirestore.instance.collection('cardio').snapshots().listen(
       (data) {
         emit(
           CardioHistoryState(
-              documents: data.docs, isLoading: false, errorMessage: ''),
+              documents: data, isLoading: false, errorMessage: ''),
         );
       },
     )..onError(
             (error) {
               emit(
                 CardioHistoryState(
-                  documents: const [],
+                  documents: null,
                   isLoading: false,
                   errorMessage: error.toString(),
                 ),
@@ -48,7 +48,7 @@ class CardioHistoryCubit extends Cubit<CardioHistoryState> {
     } catch (error) {
       emit(
         CardioHistoryState(
-          documents: const [],
+          documents: null,
           isLoading: false,
           errorMessage: error.toString(),
         ),
