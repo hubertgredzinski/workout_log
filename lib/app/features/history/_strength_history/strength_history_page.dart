@@ -89,7 +89,7 @@ class StrengthTraining extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           Text(
-            '22.04.23',
+            (document['date'] as Timestamp).toDate().toString(),
             style: GoogleFonts.lato(
               fontSize: 16,
             ),
