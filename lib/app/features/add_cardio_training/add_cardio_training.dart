@@ -1,5 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'cubit/add_cardio_training_cubit.dart';
 
 class AddCardioTrainingPage extends StatefulWidget {
   const AddCardioTrainingPage({
@@ -11,10 +12,10 @@ class AddCardioTrainingPage extends StatefulWidget {
 }
 
 class _AddCardioTrainingPageState extends State<AddCardioTrainingPage> {
-  var type = '';
-  var time = '';
-  var intensity = '';
-  var kcal = '';
+  String? type;
+  String? time;
+  String? intensity;
+  String? kcal;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -114,17 +115,12 @@ class _AddCardioTrainingPageState extends State<AddCardioTrainingPage> {
             const SizedBox(height: 50),
             ElevatedButton(
               style: ElevatedButton.styleFrom(backgroundColor: Colors.orange),
-              onPressed: type.isEmpty || time.isEmpty
+              onPressed: type == null || time == null
                   ? null
                   : () {
-                      FirebaseFirestore.instance.collection('cardio').add(
-                        {
-                          'type': type,
-                          'time': time,
-                          'intensity': intensity,
-                          'kcal': kcal,
-                        },
-                      );
+                      context
+                          .read<AddCardioTrainingCubit>()
+                          .add(type!, time!, intensity, kcal);
                     },
               child: const Text('Add training'),
             )
