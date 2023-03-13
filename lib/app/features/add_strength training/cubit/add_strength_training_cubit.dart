@@ -10,7 +10,7 @@ class AddStrengthTrainingCubit extends Cubit<AddStrengthTrainingState> {
           const AddStrengthTrainingState(),
         );
   Future<void> add(String exercise, String bodyPart, String reps, String sets,
-      String? weight) async {
+      String? weight, DateTime date) async {
     try {
       await FirebaseFirestore.instance.collection('strength').add(
         {
@@ -19,6 +19,7 @@ class AddStrengthTrainingCubit extends Cubit<AddStrengthTrainingState> {
           'reps': reps,
           'sets': sets,
           'weight': weight,
+          'date': date,
         },
       );
       emit(
