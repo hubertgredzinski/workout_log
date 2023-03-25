@@ -1,7 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:workout_log/models/cardio_history_model.dart';
 
 import 'cubit/cardio_history_cubit.dart';
 
@@ -27,15 +27,12 @@ class CardioHistoryPage extends StatelessWidget {
               return const Center(child: CircularProgressIndicator());
             }
 
-            final documents = state.documents?.docs;
-            if (documents == null) {
-              return const SizedBox.shrink();
-            }
+            final cardioModels = state.documents;
             return ListView(
               children: [
-                for (final document in documents) ...[
+                for (final cardioModel in cardioModels) ...[
                   Dismissible(
-                    key: ValueKey(document.id),
+                    key: ValueKey(cardioModel.id),
                     background: const DecoratedBox(
                       decoration: BoxDecoration(color: Colors.red),
                       child: Align(
@@ -54,9 +51,9 @@ class CardioHistoryPage extends StatelessWidget {
                     onDismissed: (direction) {
                       context
                           .read<CardioHistoryCubit>()
-                          .remove(documentID: document.id);
+                          .remove(documentID: cardioModel.id);
                     },
-                    child: CardioTraining(document: document),
+                    child: CardioTraining(cardioModel: cardioModel),
                   ),
                 ],
               ],
@@ -71,10 +68,10 @@ class CardioHistoryPage extends StatelessWidget {
 class CardioTraining extends StatelessWidget {
   const CardioTraining({
     Key? key,
-    required this.document,
+    required this.cardioModel,
   }) : super(key: key);
 
-  final QueryDocumentSnapshot<Map<String, dynamic>> document;
+  final CardioHistoryModel cardioModel;
 
   @override
   Widget build(BuildContext context) {
@@ -83,12 +80,12 @@ class CardioTraining extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            document['type'],
+            cardioModel.type,
             style: GoogleFonts.lato(fontSize: 22, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 5),
           Text(
-            (document['date'] as Timestamp).toDate().toString(),
+            (cardioModel.date).toString(),
             style: GoogleFonts.lato(
               fontSize: 16,
             ),
@@ -106,7 +103,7 @@ class CardioTraining extends StatelessWidget {
                   ),
                   const SizedBox(height: 5),
                   Text(
-                    document['intensity'].toString(),
+                    cardioModel.intensity.toString(),
                   ),
                 ],
               ),
@@ -119,7 +116,7 @@ class CardioTraining extends StatelessWidget {
                   ),
                   const SizedBox(height: 5),
                   Text(
-                    document['time'],
+                    cardioModel.time,
                   )
                 ],
               ),
@@ -132,7 +129,7 @@ class CardioTraining extends StatelessWidget {
                   ),
                   const SizedBox(height: 5),
                   Text(
-                    document['kcal'].toString(),
+                    cardioModel.kcal.toString(),
                   ),
                 ],
               ),

@@ -2,35 +2,47 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:meta/meta.dart';
+
+import '../../../../../models/cardio_history_model.dart';
 part 'cardio_history_state.dart';
 
 class CardioHistoryCubit extends Cubit<CardioHistoryState> {
   CardioHistoryCubit()
       : super(
-          const CardioHistoryState(
-              documents: null, isLoading: false, errorMessage: ''),
+          CardioHistoryState(documents: [], isLoading: false, errorMessage: ''),
         );
 
   StreamSubscription? _streamSubscription;
 
   Future<void> start() async {
     emit(
-      const CardioHistoryState(
-          documents: null, isLoading: true, errorMessage: ''),
+      CardioHistoryState(documents: [], isLoading: true, errorMessage: ''),
     );
     _streamSubscription =
         FirebaseFirestore.instance.collection('cardio').snapshots().listen(
-      (data) {
+      (cardioData) {
+        final cardioModels = cardioData.docs.map(
+          (document) {
+            return CardioHistoryModel(
+              id: document.id,
+              type: document['type'],
+              time: document['time'],
+              date: (document['date'] as Timestamp).toDate(),
+              intensity: document['intensity'],
+              kcal: document['kcal'],
+            );
+          },
+        ).toList();
         emit(
           CardioHistoryState(
-              documents: data, isLoading: false, errorMessage: ''),
+              documents: cardioModels, isLoading: false, errorMessage: ''),
         );
       },
     )..onError(
             (error) {
               emit(
                 CardioHistoryState(
-                  documents: null,
+                  documents: [],
                   isLoading: false,
                   errorMessage: error.toString(),
                 ),
@@ -48,7 +60,7 @@ class CardioHistoryCubit extends Cubit<CardioHistoryState> {
     } catch (error) {
       emit(
         CardioHistoryState(
-          documents: null,
+          documents: [],
           isLoading: false,
           errorMessage: error.toString(),
         ),
