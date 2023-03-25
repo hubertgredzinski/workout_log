@@ -28,6 +28,14 @@ class _AddStrengthTrainingPageState extends State<AddStrengthTrainingPage> {
           if (state.saved) {
             Navigator.of(context).pop();
           }
+          if (state.errorMessage.isNotEmpty) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(state.errorMessage),
+                backgroundColor: Colors.red,
+              ),
+            );
+          }
         },
         child: BlocBuilder<AddStrengthTrainingCubit, AddStrengthTrainingState>(
           builder: (context, state) {
