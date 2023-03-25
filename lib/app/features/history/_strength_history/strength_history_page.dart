@@ -146,7 +146,7 @@ class StrengthTraining extends StatelessWidget {
                   ),
                   const SizedBox(height: 5),
                   Text(
-                    document['weight'],
+                    document['weight'].toString(),
                   )
                 ],
               ),

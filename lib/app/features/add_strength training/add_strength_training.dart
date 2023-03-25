@@ -26,22 +26,29 @@ class _AddStrengthTrainingPageState extends State<AddStrengthTrainingPage> {
       child: BlocBuilder<AddStrengthTrainingCubit, AddStrengthTrainingState>(
         builder: (context, state) {
           return Scaffold(
-            appBar:
-                AppBar(title: const Text("Add Strength Training"), actions: [
-              IconButton(
-                onPressed: exercise == null ||
-                        bodyPart == null ||
-                        reps == null ||
-                        sets == null ||
-                        date == null
-                    ? null
-                    : () {
-                        context.read<AddStrengthTrainingCubit>().add(
-                            exercise!, bodyPart!, reps!, sets!, weight, date!);
-                      },
-                icon: const Icon(Icons.check),
-              ),
-            ]),
+            appBar: AppBar(
+              title: const Text("Add Strength Training"),
+              actions: [
+                IconButton(
+                  onPressed: exercise == null ||
+                          bodyPart == null ||
+                          reps == null ||
+                          sets == null ||
+                          date == null
+                      ? null
+                      : () {
+                          context.read<AddStrengthTrainingCubit>().add(
+                              exercise!,
+                              bodyPart!,
+                              reps!,
+                              sets!,
+                              weight,
+                              date!);
+                        },
+                  icon: const Icon(Icons.check),
+                ),
+              ],
+            ),
             body: _AddStrengthTrainingBody(
               onExerciseChanged: (newValue) {
                 setState(
