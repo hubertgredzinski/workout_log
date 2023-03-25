@@ -27,6 +27,14 @@ class AddCardioTrainingPageState extends State<AddCardioTrainingPage> {
           if (state.saved) {
             Navigator.of(context).pop();
           }
+          if (state.errorMessage.isNotEmpty) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(state.errorMessage),
+                backgroundColor: Colors.red,
+              ),
+            );
+          }
         },
         child: BlocBuilder<AddCardioTrainingCubit, AddCardioTrainingState>(
           builder: (context, state) {
