@@ -88,7 +88,7 @@ class CardioTraining extends StatelessWidget {
           ),
           const SizedBox(height: 5),
           Text(
-            '22.04.23',
+            (document['date'] as Timestamp).toDate().toString(),
             style: GoogleFonts.lato(
               fontSize: 16,
             ),
@@ -106,7 +106,7 @@ class CardioTraining extends StatelessWidget {
                   ),
                   const SizedBox(height: 5),
                   Text(
-                    document['intensity'],
+                    document['intensity'].toString(),
                   ),
                 ],
               ),
@@ -118,7 +118,9 @@ class CardioTraining extends StatelessWidget {
                         fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 5),
-                  Text(document['time'])
+                  Text(
+                    document['time'],
+                  )
                 ],
               ),
               Column(
@@ -130,7 +132,7 @@ class CardioTraining extends StatelessWidget {
                   ),
                   const SizedBox(height: 5),
                   Text(
-                    document['kcal'],
+                    document['kcal'].toString(),
                   ),
                 ],
               ),
