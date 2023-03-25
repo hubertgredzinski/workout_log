@@ -22,64 +22,71 @@ class AddCardioTrainingPageState extends State<AddCardioTrainingPage> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => AddCardioTrainingCubit(),
-      child: BlocBuilder<AddCardioTrainingCubit, AddCardioTrainingState>(
-        builder: (context, state) {
-          return Scaffold(
-            appBar: AppBar(
-              title: const Text("Add Cardio Training"),
-              actions: [
-                IconButton(
-                  onPressed: type == null || time == null || date == null
-                      ? null
-                      : () {
-                          context
-                              .read<AddCardioTrainingCubit>()
-                              .add(type!, time!, date!, intensity, kcal);
-                        },
-                  icon: const Icon(Icons.check),
-                ),
-              ],
-            ),
-            body: _AddCardioTrainingBody(
-              onTypeChanged: (newValue) {
-                setState(
-                  () {
-                    type = newValue;
-                  },
-                );
-              },
-              onTimeChanged: (newValue) {
-                setState(
-                  () {
-                    time = newValue;
-                  },
-                );
-              },
-              onIntensityChanged: (newValue) {
-                setState(
-                  () {
-                    intensity = newValue;
-                  },
-                );
-              },
-              onKcalChanged: (newValue) {
-                setState(
-                  () {
-                    kcal = newValue;
-                  },
-                );
-              },
-              onDateChanged: (newValue) {
-                setState(
-                  () {
-                    date = newValue;
-                  },
-                );
-              },
-              selectedDateFormatted: date?.toIso8601String(),
-            ),
-          );
+      child: BlocListener<AddCardioTrainingCubit, AddCardioTrainingState>(
+        listener: (context, state) {
+          if (state.saved) {
+            Navigator.of(context).pop();
+          }
         },
+        child: BlocBuilder<AddCardioTrainingCubit, AddCardioTrainingState>(
+          builder: (context, state) {
+            return Scaffold(
+              appBar: AppBar(
+                title: const Text("Add Cardio Training"),
+                actions: [
+                  IconButton(
+                    onPressed: type == null || time == null || date == null
+                        ? null
+                        : () {
+                            context
+                                .read<AddCardioTrainingCubit>()
+                                .add(type!, time!, date!, intensity, kcal);
+                          },
+                    icon: const Icon(Icons.check),
+                  ),
+                ],
+              ),
+              body: _AddCardioTrainingBody(
+                onTypeChanged: (newValue) {
+                  setState(
+                    () {
+                      type = newValue;
+                    },
+                  );
+                },
+                onTimeChanged: (newValue) {
+                  setState(
+                    () {
+                      time = newValue;
+                    },
+                  );
+                },
+                onIntensityChanged: (newValue) {
+                  setState(
+                    () {
+                      intensity = newValue;
+                    },
+                  );
+                },
+                onKcalChanged: (newValue) {
+                  setState(
+                    () {
+                      kcal = newValue;
+                    },
+                  );
+                },
+                onDateChanged: (newValue) {
+                  setState(
+                    () {
+                      date = newValue;
+                    },
+                  );
+                },
+                selectedDateFormatted: date?.toIso8601String(),
+              ),
+            );
+          },
+        ),
       ),
     );
   }
