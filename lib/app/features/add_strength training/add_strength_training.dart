@@ -23,79 +23,86 @@ class _AddStrengthTrainingPageState extends State<AddStrengthTrainingPage> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => AddStrengthTrainingCubit(),
-      child: BlocBuilder<AddStrengthTrainingCubit, AddStrengthTrainingState>(
-        builder: (context, state) {
-          return Scaffold(
-            appBar: AppBar(
-              title: const Text("Add Strength Training"),
-              actions: [
-                IconButton(
-                  onPressed: exercise == null ||
-                          bodyPart == null ||
-                          reps == null ||
-                          sets == null ||
-                          date == null
-                      ? null
-                      : () {
-                          context.read<AddStrengthTrainingCubit>().add(
-                              exercise!,
-                              bodyPart!,
-                              reps!,
-                              sets!,
-                              weight,
-                              date!);
-                        },
-                  icon: const Icon(Icons.check),
-                ),
-              ],
-            ),
-            body: _AddStrengthTrainingBody(
-              onExerciseChanged: (newValue) {
-                setState(
-                  () {
-                    exercise = newValue;
-                  },
-                );
-              },
-              onBodyPartChanged: (newValue) {
-                setState(
-                  () {
-                    bodyPart = newValue;
-                  },
-                );
-              },
-              onSetsChanged: (newValue) {
-                setState(
-                  () {
-                    sets = newValue;
-                  },
-                );
-              },
-              onRepsChanged: (newValue) {
-                setState(
-                  () {
-                    reps = newValue;
-                  },
-                );
-              },
-              onWeightChanged: (newValue) {
-                setState(
-                  () {
-                    weight = newValue;
-                  },
-                );
-              },
-              onDateChanged: (newValue) {
-                setState(
-                  () {
-                    date = newValue;
-                  },
-                );
-              },
-              selectedDateFormatted: date?.toIso8601String(),
-            ),
-          );
+      child: BlocListener<AddStrengthTrainingCubit, AddStrengthTrainingState>(
+        listener: (context, state) {
+          if (state.saved) {
+            Navigator.of(context).pop();
+          }
         },
+        child: BlocBuilder<AddStrengthTrainingCubit, AddStrengthTrainingState>(
+          builder: (context, state) {
+            return Scaffold(
+              appBar: AppBar(
+                title: const Text("Add Strength Training"),
+                actions: [
+                  IconButton(
+                    onPressed: exercise == null ||
+                            bodyPart == null ||
+                            reps == null ||
+                            sets == null ||
+                            date == null
+                        ? null
+                        : () {
+                            context.read<AddStrengthTrainingCubit>().add(
+                                exercise!,
+                                bodyPart!,
+                                reps!,
+                                sets!,
+                                weight,
+                                date!);
+                          },
+                    icon: const Icon(Icons.check),
+                  ),
+                ],
+              ),
+              body: _AddStrengthTrainingBody(
+                onExerciseChanged: (newValue) {
+                  setState(
+                    () {
+                      exercise = newValue;
+                    },
+                  );
+                },
+                onBodyPartChanged: (newValue) {
+                  setState(
+                    () {
+                      bodyPart = newValue;
+                    },
+                  );
+                },
+                onSetsChanged: (newValue) {
+                  setState(
+                    () {
+                      sets = newValue;
+                    },
+                  );
+                },
+                onRepsChanged: (newValue) {
+                  setState(
+                    () {
+                      reps = newValue;
+                    },
+                  );
+                },
+                onWeightChanged: (newValue) {
+                  setState(
+                    () {
+                      weight = newValue;
+                    },
+                  );
+                },
+                onDateChanged: (newValue) {
+                  setState(
+                    () {
+                      date = newValue;
+                    },
+                  );
+                },
+                selectedDateFormatted: date?.toIso8601String(),
+              ),
+            );
+          },
+        ),
       ),
     );
   }
