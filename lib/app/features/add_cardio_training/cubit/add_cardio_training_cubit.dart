@@ -11,6 +11,7 @@ class AddCardioTrainingCubit extends Cubit<AddCardioTrainingState> {
   Future<void> add(
     String type,
     String time,
+    DateTime date,
     String? intensity,
     String? kcal,
   ) async {
@@ -19,6 +20,7 @@ class AddCardioTrainingCubit extends Cubit<AddCardioTrainingState> {
         {
           'type': type,
           'time': time,
+          'date': date,
           'intensity': intensity,
           'kcal': kcal,
         },
