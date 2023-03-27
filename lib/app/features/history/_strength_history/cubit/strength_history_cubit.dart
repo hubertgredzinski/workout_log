@@ -2,38 +2,42 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:meta/meta.dart';
+
+import '../../../../../models/strength_history_model.dart';
 part 'strength_history_state.dart';
 
 class StrengthHistoryCubit extends Cubit<StrengthHistoryState> {
   StrengthHistoryCubit()
       : super(
-          const StrengthHistoryState(
-              documents: null, isLoading: false, errorMessage: ''),
+          const StrengthHistoryState(),
         );
 
   StreamSubscription? _streamSubscription;
 
   Future<void> start() async {
-    emit(
-      const StrengthHistoryState(
-          documents: null, isLoading: true, errorMessage: ''),
-    );
     _streamSubscription =
         FirebaseFirestore.instance.collection('strength').snapshots().listen(
-      (data) {
+      (strengthData) {
+        final strengthModels = strengthData.docs.map(
+          (document) {
+            return StrengthHistoryModel(
+                bodypart: document['bodypart'],
+                date: (document['date'] as Timestamp).toDate(),
+                exercise: document['exercise'],
+                reps: document['reps'],
+                sets: document['sets'],
+                weight: document['weight'].toString(),
+                id: document.id);
+          },
+        ).toList();
         emit(
-          StrengthHistoryState(
-              documents: data, isLoading: false, errorMessage: ''),
+          StrengthHistoryState(strengthDocuments: strengthModels),
         );
       },
     )..onError(
             (error) {
               emit(
-                StrengthHistoryState(
-                  documents: null,
-                  isLoading: false,
-                  errorMessage: error.toString(),
-                ),
+                const StrengthHistoryState(loadingErrorOccured: true),
               );
             },
           );
@@ -47,11 +51,7 @@ class StrengthHistoryCubit extends Cubit<StrengthHistoryState> {
           .delete();
     } catch (error) {
       emit(
-        StrengthHistoryState(
-          documents: null,
-          isLoading: false,
-          errorMessage: error.toString(),
-        ),
+        const StrengthHistoryState(removingErrorOccured: true),
       );
       start();
     }

@@ -2,13 +2,13 @@ part of 'strength_history_cubit.dart';
 
 @immutable
 class StrengthHistoryState {
-  final QuerySnapshot<Map<String, dynamic>>? documents;
-  final bool isLoading;
-  final String errorMessage;
+  final List<StrengthHistoryModel> strengthDocuments;
+  final bool loadingErrorOccured;
+  final bool removingErrorOccured;
 
   const StrengthHistoryState({
-    required this.documents,
-    required this.isLoading,
-    required this.errorMessage,
+    this.strengthDocuments = const [],
+    this.loadingErrorOccured = false,
+    this.removingErrorOccured = false,
   });
 }

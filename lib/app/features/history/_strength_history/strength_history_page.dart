@@ -1,7 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:workout_log/models/strength_history_model.dart';
 import 'cubit/strength_history_cubit.dart';
 
 class StrengthHistoryPage extends StatelessWidget {
@@ -19,22 +19,12 @@ class StrengthHistoryPage extends StatelessWidget {
         create: (context) => StrengthHistoryCubit()..start(),
         child: BlocBuilder<StrengthHistoryCubit, StrengthHistoryState>(
           builder: (context, state) {
-            if (state.errorMessage.isNotEmpty) {
-              return Text('Wystąpił błąd w aplikacji: ${state.errorMessage}');
-            }
-            if (state.isLoading) {
-              return const Center(child: CircularProgressIndicator());
-            }
-            final documents = state.documents?.docs;
-            if (documents == null) {
-              return const SizedBox.shrink();
-            }
-
+            final strengthModels = state.strengthDocuments;
             return ListView(
               children: [
-                for (final document in documents) ...[
+                for (final stengthModel in strengthModels) ...[
                   Dismissible(
-                    key: ValueKey(document.id),
+                    key: ValueKey(stengthModel.id),
                     background: const DecoratedBox(
                       decoration: BoxDecoration(color: Colors.red),
                       child: Align(
@@ -53,11 +43,12 @@ class StrengthHistoryPage extends StatelessWidget {
                     onDismissed: (direction) {
                       context
                           .read<StrengthHistoryCubit>()
-                          .remove(documentID: document.id);
+                          .remove(documentID: stengthModel.id);
                     },
                     child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: StrengthTraining(document: document)),
+                      padding: const EdgeInsets.all(8.0),
+                      child: StrengthTraining(strengthDocument: stengthModel),
+                    ),
                   )
                 ],
               ],
@@ -72,10 +63,10 @@ class StrengthHistoryPage extends StatelessWidget {
 class StrengthTraining extends StatelessWidget {
   const StrengthTraining({
     Key? key,
-    required this.document,
+    required this.strengthDocument,
   }) : super(key: key);
 
-  final QueryDocumentSnapshot<Map<String, dynamic>> document;
+  final StrengthHistoryModel strengthDocument;
 
   @override
   Widget build(BuildContext context) {
@@ -84,12 +75,12 @@ class StrengthTraining extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            document['exercise'],
+            strengthDocument.exercise,
             style: GoogleFonts.lato(fontSize: 22, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 10),
           Text(
-            (document['date'] as Timestamp).toDate().toString(),
+            (strengthDocument.date).toString(),
             style: GoogleFonts.lato(
               fontSize: 16,
             ),
@@ -107,7 +98,7 @@ class StrengthTraining extends StatelessWidget {
                   ),
                   const SizedBox(height: 5),
                   Text(
-                    document['bodypart'],
+                    strengthDocument.bodypart,
                   ),
                 ],
               ),
@@ -120,7 +111,7 @@ class StrengthTraining extends StatelessWidget {
                   ),
                   const SizedBox(height: 5),
                   Text(
-                    document['sets'],
+                    strengthDocument.sets,
                   ),
                 ],
               ),
@@ -133,7 +124,7 @@ class StrengthTraining extends StatelessWidget {
                   ),
                   const SizedBox(height: 5),
                   Text(
-                    document['reps'],
+                    strengthDocument.reps,
                   )
                 ],
               ),
@@ -145,9 +136,7 @@ class StrengthTraining extends StatelessWidget {
                         fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 5),
-                  Text(
-                    document['weight'].toString(),
-                  )
+                  Text(strengthDocument.weight)
                 ],
               ),
             ],
