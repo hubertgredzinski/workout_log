@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:workout_log/models/cardio_history_model.dart';
-
 import 'cubit/cardio_history_cubit.dart';
 
 class CardioHistoryPage extends StatelessWidget {
@@ -20,14 +19,7 @@ class CardioHistoryPage extends StatelessWidget {
         create: (context) => CardioHistoryCubit()..start(),
         child: BlocBuilder<CardioHistoryCubit, CardioHistoryState>(
           builder: (context, state) {
-            if (state.errorMessage.isNotEmpty) {
-              return Text('Wystąpił błąd w aplikacji: ${state.errorMessage}');
-            }
-            if (state.isLoading) {
-              return const Center(child: CircularProgressIndicator());
-            }
-
-            final cardioModels = state.documents;
+            final cardioModels = state.cardioDocuments;
             return ListView(
               children: [
                 for (final cardioModel in cardioModels) ...[
@@ -53,7 +45,7 @@ class CardioHistoryPage extends StatelessWidget {
                           .read<CardioHistoryCubit>()
                           .remove(documentID: cardioModel.id);
                     },
-                    child: CardioTraining(cardioModel: cardioModel),
+                    child: CardioTraining(cardioDocument: cardioModel),
                   ),
                 ],
               ],
@@ -68,10 +60,10 @@ class CardioHistoryPage extends StatelessWidget {
 class CardioTraining extends StatelessWidget {
   const CardioTraining({
     Key? key,
-    required this.cardioModel,
+    required this.cardioDocument,
   }) : super(key: key);
 
-  final CardioHistoryModel cardioModel;
+  final CardioHistoryModel cardioDocument;
 
   @override
   Widget build(BuildContext context) {
@@ -80,12 +72,12 @@ class CardioTraining extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            cardioModel.type,
+            cardioDocument.type,
             style: GoogleFonts.lato(fontSize: 22, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 5),
           Text(
-            (cardioModel.date).toString(),
+            (cardioDocument.date).toString(),
             style: GoogleFonts.lato(
               fontSize: 16,
             ),
@@ -103,7 +95,7 @@ class CardioTraining extends StatelessWidget {
                   ),
                   const SizedBox(height: 5),
                   Text(
-                    cardioModel.intensity.toString(),
+                    cardioDocument.intensity.toString(),
                   ),
                 ],
               ),
@@ -116,7 +108,7 @@ class CardioTraining extends StatelessWidget {
                   ),
                   const SizedBox(height: 5),
                   Text(
-                    cardioModel.time,
+                    cardioDocument.time,
                   )
                 ],
               ),
@@ -128,9 +120,7 @@ class CardioTraining extends StatelessWidget {
                         fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 5),
-                  Text(
-                    cardioModel.kcal.toString(),
-                  ),
+                  Text(cardioDocument.kcal),
                 ],
               ),
             ],
