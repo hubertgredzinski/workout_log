@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:meta/meta.dart';
-import '../../../../../models/cardio_history_model.dart';
+import '../../../../models/cardio_history_model.dart';
 part 'cardio_history_state.dart';
 
 class CardioHistoryCubit extends Cubit<CardioHistoryState> {
