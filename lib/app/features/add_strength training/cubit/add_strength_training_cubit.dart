@@ -1,27 +1,20 @@
 import 'package:bloc/bloc.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:meta/meta.dart';
-
+import 'package:workout_log/repositories/strength_history_repository.dart';
 part 'add_strength_training_state.dart';
 
 class AddStrengthTrainingCubit extends Cubit<AddStrengthTrainingState> {
-  AddStrengthTrainingCubit()
+  AddStrengthTrainingCubit(this._strengthRepository)
       : super(
           const AddStrengthTrainingState(),
         );
+
+  final StrengthRepository _strengthRepository;
   Future<void> add(String exercise, String bodyPart, String reps, String sets,
       String? weight, DateTime date) async {
     try {
-      await FirebaseFirestore.instance.collection('strength').add(
-        {
-          'exercise': exercise,
-          'bodypart': bodyPart,
-          'reps': reps,
-          'sets': sets,
-          'weight': weight,
-          'date': date,
-        },
-      );
+      await _strengthRepository.add(
+          exercise, bodyPart, reps, sets, weight, date);
       emit(
         const AddStrengthTrainingState(saved: true),
       );

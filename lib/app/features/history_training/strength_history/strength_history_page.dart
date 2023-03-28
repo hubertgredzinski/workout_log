@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:workout_log/models/strength_history_model.dart';
+import 'package:workout_log/repositories/strength_history_repository.dart';
 import 'cubit/strength_history_cubit.dart';
 
 class StrengthHistoryPage extends StatelessWidget {
@@ -16,7 +17,8 @@ class StrengthHistoryPage extends StatelessWidget {
         title: const Text('Strength Training History'),
       ),
       body: BlocProvider(
-        create: (context) => StrengthHistoryCubit()..start(),
+        create: (context) =>
+            StrengthHistoryCubit(StrengthRepository())..start(),
         child: BlocBuilder<StrengthHistoryCubit, StrengthHistoryState>(
           builder: (context, state) {
             final strengthModels = state.strengthDocuments;

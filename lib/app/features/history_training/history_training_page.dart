@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '_strength_history/strength_history_page.dart';
+import 'package:workout_log/app/features/history_training/strength_history/strength_history_page.dart';
 import 'cardio_history/cardio_history_page.dart';
 
-class HistoryPage extends StatelessWidget {
-  const HistoryPage({
+class HistoryTrainingPage extends StatelessWidget {
+  const HistoryTrainingPage({
     Key? key,
   }) : super(key: key);
 

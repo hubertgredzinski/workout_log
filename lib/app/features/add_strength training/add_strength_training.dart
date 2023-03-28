@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:workout_log/app/features/add_strength%20training/cubit/add_strength_training_cubit.dart';
+import 'package:workout_log/repositories/strength_history_repository.dart';
 
 class AddStrengthTrainingPage extends StatefulWidget {
   const AddStrengthTrainingPage({
@@ -22,7 +23,7 @@ class _AddStrengthTrainingPageState extends State<AddStrengthTrainingPage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AddStrengthTrainingCubit(),
+      create: (context) => AddStrengthTrainingCubit(StrengthRepository()),
       child: BlocListener<AddStrengthTrainingCubit, AddStrengthTrainingState>(
         listener: (context, state) {
           if (state.saved) {
