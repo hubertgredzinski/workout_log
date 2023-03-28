@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:workout_log/models/cardio_history_model.dart';
+import 'package:workout_log/repositories/cardio_history_repository.dart';
 import 'cubit/cardio_history_cubit.dart';
 
 class CardioHistoryPage extends StatelessWidget {
@@ -16,7 +17,7 @@ class CardioHistoryPage extends StatelessWidget {
         title: const Text('Cardio Training History'),
       ),
       body: BlocProvider(
-        create: (context) => CardioHistoryCubit()..start(),
+        create: (context) => CardioHistoryCubit(CardioRepository())..start(),
         child: BlocBuilder<CardioHistoryCubit, CardioHistoryState>(
           builder: (context, state) {
             final cardioModels = state.cardioDocuments;

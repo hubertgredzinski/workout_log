@@ -1,55 +1,40 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:meta/meta.dart';
+import 'package:workout_log/repositories/cardio_history_repository.dart';
 import '../../../../../models/cardio_history_model.dart';
 part 'cardio_history_state.dart';
 
 class CardioHistoryCubit extends Cubit<CardioHistoryState> {
-  CardioHistoryCubit()
+  CardioHistoryCubit(this._cardioRepository)
       : super(
           CardioHistoryState(),
         );
 
+  final CardioRepository _cardioRepository;
+
   StreamSubscription? _streamSubscription;
 
   Future<void> start() async {
-    _streamSubscription =
-        FirebaseFirestore.instance.collection('cardio').snapshots().listen(
+    _streamSubscription = _cardioRepository.getCardioStream().listen(
       (cardioData) {
-        final cardioModels = cardioData.docs.map(
-          (document) {
-            return CardioHistoryModel(
-              id: document.id,
-              type: document['type'],
-              time: document['time'],
-              date: (document['date'] as Timestamp).toDate(),
-              intensity: document['intensity'].toString(),
-              kcal: document['kcal'].toString(),
-            );
-          },
-        ).toList();
         emit(
-          CardioHistoryState(cardioDocuments: cardioModels),
+          CardioHistoryState(cardioDocuments: cardioData),
         );
       },
     )..onError(
-            (error) {
-              emit(
-                CardioHistoryState(
-                  loadingErrorOccured: true,
-                ),
-              );
-            },
+        (error) {
+          emit(
+            CardioHistoryState(
+              loadingErrorOccured: true,
+            ),
           );
+        },
+      );
   }
 
   Future<void> remove({required String documentID}) async {
     try {
-      await FirebaseFirestore.instance
-          .collection('cardio')
-          .doc(documentID)
-          .delete();
+      await _cardioRepository.delete(documentID: documentID);
     } catch (error) {
       emit(
         CardioHistoryState(
