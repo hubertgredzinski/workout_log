@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:workout_log/app/models/cardio_history_model.dart';
+import 'package:workout_log/models/cardio_history_model.dart';
 import 'package:workout_log/repositories/cardio_history_repository.dart';
 import 'cubit/cardio_history_cubit.dart';
 

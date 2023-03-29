@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../../models/strength_history_model.dart';
+import '../../../../models/strength_history_model.dart';
 import 'cubit/strength_history_cubit.dart';
 
 class StrengthHistoryPage extends StatelessWidget {

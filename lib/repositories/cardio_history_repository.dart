@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../app/models/cardio_history_model.dart';
+import '../models/cardio_history_model.dart';
 
 class CardioRepository {
   Stream<List<CardioHistoryModel>> getCardioStream() {
