@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 class CardioHistoryModel {
   CardioHistoryModel({
     required this.id,
@@ -13,4 +15,8 @@ class CardioHistoryModel {
   final DateTime date;
   final String intensity;
   final String kcal;
+
+  String dateFromatted() {
+    return DateFormat.yMMMMEEEEd().format(date);
+  }
 }

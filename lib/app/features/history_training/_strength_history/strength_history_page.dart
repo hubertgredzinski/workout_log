@@ -80,7 +80,7 @@ class StrengthTraining extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           Text(
-            (strengthDocument.date).toString(),
+            (strengthDocument.dateFromatted()),
             style: GoogleFonts.lato(
               fontSize: 16,
             ),
