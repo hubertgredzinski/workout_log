@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../models/strength_history_model.dart';
+import '../app/models/strength_history_model.dart';
 
 class StrengthRepository {
   Stream<List<StrengthHistoryModel>> getStrengthStream() {

@@ -3,7 +3,8 @@ import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:workout_log/repositories/strength_history_repository.dart';
 
-import '../../../../../models/strength_history_model.dart';
+import '../../../../models/strength_history_model.dart';
+
 part 'strength_history_state.dart';
 
 class StrengthHistoryCubit extends Cubit<StrengthHistoryState> {
