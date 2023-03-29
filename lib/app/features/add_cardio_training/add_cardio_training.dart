@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:workout_log/repositories/cardio_history_repository.dart';
 import 'cubit/add_cardio_training_cubit.dart';
 
 class AddCardioTrainingPage extends StatefulWidget {
@@ -21,7 +22,7 @@ class AddCardioTrainingPageState extends State<AddCardioTrainingPage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AddCardioTrainingCubit(),
+      create: (context) => AddCardioTrainingCubit(CardioRepository()),
       child: BlocListener<AddCardioTrainingCubit, AddCardioTrainingState>(
         listener: (context, state) {
           if (state.saved) {

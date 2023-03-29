@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:meta/meta.dart';
 
 import '../../../../models/strength_history_model.dart';
+
 part 'strength_history_state.dart';
 
 class StrengthHistoryCubit extends Cubit<StrengthHistoryState> {

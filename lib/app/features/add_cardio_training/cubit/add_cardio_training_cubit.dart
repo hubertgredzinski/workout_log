@@ -1,13 +1,15 @@
 import 'package:bloc/bloc.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:meta/meta.dart';
+import 'package:workout_log/repositories/cardio_history_repository.dart';
 part 'add_cardio_training_state.dart';
 
 class AddCardioTrainingCubit extends Cubit<AddCardioTrainingState> {
-  AddCardioTrainingCubit()
+  AddCardioTrainingCubit(this._cardioRepository)
       : super(
           const AddCardioTrainingState(),
         );
+
+  final CardioRepository _cardioRepository;
   Future<void> add(
     String type,
     String time,
@@ -16,15 +18,7 @@ class AddCardioTrainingCubit extends Cubit<AddCardioTrainingState> {
     String? kcal,
   ) async {
     try {
-      await FirebaseFirestore.instance.collection('cardio').add(
-        {
-          'type': type,
-          'time': time,
-          'date': date,
-          'intensity': intensity,
-          'kcal': kcal,
-        },
-      );
+      await _cardioRepository.add(type, time, date, intensity, kcal);
       emit(
         const AddCardioTrainingState(saved: true),
       );

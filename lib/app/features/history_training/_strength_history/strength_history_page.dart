@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:workout_log/app/models/cardio_history_model.dart';
-import 'cubit/cardio_history_cubit.dart';
+import '../../../models/strength_history_model.dart';
+import 'cubit/strength_history_cubit.dart';
 
-class CardioHistoryPage extends StatelessWidget {
-  const CardioHistoryPage({
+class StrengthHistoryPage extends StatelessWidget {
+  const StrengthHistoryPage({
     Key? key,
   }) : super(key: key);
 
@@ -13,18 +13,18 @@ class CardioHistoryPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Cardio Training History'),
+        title: const Text('Strength Training History'),
       ),
       body: BlocProvider(
-        create: (context) => CardioHistoryCubit()..start(),
-        child: BlocBuilder<CardioHistoryCubit, CardioHistoryState>(
+        create: (context) => StrengthHistoryCubit()..start(),
+        child: BlocBuilder<StrengthHistoryCubit, StrengthHistoryState>(
           builder: (context, state) {
-            final cardioModels = state.cardioDocuments;
+            final strengthModels = state.strengthDocuments;
             return ListView(
               children: [
-                for (final cardioModel in cardioModels) ...[
+                for (final stengthModel in strengthModels) ...[
                   Dismissible(
-                    key: ValueKey(cardioModel.id),
+                    key: ValueKey(stengthModel.id),
                     background: const DecoratedBox(
                       decoration: BoxDecoration(color: Colors.red),
                       child: Align(
@@ -42,11 +42,14 @@ class CardioHistoryPage extends StatelessWidget {
                     },
                     onDismissed: (direction) {
                       context
-                          .read<CardioHistoryCubit>()
-                          .remove(documentID: cardioModel.id);
+                          .read<StrengthHistoryCubit>()
+                          .remove(documentID: stengthModel.id);
                     },
-                    child: CardioTraining(cardioDocument: cardioModel),
-                  ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: StrengthTraining(strengthDocument: stengthModel),
+                    ),
+                  )
                 ],
               ],
             );
@@ -57,13 +60,13 @@ class CardioHistoryPage extends StatelessWidget {
   }
 }
 
-class CardioTraining extends StatelessWidget {
-  const CardioTraining({
+class StrengthTraining extends StatelessWidget {
+  const StrengthTraining({
     Key? key,
-    required this.cardioDocument,
+    required this.strengthDocument,
   }) : super(key: key);
 
-  final CardioHistoryModel cardioDocument;
+  final StrengthHistoryModel strengthDocument;
 
   @override
   Widget build(BuildContext context) {
@@ -72,12 +75,12 @@ class CardioTraining extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            cardioDocument.type,
+            strengthDocument.exercise,
             style: GoogleFonts.lato(fontSize: 22, fontWeight: FontWeight.bold),
           ),
-          const SizedBox(height: 5),
+          const SizedBox(height: 10),
           Text(
-            (cardioDocument.date).toString(),
+            (strengthDocument.date).toString(),
             style: GoogleFonts.lato(
               fontSize: 16,
             ),
@@ -89,49 +92,62 @@ class CardioTraining extends StatelessWidget {
               Column(
                 children: [
                   Text(
-                    'Intensity',
+                    'Body Part',
                     style: GoogleFonts.lato(
                         fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 5),
                   Text(
-                    cardioDocument.intensity.toString(),
+                    strengthDocument.bodypart,
                   ),
                 ],
               ),
               Column(
                 children: [
                   Text(
-                    'Time',
+                    'Sets',
                     style: GoogleFonts.lato(
                         fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 5),
                   Text(
-                    cardioDocument.time,
+                    strengthDocument.sets,
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  Text(
+                    'Reps',
+                    style: GoogleFonts.lato(
+                        fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    strengthDocument.reps,
                   )
                 ],
               ),
               Column(
                 children: [
                   Text(
-                    'Calories',
+                    'Weight',
                     style: GoogleFonts.lato(
                         fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 5),
-                  Text(cardioDocument.kcal),
+                  Text(strengthDocument.weight)
                 ],
               ),
             ],
           ),
           const Divider(
-            color: Color.fromARGB(211, 255, 225, 0),
+            color: Color.fromARGB(255, 211, 3, 3),
             indent: 20,
             endIndent: 20,
             height: 30,
             thickness: 0.5,
-          )
+          ),
         ],
       ),
     );

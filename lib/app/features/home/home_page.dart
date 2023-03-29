@@ -2,11 +2,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:workout_log/app/features/history/history_page.dart';
 import '../add_strength training/add_strength_training.dart';
 import '../auth/user_profile.dart';
 import '../bmi/bmi_page.dart';
 import '../add_cardio_training/add_cardio_training.dart';
+import '../history_training/history_training_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key, required this.currentUser}) : super(key: key);
@@ -54,7 +54,7 @@ class _HomePageState extends State<HomePage> {
             return const BmiPage();
           }
           if (currentIndex == 1) {
-            return const HistoryPage();
+            return const HistoryTrainingPage();
           }
           return Column(
             children: [
