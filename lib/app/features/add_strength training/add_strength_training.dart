@@ -220,9 +220,9 @@ class _AddStrengthTrainingBody extends StatelessWidget {
               final selectedDate = await showDatePicker(
                 context: context,
                 initialDate: DateTime.now(),
-                firstDate: DateTime.now(),
+                firstDate: DateTime(2021),
                 lastDate: DateTime.now().add(
-                  const Duration(days: 365 * 10),
+                  const Duration(days: 365 * 1),
                 ),
               );
               onDateChanged(selectedDate);
