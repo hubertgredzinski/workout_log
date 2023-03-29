@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:workout_log/repositories/cardio_history_repository.dart';
 import 'cubit/add_cardio_training_cubit.dart';
 
@@ -91,7 +92,8 @@ class AddCardioTrainingPageState extends State<AddCardioTrainingPage> {
                     },
                   );
                 },
-                selectedDateFormatted: date?.toIso8601String(),
+                selectedDateFormatted:
+                    date == null ? null : DateFormat.yMMMMEEEEd().format(date!),
               ),
             );
           },

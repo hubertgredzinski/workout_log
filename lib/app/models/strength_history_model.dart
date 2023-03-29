@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 class StrengthHistoryModel {
   StrengthHistoryModel(
       {required this.id,
@@ -15,4 +17,8 @@ class StrengthHistoryModel {
   final String sets;
   final String weight;
   final String id;
+
+  String dateFromatted() {
+    return DateFormat.yMMMMEEEEd().format(date);
+  }
 }

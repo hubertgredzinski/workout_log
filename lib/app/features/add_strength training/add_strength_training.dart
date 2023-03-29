@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:workout_log/app/features/add_strength%20training/cubit/add_strength_training_cubit.dart';
 import 'package:workout_log/repositories/strength_history_repository.dart';
 
@@ -107,7 +108,8 @@ class _AddStrengthTrainingPageState extends State<AddStrengthTrainingPage> {
                     },
                   );
                 },
-                selectedDateFormatted: date?.toIso8601String(),
+                selectedDateFormatted:
+                    date == null ? null : DateFormat.yMMMMEEEEd().format(date!),
               ),
             );
           },

@@ -78,7 +78,7 @@ class CardioTraining extends StatelessWidget {
           ),
           const SizedBox(height: 5),
           Text(
-            (cardioDocument.date).toString(),
+            (cardioDocument.dateFromatted()),
             style: GoogleFonts.lato(
               fontSize: 16,
             ),
