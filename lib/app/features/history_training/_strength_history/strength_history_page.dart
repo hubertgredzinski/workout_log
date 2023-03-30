@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:workout_log/repositories/strength_history_repository.dart';
 import '../../../../models/strength_history_model.dart';
 import 'cubit/strength_history_cubit.dart';
 
@@ -16,15 +17,16 @@ class StrengthHistoryPage extends StatelessWidget {
         title: const Text('Strength Training History'),
       ),
       body: BlocProvider(
-        create: (context) => StrengthHistoryCubit()..start(),
+        create: (context) =>
+            StrengthHistoryCubit(StrengthRepository())..start(),
         child: BlocBuilder<StrengthHistoryCubit, StrengthHistoryState>(
           builder: (context, state) {
             final strengthModels = state.strengthDocuments;
             return ListView(
               children: [
-                for (final stengthModel in strengthModels) ...[
+                for (final strengthModel in strengthModels) ...[
                   Dismissible(
-                    key: ValueKey(stengthModel.id),
+                    key: ValueKey(strengthModel.id),
                     background: const DecoratedBox(
                       decoration: BoxDecoration(color: Colors.red),
                       child: Align(
@@ -43,11 +45,11 @@ class StrengthHistoryPage extends StatelessWidget {
                     onDismissed: (direction) {
                       context
                           .read<StrengthHistoryCubit>()
-                          .remove(documentID: stengthModel.id);
+                          .remove(documentID: strengthModel.id);
                     },
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: StrengthTraining(strengthDocument: stengthModel),
+                      child: StrengthTraining(strengthDocument: strengthModel),
                     ),
                   )
                 ],
@@ -136,7 +138,9 @@ class StrengthTraining extends StatelessWidget {
                         fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 5),
-                  Text(strengthDocument.weight)
+                  Text(
+                    strengthDocument.weight,
+                  )
                 ],
               ),
             ],
