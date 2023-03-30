@@ -13,9 +13,9 @@ class StrengthHistoryCubit extends Cubit<StrengthHistoryState> {
           const StrengthHistoryState(),
         );
 
-  StreamSubscription? _streamSubscription;
-
   final StrengthRepository _strengthRepository;
+
+  StreamSubscription? _streamSubscription;
 
   Future<void> start() async {
     _streamSubscription = _strengthRepository.getStrengthStream().listen(
@@ -27,7 +27,9 @@ class StrengthHistoryCubit extends Cubit<StrengthHistoryState> {
     )..onError(
         (error) {
           emit(
-            const StrengthHistoryState(loadingErrorOccured: true),
+            const StrengthHistoryState(
+              loadingErrorOccured: true,
+            ),
           );
         },
       );
@@ -38,7 +40,9 @@ class StrengthHistoryCubit extends Cubit<StrengthHistoryState> {
       await _strengthRepository.delete(documentID: documentID);
     } catch (error) {
       emit(
-        const StrengthHistoryState(removingErrorOccured: true),
+        const StrengthHistoryState(
+          removingErrorOccured: true,
+        ),
       );
       start();
     }

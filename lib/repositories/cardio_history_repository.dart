@@ -1,10 +1,20 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import '../models/cardio_history_model.dart';
 
 class CardioRepository {
   Stream<List<CardioHistoryModel>> getCardioStream() {
-    return FirebaseFirestore.instance.collection('cardio').snapshots().map(
+    final userID = FirebaseAuth.instance.currentUser?.uid;
+    if (userID == null) {
+      Exception('User is not logged in');
+    }
+    return FirebaseFirestore.instance
+        .collection('users')
+        .doc(userID)
+        .collection('cardio')
+        .snapshots()
+        .map(
       (querySnapshot) {
         return querySnapshot.docs.map(
           (document) {
@@ -23,7 +33,13 @@ class CardioRepository {
   }
 
   Future<void> delete({required String documentID}) {
+    final userID = FirebaseAuth.instance.currentUser?.uid;
+    if (userID == null) {
+      Exception('User is not logged in');
+    }
     return FirebaseFirestore.instance
+        .collection('users')
+        .doc(userID)
         .collection('cardio')
         .doc(documentID)
         .delete();
@@ -36,7 +52,15 @@ class CardioRepository {
     String? intensity,
     String? kcal,
   ) {
-    return FirebaseFirestore.instance.collection('cardio').add(
+    final userID = FirebaseAuth.instance.currentUser?.uid;
+    if (userID == null) {
+      Exception('User is not logged in');
+    }
+    return FirebaseFirestore.instance
+        .collection('users')
+        .doc(userID)
+        .collection('cardio')
+        .add(
       {
         'type': type,
         'time': time,

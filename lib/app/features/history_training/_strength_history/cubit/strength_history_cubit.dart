@@ -2,46 +2,36 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:meta/meta.dart';
+import 'package:workout_log/repositories/strength_history_repository.dart';
 
 import '../../../../../models/strength_history_model.dart';
 
 part 'strength_history_state.dart';
 
 class StrengthHistoryCubit extends Cubit<StrengthHistoryState> {
-  StrengthHistoryCubit()
+  StrengthHistoryCubit(this._strengthRepository)
       : super(
           const StrengthHistoryState(),
         );
 
+  final StrengthRepository _strengthRepository;
+
   StreamSubscription? _streamSubscription;
 
   Future<void> start() async {
-    _streamSubscription =
-        FirebaseFirestore.instance.collection('strength').snapshots().listen(
+    _streamSubscription = _strengthRepository.getStrengthStream().listen(
       (strengthData) {
-        final strengthModels = strengthData.docs.map(
-          (document) {
-            return StrengthHistoryModel(
-                bodypart: document['bodypart'],
-                date: (document['date'] as Timestamp).toDate(),
-                exercise: document['exercise'],
-                reps: document['reps'],
-                sets: document['sets'],
-                weight: document['weight'].toString(),
-                id: document.id);
-          },
-        ).toList();
         emit(
-          StrengthHistoryState(strengthDocuments: strengthModels),
+          StrengthHistoryState(strengthDocuments: strengthData),
         );
       },
     )..onError(
-            (error) {
-              emit(
-                const StrengthHistoryState(loadingErrorOccured: true),
-              );
-            },
+        (error) {
+          emit(
+            const StrengthHistoryState(loadingErrorOccured: true),
           );
+        },
+      );
   }
 
   Future<void> remove({required String documentID}) async {
