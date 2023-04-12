@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:workout_log/repositories/strength_history_repository.dart';
 import '../../../../models/strength_history_model.dart';
+import '../../../core/enums/enums.dart';
 import 'cubit/strength_history_cubit.dart';
 
 class StrengthHistoryPage extends StatelessWidget {
@@ -19,43 +20,57 @@ class StrengthHistoryPage extends StatelessWidget {
       body: BlocProvider(
         create: (context) =>
             StrengthHistoryCubit(StrengthRepository())..start(),
-        child: BlocBuilder<StrengthHistoryCubit, StrengthHistoryState>(
-          builder: (context, state) {
-            final strengthModels = state.strengthDocuments;
-            return ListView(
-              children: [
-                for (final strengthModel in strengthModels) ...[
-                  Dismissible(
-                    key: ValueKey(strengthModel.id),
-                    background: const DecoratedBox(
-                      decoration: BoxDecoration(color: Colors.red),
-                      child: Align(
-                        alignment: Alignment.centerRight,
-                        child: Padding(
-                          padding: EdgeInsets.only(right: 32.0),
-                          child: Icon(
-                            Icons.delete,
+        child: BlocListener<StrengthHistoryCubit, StrengthHistoryState>(
+          listener: (context, state) {
+            if (state.status == Status.error) {
+              final errorMessage = state.errorMessage ?? 'Unkown error';
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(errorMessage),
+                  backgroundColor: Colors.red,
+                ),
+              );
+            }
+          },
+          child: BlocBuilder<StrengthHistoryCubit, StrengthHistoryState>(
+            builder: (context, state) {
+              final strengthModels = state.strengthDocuments;
+              return ListView(
+                children: [
+                  for (final strengthModel in strengthModels) ...[
+                    Dismissible(
+                      key: ValueKey(strengthModel.id),
+                      background: const DecoratedBox(
+                        decoration: BoxDecoration(color: Colors.red),
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: Padding(
+                            padding: EdgeInsets.only(right: 32.0),
+                            child: Icon(
+                              Icons.delete,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    confirmDismiss: (direction) async {
-                      return direction == DismissDirection.endToStart;
-                    },
-                    onDismissed: (direction) {
-                      context
-                          .read<StrengthHistoryCubit>()
-                          .remove(documentID: strengthModel.id);
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: StrengthTraining(strengthDocument: strengthModel),
-                    ),
-                  )
+                      confirmDismiss: (direction) async {
+                        return direction == DismissDirection.endToStart;
+                      },
+                      onDismissed: (direction) {
+                        context
+                            .read<StrengthHistoryCubit>()
+                            .remove(documentID: strengthModel.id);
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child:
+                            StrengthTraining(strengthDocument: strengthModel),
+                      ),
+                    )
+                  ],
                 ],
-              ],
-            );
-          },
+              );
+            },
+          ),
         ),
       ),
     );

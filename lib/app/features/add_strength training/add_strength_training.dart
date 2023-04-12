@@ -4,6 +4,8 @@ import 'package:intl/intl.dart';
 import 'package:workout_log/app/features/add_strength%20training/cubit/add_strength_training_cubit.dart';
 import 'package:workout_log/repositories/strength_history_repository.dart';
 
+import '../../core/enums/enums.dart';
+
 class AddStrengthTrainingPage extends StatefulWidget {
   const AddStrengthTrainingPage({
     Key? key,
@@ -27,13 +29,14 @@ class _AddStrengthTrainingPageState extends State<AddStrengthTrainingPage> {
       create: (context) => AddStrengthTrainingCubit(StrengthRepository()),
       child: BlocListener<AddStrengthTrainingCubit, AddStrengthTrainingState>(
         listener: (context, state) {
-          if (state.saved) {
+          if (state.status == Status.success) {
             Navigator.of(context).pop();
           }
-          if (state.errorMessage.isNotEmpty) {
+          if (state.status == Status.error) {
+            final errorMessage = state.errorMessage ?? 'Unkown error';
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text(state.errorMessage),
+                content: Text(errorMessage),
                 backgroundColor: Colors.red,
               ),
             );

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:workout_log/models/cardio_history_model.dart';
 import 'package:workout_log/repositories/cardio_history_repository.dart';
+import '../../../core/enums/enums.dart';
 import 'cubit/cardio_history_cubit.dart';
 
 class CardioHistoryPage extends StatelessWidget {
@@ -18,40 +19,53 @@ class CardioHistoryPage extends StatelessWidget {
       ),
       body: BlocProvider(
         create: (context) => CardioHistoryCubit(CardioRepository())..start(),
-        child: BlocBuilder<CardioHistoryCubit, CardioHistoryState>(
-          builder: (context, state) {
-            final cardioModels = state.cardioDocuments;
-            return ListView(
-              children: [
-                for (final cardioModel in cardioModels) ...[
-                  Dismissible(
-                    key: ValueKey(cardioModel.id),
-                    background: const DecoratedBox(
-                      decoration: BoxDecoration(color: Colors.red),
-                      child: Align(
-                        alignment: Alignment.centerRight,
-                        child: Padding(
-                          padding: EdgeInsets.only(right: 32.0),
-                          child: Icon(
-                            Icons.delete,
+        child: BlocListener<CardioHistoryCubit, CardioHistoryState>(
+          listener: (context, state) {
+            if (state.status == Status.error) {
+              final errorMessage = state.errorMessage ?? 'Unkown error';
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(errorMessage),
+                  backgroundColor: Colors.red,
+                ),
+              );
+            }
+          },
+          child: BlocBuilder<CardioHistoryCubit, CardioHistoryState>(
+            builder: (context, state) {
+              final cardioModels = state.cardioDocuments;
+              return ListView(
+                children: [
+                  for (final cardioModel in cardioModels) ...[
+                    Dismissible(
+                      key: ValueKey(cardioModel.id),
+                      background: const DecoratedBox(
+                        decoration: BoxDecoration(color: Colors.red),
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: Padding(
+                            padding: EdgeInsets.only(right: 32.0),
+                            child: Icon(
+                              Icons.delete,
+                            ),
                           ),
                         ),
                       ),
+                      confirmDismiss: (direction) async {
+                        return direction == DismissDirection.endToStart;
+                      },
+                      onDismissed: (direction) {
+                        context
+                            .read<CardioHistoryCubit>()
+                            .remove(documentID: cardioModel.id);
+                      },
+                      child: CardioTraining(cardioDocument: cardioModel),
                     ),
-                    confirmDismiss: (direction) async {
-                      return direction == DismissDirection.endToStart;
-                    },
-                    onDismissed: (direction) {
-                      context
-                          .read<CardioHistoryCubit>()
-                          .remove(documentID: cardioModel.id);
-                    },
-                    child: CardioTraining(cardioDocument: cardioModel),
-                  ),
+                  ],
                 ],
-              ],
-            );
-          },
+              );
+            },
+          ),
         ),
       ),
     );

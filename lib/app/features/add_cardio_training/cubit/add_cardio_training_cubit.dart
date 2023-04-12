@@ -1,6 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:workout_log/repositories/cardio_history_repository.dart';
+
+import '../../../core/enums/enums.dart';
 part 'add_cardio_training_state.dart';
 
 class AddCardioTrainingCubit extends Cubit<AddCardioTrainingState> {
@@ -20,11 +22,14 @@ class AddCardioTrainingCubit extends Cubit<AddCardioTrainingState> {
     try {
       await _cardioRepository.add(type, time, date, intensity, kcal);
       emit(
-        const AddCardioTrainingState(saved: true),
+        const AddCardioTrainingState(
+          status: Status.success,
+        ),
       );
     } catch (error) {
       emit(
         AddCardioTrainingState(
+          status: Status.error,
           errorMessage: error.toString(),
         ),
       );

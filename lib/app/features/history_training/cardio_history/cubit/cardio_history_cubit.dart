@@ -3,6 +3,7 @@ import 'package:bloc/bloc.dart';
 import 'package:workout_log/repositories/cardio_history_repository.dart';
 
 import '../../../../../models/cardio_history_model.dart';
+import '../../../../core/enums/enums.dart';
 part 'cardio_history_state.dart';
 
 class CardioHistoryCubit extends Cubit<CardioHistoryState> {
@@ -16,17 +17,20 @@ class CardioHistoryCubit extends Cubit<CardioHistoryState> {
   StreamSubscription? _streamSubscription;
 
   Future<void> start() async {
+    emit(CardioHistoryState(status: Status.loading));
     _streamSubscription = _cardioRepository.getCardioStream().listen(
       (cardioData) {
         emit(
-          CardioHistoryState(cardioDocuments: cardioData),
+          CardioHistoryState(
+              cardioDocuments: cardioData, status: Status.success),
         );
       },
     )..onError(
         (error) {
           emit(
             CardioHistoryState(
-              loadingErrorOccured: true,
+              status: Status.error,
+              errorMessage: error.toString(),
             ),
           );
         },
@@ -39,7 +43,8 @@ class CardioHistoryCubit extends Cubit<CardioHistoryState> {
     } catch (error) {
       emit(
         CardioHistoryState(
-          removingErrorOccured: true,
+          status: Status.error,
+          errorMessage: error.toString(),
         ),
       );
       start();

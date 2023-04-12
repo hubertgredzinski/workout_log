@@ -5,6 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:workout_log/repositories/strength_history_repository.dart';
 
 import '../../../../../models/strength_history_model.dart';
+import '../../../../core/enums/enums.dart';
 
 part 'strength_history_state.dart';
 
@@ -19,16 +20,21 @@ class StrengthHistoryCubit extends Cubit<StrengthHistoryState> {
   StreamSubscription? _streamSubscription;
 
   Future<void> start() async {
+    emit(const StrengthHistoryState(status: Status.loading));
     _streamSubscription = _strengthRepository.getStrengthStream().listen(
       (strengthData) {
         emit(
-          StrengthHistoryState(strengthDocuments: strengthData),
+          StrengthHistoryState(
+              strengthDocuments: strengthData, status: Status.success),
         );
       },
     )..onError(
         (error) {
           emit(
-            const StrengthHistoryState(loadingErrorOccured: true),
+            StrengthHistoryState(
+              status: Status.error,
+              errorMessage: error.toString(),
+            ),
           );
         },
       );
@@ -42,7 +48,10 @@ class StrengthHistoryCubit extends Cubit<StrengthHistoryState> {
           .delete();
     } catch (error) {
       emit(
-        const StrengthHistoryState(removingErrorOccured: true),
+        StrengthHistoryState(
+          status: Status.error,
+          errorMessage: error.toString(),
+        ),
       );
       start();
     }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:workout_log/repositories/cardio_history_repository.dart';
+import '../../core/enums/enums.dart';
 import 'cubit/add_cardio_training_cubit.dart';
 
 class AddCardioTrainingPage extends StatefulWidget {
@@ -26,13 +27,14 @@ class AddCardioTrainingPageState extends State<AddCardioTrainingPage> {
       create: (context) => AddCardioTrainingCubit(CardioRepository()),
       child: BlocListener<AddCardioTrainingCubit, AddCardioTrainingState>(
         listener: (context, state) {
-          if (state.saved) {
+          if (state.status == Status.success) {
             Navigator.of(context).pop();
           }
-          if (state.errorMessage.isNotEmpty) {
+          if (state.status == Status.error) {
+            final errorMessage = state.errorMessage ?? 'Unkown error';
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text(state.errorMessage),
+                content: Text(errorMessage),
                 backgroundColor: Colors.red,
               ),
             );

@@ -3,10 +3,10 @@ part of 'add_cardio_training_cubit.dart';
 @immutable
 class AddCardioTrainingState {
   const AddCardioTrainingState({
-    this.saved = false,
+    this.status = Status.initial,
     this.errorMessage = '',
   });
 
-  final bool saved;
-  final String errorMessage;
+  final Status status;
+  final String? errorMessage;
 }
