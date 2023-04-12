@@ -1,33 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:workout_log/app/features/add_strength%20training/cubit/add_strength_training_cubit.dart';
-import 'package:workout_log/repositories/strength_history_repository.dart';
+import 'package:workout_log/domain/repositories/cardio_history_repository.dart';
+import '../../app/core/enums/enums.dart';
+import 'cubit/add_cardio_training_cubit.dart';
 
-import '../../core/enums/enums.dart';
-
-class AddStrengthTrainingPage extends StatefulWidget {
-  const AddStrengthTrainingPage({
+class AddCardioTrainingPage extends StatefulWidget {
+  const AddCardioTrainingPage({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<AddStrengthTrainingPage> createState() =>
-      _AddStrengthTrainingPageState();
+  State<AddCardioTrainingPage> createState() => AddCardioTrainingPageState();
 }
 
-class _AddStrengthTrainingPageState extends State<AddStrengthTrainingPage> {
-  String? exercise;
-  String? bodyPart;
-  String? reps;
-  String? sets;
-  String? weight;
+class AddCardioTrainingPageState extends State<AddCardioTrainingPage> {
+  String? type;
+  String? time;
   DateTime? date;
+  String? intensity;
+  String? kcal;
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AddStrengthTrainingCubit(StrengthRepository()),
-      child: BlocListener<AddStrengthTrainingCubit, AddStrengthTrainingState>(
+      create: (context) => AddCardioTrainingCubit(CardioRepository()),
+      child: BlocListener<AddCardioTrainingCubit, AddCardioTrainingState>(
         listener: (context, state) {
           if (state.status == Status.success) {
             Navigator.of(context).pop();
@@ -42,65 +40,50 @@ class _AddStrengthTrainingPageState extends State<AddStrengthTrainingPage> {
             );
           }
         },
-        child: BlocBuilder<AddStrengthTrainingCubit, AddStrengthTrainingState>(
+        child: BlocBuilder<AddCardioTrainingCubit, AddCardioTrainingState>(
           builder: (context, state) {
             return Scaffold(
               appBar: AppBar(
-                title: const Text("Add Strength Training"),
+                title: const Text("Add Cardio Training"),
                 actions: [
                   IconButton(
-                    onPressed: exercise == null ||
-                            bodyPart == null ||
-                            reps == null ||
-                            sets == null ||
-                            date == null
+                    onPressed: type == null || time == null || date == null
                         ? null
                         : () {
-                            context.read<AddStrengthTrainingCubit>().add(
-                                exercise!,
-                                bodyPart!,
-                                reps!,
-                                sets!,
-                                weight,
-                                date!);
+                            context
+                                .read<AddCardioTrainingCubit>()
+                                .add(type!, time!, date!, intensity, kcal);
                           },
                     icon: const Icon(Icons.check),
                   ),
                 ],
               ),
-              body: _AddStrengthTrainingBody(
-                onExerciseChanged: (newValue) {
+              body: _AddCardioTrainingBody(
+                onTypeChanged: (newValue) {
                   setState(
                     () {
-                      exercise = newValue;
+                      type = newValue;
                     },
                   );
                 },
-                onBodyPartChanged: (newValue) {
+                onTimeChanged: (newValue) {
                   setState(
                     () {
-                      bodyPart = newValue;
+                      time = newValue;
                     },
                   );
                 },
-                onSetsChanged: (newValue) {
+                onIntensityChanged: (newValue) {
                   setState(
                     () {
-                      sets = newValue;
+                      intensity = newValue;
                     },
                   );
                 },
-                onRepsChanged: (newValue) {
+                onKcalChanged: (newValue) {
                   setState(
                     () {
-                      reps = newValue;
-                    },
-                  );
-                },
-                onWeightChanged: (newValue) {
-                  setState(
-                    () {
-                      weight = newValue;
+                      kcal = newValue;
                     },
                   );
                 },
@@ -122,23 +105,21 @@ class _AddStrengthTrainingPageState extends State<AddStrengthTrainingPage> {
   }
 }
 
-class _AddStrengthTrainingBody extends StatelessWidget {
-  const _AddStrengthTrainingBody(
+class _AddCardioTrainingBody extends StatelessWidget {
+  const _AddCardioTrainingBody(
       {Key? key,
-      required this.onExerciseChanged,
-      required this.onBodyPartChanged,
-      required this.onSetsChanged,
-      required this.onRepsChanged,
-      required this.onWeightChanged,
+      required this.onTypeChanged,
+      required this.onTimeChanged,
+      required this.onIntensityChanged,
+      required this.onKcalChanged,
       required this.onDateChanged,
       this.selectedDateFormatted})
       : super(key: key);
 
-  final Function(String) onExerciseChanged;
-  final Function(String) onBodyPartChanged;
-  final Function(String) onSetsChanged;
-  final Function(String) onRepsChanged;
-  final Function(String) onWeightChanged;
+  final Function(String) onTypeChanged;
+  final Function(String) onTimeChanged;
+  final Function(String) onIntensityChanged;
+  final Function(String) onKcalChanged;
   final Function(DateTime?) onDateChanged;
   final String? selectedDateFormatted;
 
@@ -150,7 +131,7 @@ class _AddStrengthTrainingBody extends StatelessWidget {
         children: [
           const SizedBox(height: 50),
           TextField(
-            onChanged: onExerciseChanged,
+            onChanged: onTypeChanged,
             decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(13),
@@ -160,11 +141,11 @@ class _AddStrengthTrainingBody extends StatelessWidget {
                   borderRadius: BorderRadius.circular(15),
                   borderSide: const BorderSide(color: Colors.orange, width: 3),
                 ),
-                hintText: 'Write exercise e.g.: Squats'),
+                hintText: 'Write type of training e.g.: Running'),
           ),
           const SizedBox(height: 15),
           TextField(
-            onChanged: onBodyPartChanged,
+            onChanged: onTimeChanged,
             decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(13),
@@ -174,11 +155,11 @@ class _AddStrengthTrainingBody extends StatelessWidget {
                   borderRadius: BorderRadius.circular(15),
                   borderSide: const BorderSide(color: Colors.orange, width: 3),
                 ),
-                hintText: 'Write part of working body e.g.: Legs'),
+                hintText: 'Write time of training e.g.: 10 minutes'),
           ),
           const SizedBox(height: 15),
           TextField(
-            onChanged: onSetsChanged,
+            onChanged: onIntensityChanged,
             decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(13),
@@ -188,11 +169,11 @@ class _AddStrengthTrainingBody extends StatelessWidget {
                   borderRadius: BorderRadius.circular(15),
                   borderSide: const BorderSide(color: Colors.orange, width: 3),
                 ),
-                hintText: 'Write number of sets e.g.: 3'),
+                hintText: 'Write intensity of training e.g.: 10 km/h'),
           ),
           const SizedBox(height: 15),
           TextField(
-            onChanged: onRepsChanged,
+            onChanged: onKcalChanged,
             decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(13),
@@ -202,21 +183,7 @@ class _AddStrengthTrainingBody extends StatelessWidget {
                   borderRadius: BorderRadius.circular(15),
                   borderSide: const BorderSide(color: Colors.orange, width: 3),
                 ),
-                hintText: 'Write number of reps e.g.: 8'),
-          ),
-          const SizedBox(height: 15),
-          TextField(
-            onChanged: onWeightChanged,
-            decoration: InputDecoration(
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(13),
-                  borderSide: const BorderSide(color: Colors.white12, width: 3),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                  borderSide: const BorderSide(color: Colors.orange, width: 3),
-                ),
-                hintText: ' Write reps weight e.g.: 30 kg'),
+                hintText: 'Write number of calories burned'),
           ),
           const SizedBox(height: 30),
           ElevatedButton(

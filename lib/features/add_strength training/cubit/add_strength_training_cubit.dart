@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:workout_log/repositories/strength_history_repository.dart';
+import 'package:workout_log/domain/repositories/strength_history_repository.dart';
 
-import '../../../core/enums/enums.dart';
+import '../../../app/core/enums/enums.dart';
 part 'add_strength_training_state.dart';
 
 class AddStrengthTrainingCubit extends Cubit<AddStrengthTrainingState> {

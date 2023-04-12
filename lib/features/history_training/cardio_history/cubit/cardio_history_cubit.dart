@@ -1,9 +1,8 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:workout_log/repositories/cardio_history_repository.dart';
-
-import '../../../../../models/cardio_history_model.dart';
-import '../../../../core/enums/enums.dart';
+import 'package:workout_log/domain/repositories/cardio_history_repository.dart';
+import '../../../../../domain/models/cardio_history_model.dart';
+import '../../../../app/core/enums/enums.dart';
 part 'cardio_history_state.dart';
 
 class CardioHistoryCubit extends Cubit<CardioHistoryState> {

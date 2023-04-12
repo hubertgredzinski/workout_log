@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:workout_log/repositories/cardio_history_repository.dart';
+import 'package:workout_log/domain/repositories/cardio_history_repository.dart';
 
-import '../../../core/enums/enums.dart';
+import '../../../app/core/enums/enums.dart';
 part 'add_cardio_training_state.dart';
 
 class AddCardioTrainingCubit extends Cubit<AddCardioTrainingState> {
