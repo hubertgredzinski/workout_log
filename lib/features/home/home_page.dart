@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> {
         title: Builder(
           builder: (context) {
             if (currentIndex == 2) {
-              return const Text('See your BMI');
+              return const Text('Temperature');
             }
             if (currentIndex == 1) {
               return const Text('History');
@@ -130,8 +130,7 @@ class _HomePageState extends State<HomePage> {
           BottomNavigationBarItem(
               icon: Icon(Icons.fitness_center), label: 'Choose Training'),
           BottomNavigationBarItem(icon: Icon(Icons.history), label: 'History'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.scale), label: 'See your BMI'),
+          BottomNavigationBarItem(icon: Icon(Icons.sunny), label: 'Weather'),
         ],
       ),
     );
