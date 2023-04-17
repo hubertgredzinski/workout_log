@@ -3,7 +3,6 @@ import 'package:meta/meta.dart';
 import '../../../app/core/enums/enums.dart';
 import '../../../domain/models/weather_model.dart';
 import '../../../domain/repositories/weather_repository.dart';
-
 part 'weather_state.dart';
 
 class WeatherCubit extends Cubit<WeatherState> {
