@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class BmiPage extends StatelessWidget {
-  const BmiPage({
+class WeatherPage extends StatelessWidget {
+  const WeatherPage({
     Key? key,
   }) : super(key: key);
 
