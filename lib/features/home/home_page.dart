@@ -4,9 +4,9 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../add_strength training/add_strength_training.dart';
 import '../auth/user_profile.dart';
-import '../bmi/bmi_page.dart';
 import '../add_cardio_training/add_cardio_training.dart';
 import '../history_training/history_training_page.dart';
+import '../weather/weather_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key, required this.currentUser}) : super(key: key);
@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> {
         title: Builder(
           builder: (context) {
             if (currentIndex == 2) {
-              return const Text('See your BMI');
+              return const Text('Temperature');
             }
             if (currentIndex == 1) {
               return const Text('History');
@@ -51,7 +51,7 @@ class _HomePageState extends State<HomePage> {
       body: Builder(
         builder: (context) {
           if (currentIndex == 2) {
-            return const BmiPage();
+            return const WeatherPage();
           }
           if (currentIndex == 1) {
             return const HistoryTrainingPage();
@@ -130,8 +130,7 @@ class _HomePageState extends State<HomePage> {
           BottomNavigationBarItem(
               icon: Icon(Icons.fitness_center), label: 'Choose Training'),
           BottomNavigationBarItem(icon: Icon(Icons.history), label: 'History'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.scale), label: 'See your BMI'),
+          BottomNavigationBarItem(icon: Icon(Icons.sunny), label: 'Weather'),
         ],
       ),
     );
