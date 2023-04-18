@@ -6,29 +6,38 @@ part of 'weather_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-WeatherModel _$WeatherModelFromJson(Map<String, dynamic> json) => WeatherModel(
-      temp: Current.fromJson(json['current'] as Map<String, dynamic>),
-      city: Location.fromJson(json['location'] as Map<String, dynamic>),
+// ignore: non_constant_identifier_names
+_$_WeatherModel _$$_WeatherModelFromJson(Map<String, dynamic> json) =>
+    _$_WeatherModel(
+      Current.fromJson(json['current'] as Map<String, dynamic>),
+      Location.fromJson(json['location'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$WeatherModelToJson(WeatherModel instance) =>
+// ignore: non_constant_identifier_names
+Map<String, dynamic> _$$_WeatherModelToJson(_$_WeatherModel instance) =>
     <String, dynamic>{
-      'current': instance.temp.toJson(),
-      'location': instance.city.toJson(),
+      'current': instance.temp,
+      'location': instance.city,
     };
 
-Current _$CurrentFromJson(Map<String, dynamic> json) => Current(
-      temp: (json['temp_c'] as num).toDouble(),
+// ignore: non_constant_identifier_names
+_$_Current _$$_CurrentFromJson(Map<String, dynamic> json) => _$_Current(
+      (json['temp_c'] as num).toDouble(),
     );
 
-Map<String, dynamic> _$CurrentToJson(Current instance) => <String, dynamic>{
+// ignore: non_constant_identifier_names
+Map<String, dynamic> _$$_CurrentToJson(_$_Current instance) =>
+    <String, dynamic>{
       'temp_c': instance.temp,
     };
 
-Location _$LocationFromJson(Map<String, dynamic> json) => Location(
-      name: json['name'] as String,
+// ignore: non_constant_identifier_names
+_$_Location _$$_LocationFromJson(Map<String, dynamic> json) => _$_Location(
+      json['name'] as String,
     );
 
-Map<String, dynamic> _$LocationToJson(Location instance) => <String, dynamic>{
+// ignore: non_constant_identifier_names
+Map<String, dynamic> _$$_LocationToJson(_$_Location instance) =>
+    <String, dynamic>{
       'name': instance.name,
     };
