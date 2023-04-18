@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:workout_log/domain/repositories/strength_history_repository.dart';
-
 import '../../../../../domain/models/strength_history_model.dart';
 import '../../../../app/core/enums/enums.dart';
 part 'strength_history_state.dart';
