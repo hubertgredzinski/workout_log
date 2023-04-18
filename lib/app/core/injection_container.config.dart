@@ -16,6 +16,11 @@ extension GetItInjectableX on _i1.GetIt {
     String? environment,
     _i2.EnvironmentFilter? environmentFilter,
   }) {
+    final gh = _i2.GetItHelper(
+      this,
+      environment,
+      environmentFilter,
+    );
     return this;
   }
 }
