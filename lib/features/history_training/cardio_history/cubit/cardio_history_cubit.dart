@@ -1,9 +1,11 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:workout_log/domain/repositories/cardio_history_repository.dart';
 import '../../../../../domain/models/cardio_history_model.dart';
 import '../../../../app/core/enums/enums.dart';
 part 'cardio_history_state.dart';
+part 'cardio_history_cubit.freezed.dart';
 
 class CardioHistoryCubit extends Cubit<CardioHistoryState> {
   CardioHistoryCubit(this._cardioRepository)
