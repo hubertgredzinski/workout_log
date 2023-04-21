@@ -18,7 +18,9 @@ class CardioHistoryPage extends StatelessWidget {
         title: const Text('Cardio Training History'),
       ),
       body: BlocProvider(
-        create: (context) => CardioHistoryCubit(CardioRepository())..start(),
+        create: (context) => CardioHistoryCubit(
+          CardioRepository(),
+        )..start(),
         child: BlocListener<CardioHistoryCubit, CardioHistoryState>(
           listener: (context, state) {
             if (state.status == Status.error) {
