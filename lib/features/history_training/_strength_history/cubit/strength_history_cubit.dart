@@ -1,15 +1,16 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
 import 'package:workout_log/domain/repositories/strength_history_repository.dart';
 import '../../../../../domain/models/strength_history_model.dart';
 import '../../../../app/core/enums/enums.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 part 'strength_history_state.dart';
+part 'strength_history_cubit.freezed.dart';
 
 class StrengthHistoryCubit extends Cubit<StrengthHistoryState> {
   StrengthHistoryCubit(this._strengthRepository)
       : super(
-          const StrengthHistoryState(),
+          StrengthHistoryState(),
         );
 
   final StrengthRepository _strengthRepository;
@@ -17,7 +18,7 @@ class StrengthHistoryCubit extends Cubit<StrengthHistoryState> {
   StreamSubscription? _streamSubscription;
 
   Future<void> start() async {
-    emit(const StrengthHistoryState(status: Status.loading));
+    emit(StrengthHistoryState(status: Status.loading));
     _streamSubscription = _strengthRepository.getStrengthStream().listen(
       (strengthData) {
         emit(
