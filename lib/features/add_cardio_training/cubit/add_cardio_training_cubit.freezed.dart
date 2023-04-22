@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$AddCardioTrainingState {
-  dynamic get status => throw _privateConstructorUsedError;
+  Status get status => throw _privateConstructorUsedError;
   String? get errorMessage => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -30,7 +30,7 @@ abstract class $AddCardioTrainingStateCopyWith<$Res> {
           $Res Function(AddCardioTrainingState) then) =
       _$AddCardioTrainingStateCopyWithImpl<$Res, AddCardioTrainingState>;
   @useResult
-  $Res call({dynamic status, String? errorMessage});
+  $Res call({Status status, String? errorMessage});
 }
 
 /// @nodoc
@@ -47,14 +47,14 @@ class _$AddCardioTrainingStateCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = freezed,
+    Object? status = null,
     Object? errorMessage = freezed,
   }) {
     return _then(_value.copyWith(
-      status: freezed == status
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as Status,
       errorMessage: freezed == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -72,7 +72,7 @@ abstract class _$$_AddStrengthTrainingStateCopyWith<$Res>
       __$$_AddStrengthTrainingStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({dynamic status, String? errorMessage});
+  $Res call({Status status, String? errorMessage});
 }
 
 /// @nodoc
@@ -87,11 +87,14 @@ class __$$_AddStrengthTrainingStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = freezed,
+    Object? status = null,
     Object? errorMessage = freezed,
   }) {
     return _then(_$_AddStrengthTrainingState(
-      status: freezed == status ? _value.status! : status,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as Status,
       errorMessage: freezed == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -108,7 +111,7 @@ class _$_AddStrengthTrainingState implements _AddStrengthTrainingState {
 
   @override
   @JsonKey()
-  final dynamic status;
+  final Status status;
   @override
   final String? errorMessage;
 
@@ -122,14 +125,13 @@ class _$_AddStrengthTrainingState implements _AddStrengthTrainingState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_AddStrengthTrainingState &&
-            const DeepCollectionEquality().equals(other.status, status) &&
+            (identical(other.status, status) || other.status == status) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(status), errorMessage);
+  int get hashCode => Object.hash(runtimeType, status, errorMessage);
 
   @JsonKey(ignore: true)
   @override
@@ -141,11 +143,11 @@ class _$_AddStrengthTrainingState implements _AddStrengthTrainingState {
 
 abstract class _AddStrengthTrainingState implements AddCardioTrainingState {
   factory _AddStrengthTrainingState(
-      {final dynamic status,
+      {final Status status,
       final String? errorMessage}) = _$_AddStrengthTrainingState;
 
   @override
-  dynamic get status;
+  Status get status;
   @override
   String? get errorMessage;
   @override
