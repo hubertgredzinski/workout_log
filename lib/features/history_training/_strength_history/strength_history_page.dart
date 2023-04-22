@@ -106,57 +106,65 @@ class StrengthTraining extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Column(
-                children: [
-                  Text(
-                    'Body Part',
-                    style: GoogleFonts.lato(
-                        fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 5),
-                  Text(
-                    strengthDocument.bodypart,
-                  ),
-                ],
+              Expanded(
+                child: Column(
+                  children: [
+                    Text(
+                      'Body Part',
+                      style: GoogleFonts.lato(
+                          fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                      strengthDocument.bodypart,
+                    ),
+                  ],
+                ),
               ),
-              Column(
-                children: [
-                  Text(
-                    'Sets',
-                    style: GoogleFonts.lato(
-                        fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 5),
-                  Text(
-                    strengthDocument.sets,
-                  ),
-                ],
+              Expanded(
+                child: Column(
+                  children: [
+                    Text(
+                      'Sets',
+                      style: GoogleFonts.lato(
+                          fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                      strengthDocument.sets,
+                    ),
+                  ],
+                ),
               ),
-              Column(
-                children: [
-                  Text(
-                    'Reps',
-                    style: GoogleFonts.lato(
-                        fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 5),
-                  Text(
-                    strengthDocument.reps,
-                  )
-                ],
+              Expanded(
+                child: Column(
+                  children: [
+                    Text(
+                      'Reps',
+                      style: GoogleFonts.lato(
+                          fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                      strengthDocument.reps,
+                    )
+                  ],
+                ),
               ),
-              Column(
-                children: [
-                  Text(
-                    'Weight',
-                    style: GoogleFonts.lato(
-                        fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 5),
-                  Text(
-                    strengthDocument.weight,
-                  )
-                ],
+              Expanded(
+                child: Column(
+                  children: [
+                    Text(
+                      'Weight',
+                      style: GoogleFonts.lato(
+                          fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                      strengthDocument.weight,
+                    )
+                  ],
+                ),
               ),
             ],
           ),
