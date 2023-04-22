@@ -133,56 +133,32 @@ class _AddCardioTrainingBody extends StatelessWidget {
           TextField(
             onChanged: onTypeChanged,
             decoration: InputDecoration(
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(13),
-                  borderSide: const BorderSide(color: Colors.white12, width: 3),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                  borderSide: const BorderSide(color: Colors.orange, width: 3),
-                ),
+                enabledBorder: enabledBorderView(),
+                focusedBorder: focusedBorderView(),
                 hintText: 'Write type of training e.g.: Running'),
           ),
           const SizedBox(height: 15),
           TextField(
             onChanged: onTimeChanged,
             decoration: InputDecoration(
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(13),
-                  borderSide: const BorderSide(color: Colors.white12, width: 3),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                  borderSide: const BorderSide(color: Colors.orange, width: 3),
-                ),
+                enabledBorder: enabledBorderView(),
+                focusedBorder: focusedBorderView(),
                 hintText: 'Write time of training e.g.: 10 minutes'),
           ),
           const SizedBox(height: 15),
           TextField(
             onChanged: onIntensityChanged,
             decoration: InputDecoration(
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(13),
-                  borderSide: const BorderSide(color: Colors.white12, width: 3),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                  borderSide: const BorderSide(color: Colors.orange, width: 3),
-                ),
+                enabledBorder: enabledBorderView(),
+                focusedBorder: focusedBorderView(),
                 hintText: 'Write intensity of training e.g.: 10 km/h'),
           ),
           const SizedBox(height: 15),
           TextField(
             onChanged: onKcalChanged,
             decoration: InputDecoration(
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(13),
-                  borderSide: const BorderSide(color: Colors.white12, width: 3),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                  borderSide: const BorderSide(color: Colors.orange, width: 3),
-                ),
+                enabledBorder: enabledBorderView(),
+                focusedBorder: focusedBorderView(),
                 hintText: 'Write number of calories burned'),
           ),
           const SizedBox(height: 30),
@@ -203,6 +179,20 @@ class _AddCardioTrainingBody extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  OutlineInputBorder focusedBorderView() {
+    return OutlineInputBorder(
+      borderRadius: BorderRadius.circular(15),
+      borderSide: const BorderSide(color: Colors.orange, width: 3),
+    );
+  }
+
+  OutlineInputBorder enabledBorderView() {
+    return OutlineInputBorder(
+      borderRadius: BorderRadius.circular(13),
+      borderSide: const BorderSide(color: Colors.white12, width: 3),
     );
   }
 }
