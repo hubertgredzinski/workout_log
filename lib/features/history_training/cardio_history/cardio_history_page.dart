@@ -103,42 +103,48 @@ class CardioTraining extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Column(
-                children: [
-                  Text(
-                    'Intensity',
-                    style: GoogleFonts.lato(
-                        fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 5),
-                  Text(
-                    cardioDocument.intensity.toString(),
-                  ),
-                ],
+              Expanded(
+                child: Column(
+                  children: [
+                    Text(
+                      'Intensity',
+                      style: GoogleFonts.lato(
+                          fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                      cardioDocument.intensity.toString(),
+                    ),
+                  ],
+                ),
               ),
-              Column(
-                children: [
-                  Text(
-                    'Time',
-                    style: GoogleFonts.lato(
-                        fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 5),
-                  Text(
-                    cardioDocument.time,
-                  )
-                ],
+              Expanded(
+                child: Column(
+                  children: [
+                    Text(
+                      'Time',
+                      style: GoogleFonts.lato(
+                          fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                      cardioDocument.time,
+                    )
+                  ],
+                ),
               ),
-              Column(
-                children: [
-                  Text(
-                    'Calories',
-                    style: GoogleFonts.lato(
-                        fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 5),
-                  Text(cardioDocument.kcal),
-                ],
+              Expanded(
+                child: Column(
+                  children: [
+                    Text(
+                      'Calories',
+                      style: GoogleFonts.lato(
+                          fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 5),
+                    Text(cardioDocument.kcal),
+                  ],
+                ),
               ),
             ],
           ),
