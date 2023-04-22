@@ -76,10 +76,12 @@ class _DisplayWeatherWidget extends StatelessWidget {
           children: [
             Text(
               weatherModel.temp.toString(),
+              style: const TextStyle(fontSize: 30),
             ),
             const SizedBox(height: 60),
             Text(
               weatherModel.city.toString(),
+              style: const TextStyle(fontSize: 30),
             ),
             const SizedBox(height: 60),
           ],
