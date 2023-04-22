@@ -151,70 +151,40 @@ class _AddStrengthTrainingBody extends StatelessWidget {
           TextField(
             onChanged: onExerciseChanged,
             decoration: InputDecoration(
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(13),
-                  borderSide: const BorderSide(color: Colors.white12, width: 3),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                  borderSide: const BorderSide(color: Colors.orange, width: 3),
-                ),
+                enabledBorder: enabledBorderView(),
+                focusedBorder: focusedBorderView(),
                 hintText: 'Write exercise e.g.: Squats'),
           ),
           const SizedBox(height: 15),
           TextField(
             onChanged: onBodyPartChanged,
             decoration: InputDecoration(
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(13),
-                  borderSide: const BorderSide(color: Colors.white12, width: 3),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                  borderSide: const BorderSide(color: Colors.orange, width: 3),
-                ),
+                enabledBorder: enabledBorderView(),
+                focusedBorder: focusedBorderView(),
                 hintText: 'Write part of working body e.g.: Legs'),
           ),
           const SizedBox(height: 15),
           TextField(
             onChanged: onSetsChanged,
             decoration: InputDecoration(
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(13),
-                  borderSide: const BorderSide(color: Colors.white12, width: 3),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                  borderSide: const BorderSide(color: Colors.orange, width: 3),
-                ),
+                enabledBorder: enabledBorderView(),
+                focusedBorder: focusedBorderView(),
                 hintText: 'Write number of sets e.g.: 3'),
           ),
           const SizedBox(height: 15),
           TextField(
             onChanged: onRepsChanged,
             decoration: InputDecoration(
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(13),
-                  borderSide: const BorderSide(color: Colors.white12, width: 3),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                  borderSide: const BorderSide(color: Colors.orange, width: 3),
-                ),
+                enabledBorder: enabledBorderView(),
+                focusedBorder: focusedBorderView(),
                 hintText: 'Write number of reps e.g.: 8'),
           ),
           const SizedBox(height: 15),
           TextField(
             onChanged: onWeightChanged,
             decoration: InputDecoration(
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(13),
-                  borderSide: const BorderSide(color: Colors.white12, width: 3),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                  borderSide: const BorderSide(color: Colors.orange, width: 3),
-                ),
+                enabledBorder: enabledBorderView(),
+                focusedBorder: focusedBorderView(),
                 hintText: ' Write reps weight e.g.: 30 kg'),
           ),
           const SizedBox(height: 30),
@@ -235,6 +205,20 @@ class _AddStrengthTrainingBody extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  OutlineInputBorder focusedBorderView() {
+    return OutlineInputBorder(
+      borderRadius: BorderRadius.circular(15),
+      borderSide: const BorderSide(color: Colors.orange, width: 3),
+    );
+  }
+
+  OutlineInputBorder enabledBorderView() {
+    return OutlineInputBorder(
+      borderRadius: BorderRadius.circular(13),
+      borderSide: const BorderSide(color: Colors.white12, width: 3),
     );
   }
 }
