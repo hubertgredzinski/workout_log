@@ -1,19 +1,20 @@
 import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import '../../../app/core/enums/enums.dart';
 import '../../../domain/models/weather_model.dart';
 import '../../../domain/repositories/weather_repository.dart';
 part 'weather_state.dart';
+part 'weather_cubit.freezed.dart';
 
 class WeatherCubit extends Cubit<WeatherState> {
-  WeatherCubit(this._weatherRepository) : super(const WeatherState());
+  WeatherCubit(this._weatherRepository) : super(WeatherState());
 
   final WeatherRepository _weatherRepository;
 
   Future<void> getWeatherModel({
     required String city,
   }) async {
-    emit(const WeatherState(status: Status.loading));
+    emit(WeatherState(status: Status.loading));
     try {
       final weatherModel = await _weatherRepository.getWeatherModel(city: city);
       emit(
