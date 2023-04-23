@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:workout_log/domain/repositories/cardio_history_repository.dart';
+import 'package:workout_log/app/core/injection_container.dart';
 import '../../app/core/enums/enums.dart';
 import 'cubit/add_cardio_training_cubit.dart';
 
@@ -23,8 +23,8 @@ class AddCardioTrainingPageState extends State<AddCardioTrainingPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AddCardioTrainingCubit(CardioRepository()),
+    return BlocProvider<AddCardioTrainingCubit>(
+      create: (context) => getIt(),
       child: BlocListener<AddCardioTrainingCubit, AddCardioTrainingState>(
         listener: (context, state) {
           if (state.status == Status.success) {

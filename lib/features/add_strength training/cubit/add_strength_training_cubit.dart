@@ -1,10 +1,12 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 import 'package:workout_log/domain/repositories/strength_history_repository.dart';
 import '../../../app/core/enums/enums.dart';
 part 'add_strength_training_cubit.freezed.dart';
 part 'add_strength_training_state.dart';
 
+@injectable
 class AddStrengthTrainingCubit extends Cubit<AddStrengthTrainingState> {
   AddStrengthTrainingCubit(this._strengthRepository)
       : super(

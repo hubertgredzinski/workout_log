@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:workout_log/domain/repositories/strength_history_repository.dart';
 import '../../app/core/enums/enums.dart';
+import '../../app/core/injection_container.dart';
 import 'cubit/add_strength_training_cubit.dart';
 
 class AddStrengthTrainingPage extends StatefulWidget {
@@ -24,8 +24,8 @@ class _AddStrengthTrainingPageState extends State<AddStrengthTrainingPage> {
   DateTime? date;
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AddStrengthTrainingCubit(StrengthRepository()),
+    return BlocProvider<AddStrengthTrainingCubit>(
+      create: (context) => getIt(),
       child: BlocListener<AddStrengthTrainingCubit, AddStrengthTrainingState>(
         listener: (context, state) {
           if (state.status == Status.success) {

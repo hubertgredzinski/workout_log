@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
+import 'package:injectable/injectable.dart';
 import 'package:workout_log/domain/repositories/strength_history_repository.dart';
 import '../../../../../domain/models/strength_history_model.dart';
 import '../../../../app/core/enums/enums.dart';
@@ -7,6 +8,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'strength_history_state.dart';
 part 'strength_history_cubit.freezed.dart';
 
+@injectable
 class StrengthHistoryCubit extends Cubit<StrengthHistoryState> {
   StrengthHistoryCubit(this._strengthRepository)
       : super(

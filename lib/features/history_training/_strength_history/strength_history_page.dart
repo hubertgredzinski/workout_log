@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:workout_log/domain/repositories/strength_history_repository.dart';
 import '../../../../domain/models/strength_history_model.dart';
 import '../../../app/core/enums/enums.dart';
+import '../../../app/core/injection_container.dart';
 import 'cubit/strength_history_cubit.dart';
 
 class StrengthHistoryPage extends StatelessWidget {
@@ -17,9 +17,8 @@ class StrengthHistoryPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Strength Training History'),
       ),
-      body: BlocProvider(
-        create: (context) =>
-            StrengthHistoryCubit(StrengthRepository())..start(),
+      body: BlocProvider<StrengthHistoryCubit>(
+        create: (context) => getIt()..start(),
         child: BlocListener<StrengthHistoryCubit, StrengthHistoryState>(
           listener: (context, state) {
             if (state.status == Status.error) {
