@@ -208,8 +208,7 @@ Current _$CurrentFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Current {
-  @JsonKey(name: 'temp_c')
-  double get temp => throw _privateConstructorUsedError;
+  double get tempC => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -221,7 +220,7 @@ abstract class $CurrentCopyWith<$Res> {
   factory $CurrentCopyWith(Current value, $Res Function(Current) then) =
       _$CurrentCopyWithImpl<$Res, Current>;
   @useResult
-  $Res call({@JsonKey(name: 'temp_c') double temp});
+  $Res call({double tempC});
 }
 
 /// @nodoc
@@ -237,12 +236,12 @@ class _$CurrentCopyWithImpl<$Res, $Val extends Current>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? temp = null,
+    Object? tempC = null,
   }) {
     return _then(_value.copyWith(
-      temp: null == temp
-          ? _value.temp
-          : temp // ignore: cast_nullable_to_non_nullable
+      tempC: null == tempC
+          ? _value.tempC
+          : tempC // ignore: cast_nullable_to_non_nullable
               as double,
     ) as $Val);
   }
@@ -255,7 +254,7 @@ abstract class _$$_CurrentCopyWith<$Res> implements $CurrentCopyWith<$Res> {
       __$$_CurrentCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({@JsonKey(name: 'temp_c') double temp});
+  $Res call({double tempC});
 }
 
 /// @nodoc
@@ -268,32 +267,32 @@ class __$$_CurrentCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? temp = null,
+    Object? tempC = null,
   }) {
     return _then(_$_Current(
-      null == temp
-          ? _value.temp
-          : temp // ignore: cast_nullable_to_non_nullable
+      null == tempC
+          ? _value.tempC
+          : tempC // ignore: cast_nullable_to_non_nullable
               as double,
     ));
   }
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(fieldRename: FieldRename.snake)
 class _$_Current implements _Current {
-  _$_Current(@JsonKey(name: 'temp_c') this.temp);
+  _$_Current(this.tempC);
 
   factory _$_Current.fromJson(Map<String, dynamic> json) =>
       _$$_CurrentFromJson(json);
 
   @override
-  @JsonKey(name: 'temp_c')
-  final double temp;
+  final double tempC;
 
   @override
   String toString() {
-    return 'Current(temp: $temp)';
+    return 'Current(tempC: $tempC)';
   }
 
   @override
@@ -301,12 +300,12 @@ class _$_Current implements _Current {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Current &&
-            (identical(other.temp, temp) || other.temp == temp));
+            (identical(other.tempC, tempC) || other.tempC == tempC));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, temp);
+  int get hashCode => Object.hash(runtimeType, tempC);
 
   @JsonKey(ignore: true)
   @override
@@ -323,13 +322,12 @@ class _$_Current implements _Current {
 }
 
 abstract class _Current implements Current {
-  factory _Current(@JsonKey(name: 'temp_c') final double temp) = _$_Current;
+  factory _Current(final double tempC) = _$_Current;
 
   factory _Current.fromJson(Map<String, dynamic> json) = _$_Current.fromJson;
 
   @override
-  @JsonKey(name: 'temp_c')
-  double get temp;
+  double get tempC;
   @override
   @JsonKey(ignore: true)
   _$$_CurrentCopyWith<_$_Current> get copyWith =>

@@ -13,7 +13,8 @@ class WeatherModel with _$WeatherModel {
 
 @freezed
 class Current with _$Current {
-  factory Current(@JsonKey(name: 'temp_c') double temp) = _Current;
+  @JsonSerializable(fieldRename: FieldRename.snake)
+  factory Current(double tempC) = _Current;
 
   factory Current.fromJson(Map<String, dynamic> json) =>
       _$CurrentFromJson(json);

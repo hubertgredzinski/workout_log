@@ -24,7 +24,7 @@ _$_Current _$$_CurrentFromJson(Map<String, dynamic> json) => _$_Current(
 
 Map<String, dynamic> _$$_CurrentToJson(_$_Current instance) =>
     <String, dynamic>{
-      'temp_c': instance.temp,
+      'temp_c': instance.tempC,
     };
 
 _$_Location _$$_LocationFromJson(Map<String, dynamic> json) => _$_Location(
