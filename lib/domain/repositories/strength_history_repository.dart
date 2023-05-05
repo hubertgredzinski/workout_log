@@ -1,20 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-
+import 'package:workout_log/data/strength_history_data_source.dart';
 import '../models/strength_history_model.dart';
 
 class StrengthRepository {
+  final StrengthDataSource strengthDataSource;
+
+  StrengthRepository({required this.strengthDataSource});
+
   Stream<List<StrengthHistoryModel>> getStrengthStream() {
-    final userID = FirebaseAuth.instance.currentUser?.uid;
-    if (userID == null) {
-      Exception('User is not logged in');
-    }
-    return FirebaseFirestore.instance
-        .collection('users')
-        .doc(userID)
-        .collection('strength')
-        .snapshots()
-        .map(
+    return strengthDataSource.getStrengthDataSource().map(
       (querySnapshot) {
         return querySnapshot.docs.map(
           (document) {
@@ -34,37 +28,11 @@ class StrengthRepository {
   }
 
   Future<void> delete({required String documentID}) {
-    final userID = FirebaseAuth.instance.currentUser?.uid;
-    if (userID == null) {
-      Exception('User is not logged in');
-    }
-    return FirebaseFirestore.instance
-        .collection('users')
-        .doc(userID)
-        .collection('strength')
-        .doc(documentID)
-        .delete();
+    return strengthDataSource.delete(documentID: documentID);
   }
 
   Future<void> add(String exercise, String bodyPart, String reps, String sets,
       String? weight, DateTime date) {
-    final userID = FirebaseAuth.instance.currentUser?.uid;
-    if (userID == null) {
-      Exception('User is not logged in');
-    }
-    return FirebaseFirestore.instance
-        .collection('users')
-        .doc(userID)
-        .collection('strength')
-        .add(
-      {
-        'exercise': exercise,
-        'body_part': bodyPart,
-        'reps': reps,
-        'sets': sets,
-        'weight': weight,
-        'date': date,
-      },
-    );
+    return strengthDataSource.add(exercise, bodyPart, reps, sets, weight, date);
   }
 }
