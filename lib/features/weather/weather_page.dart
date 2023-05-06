@@ -121,9 +121,7 @@ class _SearchWidget extends StatelessWidget {
                   const Color.fromARGB(255, 249, 199, 1), // Background color
             ),
             onPressed: () {
-              context
-                  .read<WeatherCubit>()
-                  .getWeatherModel(city: _controller.text);
+              context.read<WeatherCubit>().start(city: _controller.text);
             },
             child: const Text('Get'),
           ),
