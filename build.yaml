@@ -6,7 +6,7 @@ targets:
           auto_register: true  
           # auto registers any class with a name matches the given pattern  
           class_name_pattern:  
-            "DataSource$|Repository$|Cubit$"  
+            "DataSource$Repository$|Cubit$"  
             # auto registers any class inside a file with a  
             # name matches the given pattern  
           file_name_pattern: "_data_source$|_repository$|_cubit$"  
