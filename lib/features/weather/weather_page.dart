@@ -70,12 +70,12 @@ class _DisplayWeatherWidget extends StatelessWidget {
         return Column(
           children: [
             Text(
-              weatherModel.temp.toString(),
+              weatherModel.temp.tempC.toString(),
               style: const TextStyle(fontSize: 30),
             ),
             const SizedBox(height: 60),
             Text(
-              weatherModel.city.toString(),
+              weatherModel.city.name.toString(),
               style: const TextStyle(fontSize: 30),
             ),
             const SizedBox(height: 60),

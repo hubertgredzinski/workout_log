@@ -5,10 +5,19 @@ part 'weather_model.g.dart';
 @freezed
 class WeatherModel with _$WeatherModel {
   factory WeatherModel(
-      @JsonKey(name: 'current') Current temp, // keys sie pojawiają!!!
-      @JsonKey(name: 'location') Location city) = _WeatherModel;
+    @JsonKey(
+      name: 'current',
+    )
+        Current temp, // keys sie pojawiają!!!
+    @JsonKey(
+      name: 'location',
+    )
+        Location city,
+  ) = _WeatherModel;
 
-  factory WeatherModel.fromJson(Map<String, dynamic> json) =>
+  factory WeatherModel.fromJson(
+    Map<String, dynamic> json,
+  ) =>
       _$WeatherModelFromJson(json);
 }
 
@@ -17,17 +26,25 @@ class Current with _$Current {
   @JsonSerializable(
     fieldRename: FieldRename.snake,
   )
-  factory Current(double tempC) = _Current;
+  factory Current(
+    double tempC,
+  ) = _Current;
 
-  factory Current.fromJson(Map<String, dynamic> json) =>
+  factory Current.fromJson(
+    Map<String, dynamic> json,
+  ) =>
       _$CurrentFromJson(json);
 }
 
 @freezed
 class Location with _$Location {
-  factory Location(String name) = _Location;
+  factory Location(
+    String name,
+  ) = _Location;
 
-  factory Location.fromJson(Map<String, dynamic> json) =>
+  factory Location.fromJson(
+    Map<String, dynamic> json,
+  ) =>
       _$LocationFromJson(json);
 }
 
