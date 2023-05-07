@@ -90,7 +90,7 @@ class CardioTraining extends StatelessWidget {
             cardioDocument.type,
             style: GoogleFonts.lato(fontSize: 22, fontWeight: FontWeight.bold),
           ),
-          const SizedBox(height: 5),
+          const SizedBox(height: 10),
           Text(
             (cardioDocument.dateFromatted()),
             style: GoogleFonts.lato(
