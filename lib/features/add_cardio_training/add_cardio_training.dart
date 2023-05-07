@@ -163,7 +163,7 @@ class _AddCardioTrainingBody extends StatelessWidget {
           ),
           const SizedBox(height: 30),
           ElevatedButton(
-            style: ElevatedButton.styleFrom(backgroundColor: Colors.orange),
+            style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
             onPressed: () async {
               final selectedDate = await showDatePicker(
                 context: context,
@@ -185,7 +185,7 @@ class _AddCardioTrainingBody extends StatelessWidget {
   OutlineInputBorder focusedBorderView() {
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(15),
-      borderSide: const BorderSide(color: Colors.orange, width: 3),
+      borderSide: const BorderSide(color: Colors.green, width: 3),
     );
   }
 
