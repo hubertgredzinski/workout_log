@@ -69,14 +69,42 @@ class _DisplayWeatherWidget extends StatelessWidget {
       builder: (context, state) {
         return Column(
           children: [
-            Text(
-              weatherModel.temp.tempC.toString(),
-              style: const TextStyle(fontSize: 30),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                const Text(
+                  'Temperature :',
+                  style: TextStyle(fontSize: 30),
+                ),
+                Text(
+                  weatherModel.temp.tempC.toString(),
+                  style: const TextStyle(fontSize: 35),
+                ),
+                const Text(
+                  '°C',
+                  style: TextStyle(fontSize: 30),
+                ),
+              ],
             ),
             const SizedBox(height: 60),
-            Text(
-              weatherModel.city.name.toString(),
-              style: const TextStyle(fontSize: 30),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                const Text(
+                  'City :',
+                  style: TextStyle(fontSize: 30),
+                ),
+                Text(
+                  weatherModel.city.name.toString(),
+                  style: const TextStyle(
+                    fontSize: 35,
+                  ),
+                ),
+                const Icon(
+                  Icons.location_city_rounded,
+                  size: 35,
+                )
+              ],
             ),
             const SizedBox(height: 60),
           ],
@@ -99,6 +127,7 @@ class _SearchWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
       child: Row(
         children: [
+          const SizedBox(height: 20),
           Expanded(
             child: TextField(
               controller: _controller,
