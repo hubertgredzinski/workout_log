@@ -3,7 +3,7 @@ import '../../data/cardio_history_data_source.dart';
 import '../models/cardio_history_model.dart';
 
 class CardioRepository {
-  final CardioDataSource cardioDataSource;
+  final CardioHistoryDataSource cardioDataSource;
 
   CardioRepository({required this.cardioDataSource});
 

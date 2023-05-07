@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class CardioDataSource {
+class CardioHistoryDataSource {
   Stream<QuerySnapshot<Map<String, dynamic>>> getCardioDataSource() {
     final userID = FirebaseAuth.instance.currentUser?.uid;
     if (userID == null) {

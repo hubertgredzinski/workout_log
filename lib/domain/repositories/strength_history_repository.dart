@@ -3,7 +3,7 @@ import 'package:workout_log/data/strength_history_data_source.dart';
 import '../models/strength_history_model.dart';
 
 class StrengthRepository {
-  final StrengthDataSource strengthDataSource;
+  final StrengthHistoryDataSource strengthDataSource;
 
   StrengthRepository({required this.strengthDataSource});
 

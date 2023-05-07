@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class StrengthDataSource {
+class StrengthHistoryDataSource {
   Stream<QuerySnapshot<Map<String, dynamic>>> getStrengthDataSource() {
     final userID = FirebaseAuth.instance.currentUser?.uid;
     if (userID == null) {

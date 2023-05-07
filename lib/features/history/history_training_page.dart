@@ -3,8 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import '_strength_history/strength_history_page.dart';
 import 'cardio_history/cardio_history_page.dart';
 
-class HistoryTrainingPage extends StatelessWidget {
-  const HistoryTrainingPage({
+class HistoryPage extends StatelessWidget {
+  const HistoryPage({
     Key? key,
   }) : super(key: key);
 
@@ -27,7 +27,7 @@ class HistoryTrainingPage extends StatelessWidget {
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.teal,
+                backgroundColor: Colors.orange,
                 padding:
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               ),
@@ -50,7 +50,7 @@ class HistoryTrainingPage extends StatelessWidget {
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.teal,
+                backgroundColor: Colors.orange,
                 padding:
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               ),

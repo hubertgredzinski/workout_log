@@ -22,9 +22,9 @@ import 'package:workout_log/features/add_cardio_training/cubit/add_cardio_traini
     as _i7;
 import 'package:workout_log/features/add_strength%20training/cubit/add_strength_training_cubit.dart'
     as _i8;
-import 'package:workout_log/features/history_training/_strength_history/cubit/strength_history_cubit.dart'
+import 'package:workout_log/features/history/_strength_history/cubit/strength_history_cubit.dart'
     as _i11;
-import 'package:workout_log/features/history_training/cardio_history/cubit/cardio_history_cubit.dart'
+import 'package:workout_log/features/history/cardio_history/cubit/cardio_history_cubit.dart'
     as _i9;
 import 'package:workout_log/features/weather/cubit/weather_cubit.dart' as _i14;
 
@@ -42,12 +42,14 @@ extension GetItInjectableX on _i1.GetIt {
       environmentFilter,
     );
     final registerModule = _$RegisterModule();
-    gh.factory<_i3.CardioDataSource>(() => _i3.CardioDataSource());
-    gh.factory<_i4.CardioRepository>(() =>
-        _i4.CardioRepository(cardioDataSource: gh<_i3.CardioDataSource>()));
-    gh.factory<_i5.StrengthDataSource>(() => _i5.StrengthDataSource());
+    gh.factory<_i3.CardioHistoryDataSource>(
+        () => _i3.CardioHistoryDataSource());
+    gh.factory<_i4.CardioRepository>(() => _i4.CardioRepository(
+        cardioDataSource: gh<_i3.CardioHistoryDataSource>()));
+    gh.factory<_i5.StrengthHistoryDataSource>(
+        () => _i5.StrengthHistoryDataSource());
     gh.factory<_i6.StrengthRepository>(() => _i6.StrengthRepository(
-        strengthDataSource: gh<_i5.StrengthDataSource>()));
+        strengthDataSource: gh<_i5.StrengthHistoryDataSource>()));
     gh.factory<String>(
       () => registerModule.baseUrl,
       instanceName: 'BaseUrl',
