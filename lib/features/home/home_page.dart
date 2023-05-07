@@ -5,7 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 import '../add_strength training/add_strength_training.dart';
 import '../auth/user_profile.dart';
 import '../add_cardio_training/add_cardio_training.dart';
-import '../history_training/history_training_page.dart';
+
+import '../history/history_training_page.dart';
 import '../weather/weather_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -54,7 +55,7 @@ class _HomePageState extends State<HomePage> {
             return const WeatherPage();
           }
           if (currentIndex == 1) {
-            return const HistoryTrainingPage();
+            return const HistoryPage();
           }
           return Column(
             children: [
@@ -73,7 +74,7 @@ class _HomePageState extends State<HomePage> {
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.orange,
+                  backgroundColor: Colors.green,
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 ),
@@ -96,7 +97,7 @@ class _HomePageState extends State<HomePage> {
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.orange,
+                  backgroundColor: Colors.green,
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 ),
@@ -119,7 +120,11 @@ class _HomePageState extends State<HomePage> {
         },
       ),
       bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Colors.white,
         backgroundColor: Colors.black12,
+        iconSize: 26,
+        selectedFontSize: 20,
+        unselectedFontSize: 15,
         currentIndex: currentIndex,
         onTap: (newIndex) {
           setState(() {
@@ -128,7 +133,7 @@ class _HomePageState extends State<HomePage> {
         },
         items: const [
           BottomNavigationBarItem(
-              icon: Icon(Icons.fitness_center), label: 'Choose Training'),
+              icon: Icon(Icons.fitness_center), label: 'Training'),
           BottomNavigationBarItem(icon: Icon(Icons.history), label: 'History'),
           BottomNavigationBarItem(icon: Icon(Icons.sunny), label: 'Weather'),
         ],
