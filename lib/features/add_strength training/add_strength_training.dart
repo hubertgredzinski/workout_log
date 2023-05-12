@@ -45,7 +45,9 @@ class _AddStrengthTrainingPageState extends State<AddStrengthTrainingPage> {
           builder: (context, state) {
             return Scaffold(
               appBar: AppBar(
-                title: const Text("Add Strength Training"),
+                title: const Text(
+                  "Add Strength Training",
+                ),
                 actions: [
                   IconButton(
                     onPressed: exercise == null ||
@@ -56,14 +58,17 @@ class _AddStrengthTrainingPageState extends State<AddStrengthTrainingPage> {
                         ? null
                         : () {
                             context.read<AddStrengthTrainingCubit>().add(
-                                exercise!,
-                                bodyPart!,
-                                reps!,
-                                sets!,
-                                weight,
-                                date!);
+                                  exercise!,
+                                  bodyPart!,
+                                  reps!,
+                                  sets!,
+                                  weight,
+                                  date!,
+                                );
                           },
-                    icon: const Icon(Icons.check),
+                    icon: const Icon(
+                      Icons.check,
+                    ),
                   ),
                 ],
               ),
@@ -110,8 +115,11 @@ class _AddStrengthTrainingPageState extends State<AddStrengthTrainingPage> {
                     },
                   );
                 },
-                selectedDateFormatted:
-                    date == null ? null : DateFormat.yMMMMEEEEd().format(date!),
+                selectedDateFormatted: date == null
+                    ? null
+                    : DateFormat.yMMMMEEEEd().format(
+                        date!,
+                      ),
               ),
             );
           },
@@ -144,64 +152,91 @@ class _AddStrengthTrainingBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(15.0),
+      padding: const EdgeInsets.all(
+        15.0,
+      ),
       child: ListView(
         children: [
-          const SizedBox(height: 50),
+          const SizedBox(
+            height: 50,
+          ),
           TextField(
             onChanged: onExerciseChanged,
             decoration: InputDecoration(
-                enabledBorder: enabledBorderView(),
-                focusedBorder: focusedBorderView(),
-                hintText: 'Write exercise e.g.: Squats'),
+              enabledBorder: enabledBorderView(),
+              focusedBorder: focusedBorderView(),
+              hintText: 'Write exercise e.g.: Squats',
+            ),
           ),
-          const SizedBox(height: 15),
+          const SizedBox(
+            height: 15,
+          ),
           TextField(
             onChanged: onBodyPartChanged,
             decoration: InputDecoration(
-                enabledBorder: enabledBorderView(),
-                focusedBorder: focusedBorderView(),
-                hintText: 'Write part of working body e.g.: Legs'),
+              enabledBorder: enabledBorderView(),
+              focusedBorder: focusedBorderView(),
+              hintText: 'Write part of working body e.g.: Legs',
+            ),
           ),
-          const SizedBox(height: 15),
+          const SizedBox(
+            height: 15,
+          ),
           TextField(
             onChanged: onSetsChanged,
             decoration: InputDecoration(
-                enabledBorder: enabledBorderView(),
-                focusedBorder: focusedBorderView(),
-                hintText: 'Write number of sets e.g.: 3'),
+              enabledBorder: enabledBorderView(),
+              focusedBorder: focusedBorderView(),
+              hintText: 'Write number of sets e.g.: 3',
+            ),
           ),
-          const SizedBox(height: 15),
+          const SizedBox(
+            height: 15,
+          ),
           TextField(
             onChanged: onRepsChanged,
             decoration: InputDecoration(
-                enabledBorder: enabledBorderView(),
-                focusedBorder: focusedBorderView(),
-                hintText: 'Write number of reps e.g.: 8'),
+              enabledBorder: enabledBorderView(),
+              focusedBorder: focusedBorderView(),
+              hintText: 'Write number of reps e.g.: 8',
+            ),
           ),
-          const SizedBox(height: 15),
+          const SizedBox(
+            height: 15,
+          ),
           TextField(
             onChanged: onWeightChanged,
             decoration: InputDecoration(
-                enabledBorder: enabledBorderView(),
-                focusedBorder: focusedBorderView(),
-                hintText: ' Write reps weight e.g.: 30 kg'),
+              enabledBorder: enabledBorderView(),
+              focusedBorder: focusedBorderView(),
+              hintText: ' Write reps weight e.g.: 30 kg',
+            ),
           ),
-          const SizedBox(height: 30),
+          const SizedBox(
+            height: 30,
+          ),
           ElevatedButton(
-            style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.green,
+            ),
             onPressed: () async {
               final selectedDate = await showDatePicker(
                 context: context,
                 initialDate: DateTime.now(),
-                firstDate: DateTime(2021),
+                firstDate: DateTime(
+                  2021,
+                ),
                 lastDate: DateTime.now().add(
-                  const Duration(days: 365 * 1),
+                  const Duration(
+                    days: 365 * 1,
+                  ),
                 ),
               );
               onDateChanged(selectedDate);
             },
-            child: Text(selectedDateFormatted ?? 'Choose training date'),
+            child: Text(
+              selectedDateFormatted ?? 'Choose training date',
+            ),
           ),
         ],
       ),
@@ -210,15 +245,25 @@ class _AddStrengthTrainingBody extends StatelessWidget {
 
   OutlineInputBorder focusedBorderView() {
     return OutlineInputBorder(
-      borderRadius: BorderRadius.circular(15),
-      borderSide: const BorderSide(color: Colors.green, width: 3),
+      borderRadius: BorderRadius.circular(
+        15,
+      ),
+      borderSide: const BorderSide(
+        color: Colors.green,
+        width: 3,
+      ),
     );
   }
 
   OutlineInputBorder enabledBorderView() {
     return OutlineInputBorder(
-      borderRadius: BorderRadius.circular(13),
-      borderSide: const BorderSide(color: Colors.white12, width: 3),
+      borderRadius: BorderRadius.circular(
+        13,
+      ),
+      borderSide: const BorderSide(
+        color: Colors.white12,
+        width: 3,
+      ),
     );
   }
 }

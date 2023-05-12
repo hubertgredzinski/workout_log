@@ -59,11 +59,7 @@ class StrengthHistoryPage extends StatelessWidget {
                             .read<StrengthHistoryCubit>()
                             .remove(documentID: strengthModel.id);
                       },
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child:
-                            StrengthTraining(strengthDocument: strengthModel),
-                      ),
+                      child: StrengthTraining(strengthDocument: strengthModel),
                     )
                   ],
                 ],
@@ -168,7 +164,7 @@ class StrengthTraining extends StatelessWidget {
             ],
           ),
           const Divider(
-            color: Color.fromARGB(255, 211, 3, 3),
+            color: Color.fromARGB(255, 255, 0, 0),
             indent: 20,
             endIndent: 20,
             height: 30,

@@ -7,8 +7,4 @@ class WeatherState with _$WeatherState {
     @Default(Status.initial) Status status,
     String? errorMessage,
   }) = _WeatherState;
-
-  // final WeatherModel? model;
-  // final Status status;
-  // final String? errorMessage;
 }

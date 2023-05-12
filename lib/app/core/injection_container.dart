@@ -14,5 +14,7 @@ abstract class RegisterModule {
   @Named("BaseUrl")
   String get baseUrl => 'http://api.weatherapi.com/v1';
   @lazySingleton
-  Dio dio(@Named('BaseUrl') String url) => Dio(BaseOptions(baseUrl: url));
+  Dio dio(@Named('BaseUrl') String url) => Dio(
+        BaseOptions(baseUrl: url),
+      );
 }

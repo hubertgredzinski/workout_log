@@ -8,15 +8,3 @@ class CardioHistoryState with _$CardioHistoryState {
     String? errorMessage,
   }) = _CardioHistoryState;
 }
-
-// class CardioHistoryState {
-//   final List<CardioHistoryModel> cardioDocuments;
-//   final Status status;
-//   final String? errorMessage;
-
-//   CardioHistoryState({
-//     this.cardioDocuments = const [],
-//     this.status = Status.initial,
-//     this.errorMessage = '',
-//   });
-// }

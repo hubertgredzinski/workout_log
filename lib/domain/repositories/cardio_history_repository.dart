@@ -27,8 +27,12 @@ class CardioRepository {
     );
   }
 
-  Future<void> delete({required String documentID}) {
-    return cardioDataSource.delete(documentID: documentID);
+  Future<void> delete({
+    required String documentID,
+  }) {
+    return cardioDataSource.delete(
+      documentID: documentID,
+    );
   }
 
   Future<void> add(
@@ -39,6 +43,13 @@ class CardioRepository {
     String? kcal,
     String? distance,
   ) {
-    return cardioDataSource.add(type, time, date, intensity!, kcal!, distance!);
+    return cardioDataSource.add(
+      type,
+      time,
+      date,
+      intensity!,
+      kcal!,
+      distance!,
+    );
   }
 }

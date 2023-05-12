@@ -28,12 +28,18 @@ class _HomePageState extends State<HomePage> {
         title: Builder(
           builder: (context) {
             if (currentIndex == 2) {
-              return const Text('Temperature');
+              return const Text(
+                'Temperature',
+              );
             }
             if (currentIndex == 1) {
-              return const Text('History');
+              return const Text(
+                'History',
+              );
             }
-            return Text(AppLocalizations.of(context)!.helloWorld);
+            return Text(
+              AppLocalizations.of(context)!.helloWorld,
+            );
           },
         ),
         actions: [
@@ -45,7 +51,9 @@ class _HomePageState extends State<HomePage> {
                 ),
               );
             },
-            icon: const Icon(Icons.person),
+            icon: const Icon(
+              Icons.person,
+            ),
           )
         ],
       ),
@@ -66,7 +74,9 @@ class _HomePageState extends State<HomePage> {
                 child: Text(
                   'Choose your training',
                   style: GoogleFonts.robotoSlab(
-                      fontSize: 35, fontWeight: FontWeight.bold),
+                    fontSize: 35,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
               const SizedBox(
@@ -75,8 +85,10 @@ class _HomePageState extends State<HomePage> {
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.green,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 10,
+                  ),
                 ),
                 onPressed: () {
                   Navigator.push(
@@ -89,7 +101,9 @@ class _HomePageState extends State<HomePage> {
                 child: Text(
                   'Strength Training',
                   style: GoogleFonts.robotoSlab(
-                      fontSize: 30, fontWeight: FontWeight.bold),
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
               const SizedBox(
@@ -98,8 +112,10 @@ class _HomePageState extends State<HomePage> {
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.green,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 10,
+                  ),
                 ),
                 onPressed: () {
                   Navigator.of(context).push(
@@ -112,7 +128,9 @@ class _HomePageState extends State<HomePage> {
                 child: Text(
                   'Cardio',
                   style: GoogleFonts.robotoSlab(
-                      fontSize: 30, fontWeight: FontWeight.bold),
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               )
             ],
@@ -133,9 +151,17 @@ class _HomePageState extends State<HomePage> {
         },
         items: const [
           BottomNavigationBarItem(
-              icon: Icon(Icons.fitness_center), label: 'Training'),
-          BottomNavigationBarItem(icon: Icon(Icons.history), label: 'History'),
-          BottomNavigationBarItem(icon: Icon(Icons.sunny), label: 'Weather'),
+            icon: Icon(Icons.fitness_center),
+            label: 'Training',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.history),
+            label: 'History',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.sunny),
+            label: 'Weather',
+          ),
         ],
       ),
     );

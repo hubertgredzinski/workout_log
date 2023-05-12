@@ -8,8 +8,9 @@ part 'cardio_history_state.dart';
 part 'cardio_history_cubit.freezed.dart';
 
 class CardioHistoryCubit extends Cubit<CardioHistoryState> {
-  CardioHistoryCubit(this._cardioRepository)
-      : super(
+  CardioHistoryCubit(
+    this._cardioRepository,
+  ) : super(
           CardioHistoryState(),
         );
 
@@ -23,7 +24,9 @@ class CardioHistoryCubit extends Cubit<CardioHistoryState> {
       (cardioData) {
         emit(
           CardioHistoryState(
-              cardioDocuments: cardioData, status: Status.success),
+            cardioDocuments: cardioData,
+            status: Status.success,
+          ),
         );
       },
     )..onError(
@@ -40,7 +43,9 @@ class CardioHistoryCubit extends Cubit<CardioHistoryState> {
 
   Future<void> remove({required String documentID}) async {
     try {
-      await _cardioRepository.delete(documentID: documentID);
+      await _cardioRepository.delete(
+        documentID: documentID,
+      );
     } catch (error) {
       emit(
         CardioHistoryState(

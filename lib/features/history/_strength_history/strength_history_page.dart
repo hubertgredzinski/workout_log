@@ -15,7 +15,9 @@ class StrengthHistoryPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Strength Training History'),
+        title: const Text(
+          'Strength Training History',
+        ),
       ),
       body: BlocProvider<StrengthHistoryCubit>(
         create: (context) => getIt()..start(),
@@ -25,7 +27,9 @@ class StrengthHistoryPage extends StatelessWidget {
               final errorMessage = state.errorMessage ?? 'Unkown error';
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  content: Text(errorMessage),
+                  content: Text(
+                    errorMessage,
+                  ),
                   backgroundColor: Colors.red,
                 ),
               );
@@ -40,11 +44,15 @@ class StrengthHistoryPage extends StatelessWidget {
                     Dismissible(
                       key: ValueKey(strengthModel.id),
                       background: const DecoratedBox(
-                        decoration: BoxDecoration(color: Colors.red),
+                        decoration: BoxDecoration(
+                          color: Colors.red,
+                        ),
                         child: Align(
                           alignment: Alignment.centerRight,
                           child: Padding(
-                            padding: EdgeInsets.only(right: 32.0),
+                            padding: EdgeInsets.only(
+                              right: 32.0,
+                            ),
                             child: Icon(
                               Icons.delete,
                             ),
@@ -59,10 +67,8 @@ class StrengthHistoryPage extends StatelessWidget {
                             .read<StrengthHistoryCubit>()
                             .remove(documentID: strengthModel.id);
                       },
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child:
-                            StrengthTraining(strengthDocument: strengthModel),
+                      child: StrengthTraining(
+                        strengthDocument: strengthModel,
                       ),
                     )
                   ],
@@ -87,12 +93,18 @@ class StrengthTraining extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+      padding: const EdgeInsets.symmetric(
+        vertical: 10,
+        horizontal: 20,
+      ),
       child: Column(
         children: [
           Text(
             strengthDocument.exercise,
-            style: GoogleFonts.lato(fontSize: 22, fontWeight: FontWeight.bold),
+            style: GoogleFonts.lato(
+              fontSize: 22,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           const SizedBox(height: 10),
           Text(
@@ -101,7 +113,9 @@ class StrengthTraining extends StatelessWidget {
               fontSize: 16,
             ),
           ),
-          const SizedBox(height: 20),
+          const SizedBox(
+            height: 20,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -111,9 +125,13 @@ class StrengthTraining extends StatelessWidget {
                     Text(
                       'Body Part',
                       style: GoogleFonts.lato(
-                          fontSize: 18, fontWeight: FontWeight.bold),
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                    const SizedBox(height: 5),
+                    const SizedBox(
+                      height: 5,
+                    ),
                     Text(
                       strengthDocument.bodypart,
                     ),
@@ -126,9 +144,13 @@ class StrengthTraining extends StatelessWidget {
                     Text(
                       'Sets',
                       style: GoogleFonts.lato(
-                          fontSize: 18, fontWeight: FontWeight.bold),
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                    const SizedBox(height: 5),
+                    const SizedBox(
+                      height: 5,
+                    ),
                     Text(
                       strengthDocument.sets,
                     ),
@@ -141,9 +163,13 @@ class StrengthTraining extends StatelessWidget {
                     Text(
                       'Reps',
                       style: GoogleFonts.lato(
-                          fontSize: 18, fontWeight: FontWeight.bold),
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                    const SizedBox(height: 5),
+                    const SizedBox(
+                      height: 5,
+                    ),
                     Text(
                       strengthDocument.reps,
                     )
@@ -156,9 +182,13 @@ class StrengthTraining extends StatelessWidget {
                     Text(
                       'Weight',
                       style: GoogleFonts.lato(
-                          fontSize: 18, fontWeight: FontWeight.bold),
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                    const SizedBox(height: 5),
+                    const SizedBox(
+                      height: 5,
+                    ),
                     Text(
                       strengthDocument.weight,
                     )

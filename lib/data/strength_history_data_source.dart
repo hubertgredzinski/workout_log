@@ -17,7 +17,9 @@ class StrengthHistoryDataSource {
   Future<void> delete({required String documentID}) {
     final userID = FirebaseAuth.instance.currentUser?.uid;
     if (userID == null) {
-      Exception('User is not logged in');
+      Exception(
+        'User is not logged in',
+      );
     }
     return FirebaseFirestore.instance
         .collection('users')

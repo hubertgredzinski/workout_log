@@ -7,10 +7,4 @@ class StrengthHistoryState with _$StrengthHistoryState {
     @Default(Status.initial) Status status,
     String? errorMessage,
   }) = _StrengthHistoryState;
-
-  // const StrengthHistoryState({
-  //   this.strengthDocuments = const [],
-  //   this.status = Status.initial,
-  //   this.errorMessage = '',
-  // });
 }

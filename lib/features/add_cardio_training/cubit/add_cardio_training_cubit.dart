@@ -6,8 +6,9 @@ part 'add_cardio_training_cubit.freezed.dart';
 part 'add_cardio_training_state.dart';
 
 class AddCardioTrainingCubit extends Cubit<AddCardioTrainingState> {
-  AddCardioTrainingCubit(this._cardioRepository)
-      : super(
+  AddCardioTrainingCubit(
+    this._cardioRepository,
+  ) : super(
           AddCardioTrainingState(),
         );
 
@@ -21,7 +22,14 @@ class AddCardioTrainingCubit extends Cubit<AddCardioTrainingState> {
     String? distance,
   ) async {
     try {
-      await _cardioRepository.add(type, time, date, intensity, kcal, distance);
+      await _cardioRepository.add(
+        type,
+        time,
+        date,
+        intensity,
+        kcal,
+        distance,
+      );
       emit(
         AddCardioTrainingState(
           status: Status.success,

@@ -18,7 +18,9 @@ class MyApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: const [
-        Locale('en'), // English
+        Locale(
+          'en',
+        ), // English
         Locale('pl'), // Polish
       ],
       theme: ThemeData.dark(),

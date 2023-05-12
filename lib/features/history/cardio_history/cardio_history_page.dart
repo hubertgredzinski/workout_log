@@ -15,7 +15,9 @@ class CardioHistoryPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Cardio Training History'),
+        title: const Text(
+          'Cardio Training History',
+        ),
       ),
       body: BlocProvider<CardioHistoryCubit>(
         create: (context) => getIt()..start(),
@@ -40,11 +42,15 @@ class CardioHistoryPage extends StatelessWidget {
                     Dismissible(
                       key: ValueKey(cardioModel.id),
                       background: const DecoratedBox(
-                        decoration: BoxDecoration(color: Colors.red),
+                        decoration: BoxDecoration(
+                          color: Colors.red,
+                        ),
                         child: Align(
                           alignment: Alignment.centerRight,
                           child: Padding(
-                            padding: EdgeInsets.only(right: 32.0),
+                            padding: EdgeInsets.only(
+                              right: 32.0,
+                            ),
                             child: Icon(
                               Icons.delete,
                             ),
@@ -55,11 +61,13 @@ class CardioHistoryPage extends StatelessWidget {
                         return direction == DismissDirection.endToStart;
                       },
                       onDismissed: (direction) {
-                        context
-                            .read<CardioHistoryCubit>()
-                            .remove(documentID: cardioModel.id);
+                        context.read<CardioHistoryCubit>().remove(
+                              documentID: cardioModel.id,
+                            );
                       },
-                      child: CardioTraining(cardioDocument: cardioModel),
+                      child: CardioTraining(
+                        cardioDocument: cardioModel,
+                      ),
                     ),
                   ],
                 ],
@@ -83,21 +91,31 @@ class CardioTraining extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+      padding: const EdgeInsets.symmetric(
+        vertical: 10,
+        horizontal: 20,
+      ),
       child: Column(
         children: [
           Text(
             cardioDocument.type,
-            style: GoogleFonts.lato(fontSize: 22, fontWeight: FontWeight.bold),
+            style: GoogleFonts.lato(
+              fontSize: 22,
+              fontWeight: FontWeight.bold,
+            ),
           ),
-          const SizedBox(height: 10),
+          const SizedBox(
+            height: 10,
+          ),
           Text(
             (cardioDocument.dateFromatted()),
             style: GoogleFonts.lato(
               fontSize: 16,
             ),
           ),
-          const SizedBox(height: 20),
+          const SizedBox(
+            height: 20,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -107,9 +125,13 @@ class CardioTraining extends StatelessWidget {
                     Text(
                       'Intensity',
                       style: GoogleFonts.lato(
-                          fontSize: 18, fontWeight: FontWeight.bold),
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                    const SizedBox(height: 5),
+                    const SizedBox(
+                      height: 5,
+                    ),
                     Text(
                       cardioDocument.intensity.toString(),
                     ),
@@ -122,9 +144,13 @@ class CardioTraining extends StatelessWidget {
                     Text(
                       'Time',
                       style: GoogleFonts.lato(
-                          fontSize: 18, fontWeight: FontWeight.bold),
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                    const SizedBox(height: 5),
+                    const SizedBox(
+                      height: 5,
+                    ),
                     Text(
                       cardioDocument.time,
                     )
@@ -137,9 +163,13 @@ class CardioTraining extends StatelessWidget {
                     Text(
                       'Distance',
                       style: GoogleFonts.lato(
-                          fontSize: 18, fontWeight: FontWeight.bold),
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                    const SizedBox(height: 5),
+                    const SizedBox(
+                      height: 5,
+                    ),
                     Text(
                       cardioDocument.distance.toString(),
                     )
@@ -152,9 +182,13 @@ class CardioTraining extends StatelessWidget {
                     Text(
                       'Calories',
                       style: GoogleFonts.lato(
-                          fontSize: 18, fontWeight: FontWeight.bold),
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                    const SizedBox(height: 5),
+                    const SizedBox(
+                      height: 5,
+                    ),
                     Text(
                       cardioDocument.kcal.toString(),
                     ),

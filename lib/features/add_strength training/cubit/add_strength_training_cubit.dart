@@ -6,17 +6,30 @@ part 'add_strength_training_cubit.freezed.dart';
 part 'add_strength_training_state.dart';
 
 class AddStrengthTrainingCubit extends Cubit<AddStrengthTrainingState> {
-  AddStrengthTrainingCubit(this._strengthRepository)
-      : super(
+  AddStrengthTrainingCubit(
+    this._strengthRepository,
+  ) : super(
           AddStrengthTrainingState(),
         );
 
   final StrengthRepository _strengthRepository;
-  Future<void> add(String exercise, String bodyPart, String reps, String sets,
-      String? weight, DateTime date) async {
+  Future<void> add(
+    String exercise,
+    String bodyPart,
+    String reps,
+    String sets,
+    String? weight,
+    DateTime date,
+  ) async {
     try {
       await _strengthRepository.add(
-          exercise, bodyPart, reps, sets, weight, date);
+        exercise,
+        bodyPart,
+        reps,
+        sets,
+        weight,
+        date,
+      );
       emit(
         AddStrengthTrainingState(
           status: Status.success,

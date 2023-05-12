@@ -21,7 +21,9 @@ class WeatherPage extends StatelessWidget {
             final errorMessage = state.errorMessage ?? 'Unkown error';
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text(errorMessage),
+                content: Text(
+                  errorMessage,
+                ),
                 backgroundColor: Colors.red,
               ),
             );
@@ -34,7 +36,9 @@ class WeatherPage extends StatelessWidget {
               body: Center(
                 child: Builder(builder: (context) {
                   if (state.status == Status.loading) {
-                    return const Text('Loading');
+                    return const Text(
+                      'Loading',
+                    );
                   }
                   return Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -72,27 +76,37 @@ class _DisplayWeatherWidget extends StatelessWidget {
           children: [
             Text(
               weatherModel.city.name.toString(),
-              style:
-                  GoogleFonts.dosis(fontSize: 60, fontWeight: FontWeight.bold),
+              style: GoogleFonts.dosis(
+                fontSize: 60,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-            const SizedBox(height: 70),
+            const SizedBox(
+              height: 70,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
                   'Temperature :  ',
                   style: GoogleFonts.dosis(
-                      fontSize: 30, fontWeight: FontWeight.bold),
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 Text(
                   weatherModel.temp.tempC.toString(),
                   style: GoogleFonts.dosis(
-                      fontSize: 28, fontWeight: FontWeight.bold),
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 Text(
                   ' °C',
                   style: GoogleFonts.dosis(
-                      fontSize: 26, fontWeight: FontWeight.bold),
+                    fontSize: 26,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ],
             ),
@@ -113,35 +127,49 @@ class _SearchWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 20.0,
+      ),
       child: Row(
         children: [
-          const SizedBox(height: 20),
+          const SizedBox(
+            height: 20,
+          ),
           Expanded(
             child: TextField(
               controller: _controller,
               decoration: const InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white12, width: 3),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.white12,
+                    width: 3,
                   ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color.fromARGB(255, 249, 199, 1),
-                    ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Color.fromARGB(255, 249, 199, 1),
                   ),
-                  hintText: 'Write city e.g.: Wroclaw'),
+                ),
+                hintText: 'Write city e.g.: Wroclaw',
+              ),
             ),
           ),
-          const SizedBox(width: 20),
+          const SizedBox(
+            width: 20,
+          ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
               backgroundColor:
                   const Color.fromARGB(255, 249, 199, 1), // Background color
             ),
             onPressed: () {
-              context.read<WeatherCubit>().start(city: _controller.text);
+              context.read<WeatherCubit>().start(
+                    city: _controller.text,
+                  );
             },
-            child: const Text('Get'),
+            child: const Text(
+              'Get',
+            ),
           ),
         ],
       ),

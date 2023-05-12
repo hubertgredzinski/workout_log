@@ -35,7 +35,9 @@ class AddCardioTrainingPageState extends State<AddCardioTrainingPage> {
             final errorMessage = state.errorMessage ?? 'Unkown error';
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text(errorMessage),
+                content: Text(
+                  errorMessage,
+                ),
                 backgroundColor: Colors.red,
               ),
             );
@@ -45,16 +47,26 @@ class AddCardioTrainingPageState extends State<AddCardioTrainingPage> {
           builder: (context, state) {
             return Scaffold(
               appBar: AppBar(
-                title: const Text("Add Cardio Training"),
+                title: const Text(
+                  "Add Cardio Training",
+                ),
                 actions: [
                   IconButton(
                     onPressed: type == null || time == null || date == null
                         ? null
                         : () {
                             context.read<AddCardioTrainingCubit>().add(
-                                type!, time!, date!, intensity, kcal, distance);
+                                  type!,
+                                  time!,
+                                  date!,
+                                  intensity,
+                                  kcal,
+                                  distance,
+                                );
                           },
-                    icon: const Icon(Icons.check),
+                    icon: const Icon(
+                      Icons.check,
+                    ),
                   ),
                 ],
               ),
@@ -101,8 +113,11 @@ class AddCardioTrainingPageState extends State<AddCardioTrainingPage> {
                     },
                   );
                 },
-                selectedDateFormatted:
-                    date == null ? null : DateFormat.yMMMMEEEEd().format(date!),
+                selectedDateFormatted: date == null
+                    ? null
+                    : DateFormat.yMMMMEEEEd().format(
+                        date!,
+                      ),
               ),
             );
           },
@@ -135,64 +150,89 @@ class _AddCardioTrainingBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(15.0),
+      padding: const EdgeInsets.all(
+        15.0,
+      ),
       child: ListView(
         children: [
-          const SizedBox(height: 50),
+          const SizedBox(
+            height: 50,
+          ),
           TextField(
             onChanged: onTypeChanged,
             decoration: InputDecoration(
-                enabledBorder: enabledBorderView(),
-                focusedBorder: focusedBorderView(),
-                hintText: 'Write type of training e.g.: Running'),
+              enabledBorder: enabledBorderView(),
+              focusedBorder: focusedBorderView(),
+              hintText: 'Write type of training e.g.: Running',
+            ),
           ),
           const SizedBox(height: 15),
           TextField(
             onChanged: onTimeChanged,
             decoration: InputDecoration(
-                enabledBorder: enabledBorderView(),
-                focusedBorder: focusedBorderView(),
-                hintText: 'Write time of training e.g.: 10 minutes'),
+              enabledBorder: enabledBorderView(),
+              focusedBorder: focusedBorderView(),
+              hintText: 'Write time of training e.g.: 10 minutes',
+            ),
           ),
-          const SizedBox(height: 15),
+          const SizedBox(
+            height: 15,
+          ),
           TextField(
             onChanged: onIntensityChanged,
             decoration: InputDecoration(
-                enabledBorder: enabledBorderView(),
-                focusedBorder: focusedBorderView(),
-                hintText: 'Write intensity of training e.g.: 10 km/h'),
+              enabledBorder: enabledBorderView(),
+              focusedBorder: focusedBorderView(),
+              hintText: 'Write intensity of training e.g.: 10 km/h',
+            ),
           ),
           const SizedBox(height: 15),
           TextField(
             onChanged: onKcalChanged,
             decoration: InputDecoration(
-                enabledBorder: enabledBorderView(),
-                focusedBorder: focusedBorderView(),
-                hintText: 'Write number of calories burned'),
+              enabledBorder: enabledBorderView(),
+              focusedBorder: focusedBorderView(),
+              hintText: 'Write number of calories burned',
+            ),
           ),
-          const SizedBox(height: 15),
+          const SizedBox(
+            height: 15,
+          ),
           TextField(
             onChanged: onDistanceChanged,
             decoration: InputDecoration(
-                enabledBorder: enabledBorderView(),
-                focusedBorder: focusedBorderView(),
-                hintText: 'Write covered distance: 5 km'),
+              enabledBorder: enabledBorderView(),
+              focusedBorder: focusedBorderView(),
+              hintText: 'Write covered distance: 5 km',
+            ),
           ),
-          const SizedBox(height: 30),
+          const SizedBox(
+            height: 30,
+          ),
           ElevatedButton(
-            style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.green,
+            ),
             onPressed: () async {
               final selectedDate = await showDatePicker(
                 context: context,
                 initialDate: DateTime.now(),
-                firstDate: DateTime(2021),
+                firstDate: DateTime(
+                  2021,
+                ),
                 lastDate: DateTime.now().add(
-                  const Duration(days: 365 * 1),
+                  const Duration(
+                    days: 365 * 1,
+                  ),
                 ),
               );
-              onDateChanged(selectedDate);
+              onDateChanged(
+                selectedDate,
+              );
             },
-            child: Text(selectedDateFormatted ?? 'Choose training date'),
+            child: Text(
+              selectedDateFormatted ?? 'Choose training date',
+            ),
           ),
         ],
       ),
@@ -201,15 +241,25 @@ class _AddCardioTrainingBody extends StatelessWidget {
 
   OutlineInputBorder focusedBorderView() {
     return OutlineInputBorder(
-      borderRadius: BorderRadius.circular(15),
-      borderSide: const BorderSide(color: Colors.green, width: 3),
+      borderRadius: BorderRadius.circular(
+        15,
+      ),
+      borderSide: const BorderSide(
+        color: Colors.green,
+        width: 3,
+      ),
     );
   }
 
   OutlineInputBorder enabledBorderView() {
     return OutlineInputBorder(
-      borderRadius: BorderRadius.circular(13),
-      borderSide: const BorderSide(color: Colors.white12, width: 3),
+      borderRadius: BorderRadius.circular(
+        13,
+      ),
+      borderSide: const BorderSide(
+        color: Colors.white12,
+        width: 3,
+      ),
     );
   }
 }

@@ -27,12 +27,29 @@ class StrengthRepository {
     );
   }
 
-  Future<void> delete({required String documentID}) {
-    return strengthDataSource.delete(documentID: documentID);
+  Future<void> delete({
+    required String documentID,
+  }) {
+    return strengthDataSource.delete(
+      documentID: documentID,
+    );
   }
 
-  Future<void> add(String exercise, String bodyPart, String reps, String sets,
-      String? weight, DateTime date) {
-    return strengthDataSource.add(exercise, bodyPart, reps, sets, weight, date);
+  Future<void> add(
+    String exercise,
+    String bodyPart,
+    String reps,
+    String sets,
+    String? weight,
+    DateTime date,
+  ) {
+    return strengthDataSource.add(
+      exercise,
+      bodyPart,
+      reps,
+      sets,
+      weight,
+      date,
+    );
   }
 }
