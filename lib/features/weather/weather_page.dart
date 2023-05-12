@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:workout_log/app/core/injection_container.dart';
 import '../../app/core/enums/enums.dart';
 import '../../domain/models/weather_model.dart';
@@ -36,7 +37,7 @@ class WeatherPage extends StatelessWidget {
                     return const Text('Loading');
                   }
                   return Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       if (weatherModel != null)
                         _DisplayWeatherWidget(
@@ -69,44 +70,32 @@ class _DisplayWeatherWidget extends StatelessWidget {
       builder: (context, state) {
         return Column(
           children: [
+            Text(
+              weatherModel.city.name.toString(),
+              style:
+                  GoogleFonts.dosis(fontSize: 60, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 70),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
-                  'Temperature :',
-                  style: TextStyle(fontSize: 30),
+                Text(
+                  'Temperature :  ',
+                  style: GoogleFonts.dosis(
+                      fontSize: 30, fontWeight: FontWeight.bold),
                 ),
                 Text(
                   weatherModel.temp.tempC.toString(),
-                  style: const TextStyle(fontSize: 35),
-                ),
-                const Text(
-                  '°C',
-                  style: TextStyle(fontSize: 30),
-                ),
-              ],
-            ),
-            const SizedBox(height: 60),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                const Text(
-                  'City :',
-                  style: TextStyle(fontSize: 30),
+                  style: GoogleFonts.dosis(
+                      fontSize: 28, fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  weatherModel.city.name.toString(),
-                  style: const TextStyle(
-                    fontSize: 35,
-                  ),
+                  ' °C',
+                  style: GoogleFonts.dosis(
+                      fontSize: 26, fontWeight: FontWeight.bold),
                 ),
-                const Icon(
-                  Icons.location_city_rounded,
-                  size: 35,
-                )
               ],
             ),
-            const SizedBox(height: 60),
           ],
         );
       },
