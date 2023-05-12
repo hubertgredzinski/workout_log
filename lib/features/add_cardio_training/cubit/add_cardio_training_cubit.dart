@@ -18,9 +18,10 @@ class AddCardioTrainingCubit extends Cubit<AddCardioTrainingState> {
     DateTime date,
     String? intensity,
     String? kcal,
+    String? distance,
   ) async {
     try {
-      await _cardioRepository.add(type, time, date, intensity, kcal);
+      await _cardioRepository.add(type, time, date, intensity, kcal, distance);
       emit(
         AddCardioTrainingState(
           status: Status.success,

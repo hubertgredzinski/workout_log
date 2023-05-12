@@ -20,6 +20,7 @@ class AddCardioTrainingPageState extends State<AddCardioTrainingPage> {
   DateTime? date;
   String? intensity;
   String? kcal;
+  String? distance;
 
   @override
   Widget build(BuildContext context) {
@@ -50,9 +51,8 @@ class AddCardioTrainingPageState extends State<AddCardioTrainingPage> {
                     onPressed: type == null || time == null || date == null
                         ? null
                         : () {
-                            context
-                                .read<AddCardioTrainingCubit>()
-                                .add(type!, time!, date!, intensity, kcal);
+                            context.read<AddCardioTrainingCubit>().add(
+                                type!, time!, date!, intensity, kcal, distance);
                           },
                     icon: const Icon(Icons.check),
                   ),
@@ -87,6 +87,13 @@ class AddCardioTrainingPageState extends State<AddCardioTrainingPage> {
                     },
                   );
                 },
+                onDistanceChanged: (newValue) {
+                  setState(
+                    () {
+                      distance = newValue;
+                    },
+                  );
+                },
                 onDateChanged: (newValue) {
                   setState(
                     () {
@@ -112,6 +119,7 @@ class _AddCardioTrainingBody extends StatelessWidget {
       required this.onTimeChanged,
       required this.onIntensityChanged,
       required this.onKcalChanged,
+      required this.onDistanceChanged,
       required this.onDateChanged,
       this.selectedDateFormatted})
       : super(key: key);
@@ -120,6 +128,7 @@ class _AddCardioTrainingBody extends StatelessWidget {
   final Function(String) onTimeChanged;
   final Function(String) onIntensityChanged;
   final Function(String) onKcalChanged;
+  final Function(String) onDistanceChanged;
   final Function(DateTime?) onDateChanged;
   final String? selectedDateFormatted;
 
@@ -160,6 +169,14 @@ class _AddCardioTrainingBody extends StatelessWidget {
                 enabledBorder: enabledBorderView(),
                 focusedBorder: focusedBorderView(),
                 hintText: 'Write number of calories burned'),
+          ),
+          const SizedBox(height: 15),
+          TextField(
+            onChanged: onDistanceChanged,
+            decoration: InputDecoration(
+                enabledBorder: enabledBorderView(),
+                focusedBorder: focusedBorderView(),
+                hintText: 'Write covered distance: 5 km'),
           ),
           const SizedBox(height: 30),
           ElevatedButton(

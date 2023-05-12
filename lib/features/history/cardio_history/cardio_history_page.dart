@@ -135,12 +135,29 @@ class CardioTraining extends StatelessWidget {
                 child: Column(
                   children: [
                     Text(
+                      'Distance',
+                      style: GoogleFonts.lato(
+                          fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                      cardioDocument.distance.toString(),
+                    )
+                  ],
+                ),
+              ),
+              Expanded(
+                child: Column(
+                  children: [
+                    Text(
                       'Calories',
                       style: GoogleFonts.lato(
                           fontSize: 18, fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 5),
-                    Text(cardioDocument.kcal),
+                    Text(
+                      cardioDocument.kcal.toString(),
+                    ),
                   ],
                 ),
               ),

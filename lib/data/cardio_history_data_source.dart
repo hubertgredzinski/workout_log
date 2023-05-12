@@ -33,6 +33,7 @@ class CardioHistoryDataSource {
     DateTime date,
     String? intensity,
     String? kcal,
+    String? distance,
   ) {
     final userID = FirebaseAuth.instance.currentUser?.uid;
     if (userID == null) {
@@ -49,6 +50,7 @@ class CardioHistoryDataSource {
         'date': date,
         'intensity': intensity,
         'kcal': kcal,
+        'distance': distance,
       },
     );
   }
