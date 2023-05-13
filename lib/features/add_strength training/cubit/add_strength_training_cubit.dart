@@ -14,12 +14,12 @@ class AddStrengthTrainingCubit extends Cubit<AddStrengthTrainingState> {
 
   final StrengthRepository _strengthRepository;
   Future<void> add(
-    String exercise,
-    String bodyPart,
-    String reps,
-    String sets,
+    String? exercise,
+    String? bodyPart,
+    String? reps,
+    String? sets,
     String? weight,
-    DateTime date,
+    DateTime? date,
   ) async {
     try {
       await _strengthRepository.add(

@@ -36,20 +36,20 @@ class StrengthRepository {
   }
 
   Future<void> add(
-    String exercise,
-    String bodyPart,
-    String reps,
-    String sets,
+    String? exercise,
+    String? bodyPart,
+    String? reps,
+    String? sets,
     String? weight,
-    DateTime date,
+    DateTime? date,
   ) {
     return strengthDataSource.add(
-      exercise,
-      bodyPart,
-      reps,
-      sets,
-      weight,
-      date,
+      exercise!,
+      bodyPart!,
+      reps!,
+      sets!,
+      weight!,
+      date!,
     );
   }
 }

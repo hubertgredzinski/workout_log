@@ -133,7 +133,7 @@ class CardioTraining extends StatelessWidget {
                       height: 5,
                     ),
                     Text(
-                      cardioDocument.intensity.toString(),
+                      cardioDocument.intensity,
                     ),
                   ],
                 ),
@@ -171,7 +171,7 @@ class CardioTraining extends StatelessWidget {
                       height: 5,
                     ),
                     Text(
-                      cardioDocument.distance.toString(),
+                      cardioDocument.distance,
                     )
                   ],
                 ),
@@ -190,7 +190,7 @@ class CardioTraining extends StatelessWidget {
                       height: 5,
                     ),
                     Text(
-                      cardioDocument.kcal.toString(),
+                      cardioDocument.kcal,
                     ),
                   ],
                 ),

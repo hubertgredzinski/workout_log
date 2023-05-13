@@ -54,7 +54,8 @@ class _AddStrengthTrainingPageState extends State<AddStrengthTrainingPage> {
                             bodyPart == null ||
                             reps == null ||
                             sets == null ||
-                            date == null
+                            date == null ||
+                            weight == null
                         ? null
                         : () {
                             context.read<AddStrengthTrainingCubit>().add(
@@ -62,7 +63,7 @@ class _AddStrengthTrainingPageState extends State<AddStrengthTrainingPage> {
                                   bodyPart!,
                                   reps!,
                                   sets!,
-                                  weight,
+                                  weight!,
                                   date!,
                                 );
                           },

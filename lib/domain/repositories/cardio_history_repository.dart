@@ -36,17 +36,17 @@ class CardioRepository {
   }
 
   Future<void> add(
-    String type,
-    String time,
-    DateTime date,
+    String? type,
+    String? time,
+    DateTime? date,
     String? intensity,
     String? kcal,
     String? distance,
   ) {
     return cardioDataSource.add(
-      type,
-      time,
-      date,
+      type!,
+      time!,
+      date!,
       intensity!,
       kcal!,
       distance!,
