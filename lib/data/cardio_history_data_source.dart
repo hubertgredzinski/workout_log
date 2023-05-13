@@ -11,6 +11,7 @@ class CardioHistoryDataSource {
         .collection('users')
         .doc(userID)
         .collection('cardio')
+        .orderBy('date', descending: true)
         .snapshots();
   }
 

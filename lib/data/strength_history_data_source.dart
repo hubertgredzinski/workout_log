@@ -11,6 +11,7 @@ class StrengthHistoryDataSource {
         .collection('users')
         .doc(userID)
         .collection('strength')
+        .orderBy('date', descending: true)
         .snapshots();
   }
 
