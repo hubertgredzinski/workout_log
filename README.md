@@ -1,16 +1,21 @@
-# workout_log
+👉 Hello!
 
-A new Flutter project.
+👉 It's nice to see you!
 
-## Getting Started
+👉 I want to present my workout log application, which includes the ability to:
 
-This project is a starting point for a Flutter application.
+✅ Add your own strength training and see it on strength history training.
 
-A few resources to get you started if this is your first Flutter project:
+✅ Write your own cardio training and see it on cardio history training.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+✅ See the weather in the city.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+👉 Have a nice day!
+
+👉 Here I leave the video which includes action of application.  
+
+![Animation app](https://github.com/hubertgredzinski/workout_log/assets/100992112/99791850-66b8-4a82-8efb-0c6ba1e66fdb)
+
+
+
+
