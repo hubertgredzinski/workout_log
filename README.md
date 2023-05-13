@@ -4,13 +4,13 @@
 
 👉 I want to present my workout log application, which includes the ability to:
 
-✅ Add your own strength training and see it on strength history training.
+✅ Add your own strength training and see it on strength history training 💪. 
 
-✅ Write your own cardio training and see it on cardio history training.
+✅ Write your own cardio training and see it on cardio history training 🏃. 
 
-✅ See the weather in the city.
+✅ See the temperature in the selected city 🌡.
 
-👉 Have a nice day!
+👉 Have a nice day 😃! 
 
 👉 Here I leave the video which includes action of application.  
 
