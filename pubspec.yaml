@@ -43,7 +43,7 @@ dependencies:
   intl: ^0.18.0
   get_it: ^7.2.0
   injectable: ^2.1.0
-  google_fonts: ^3.0.1
+  google_fonts: ^4.0.4
   flutter_bloc: ^8.1.2
   bloc: ^8.1.1
   meta: ^1.8.0
@@ -76,7 +76,6 @@ flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
   image_path: "assets/icon/dumbbell.png"
-  min_sdk_android: 21
   
 
 
