@@ -72,7 +72,7 @@ class _HomePageState extends State<HomePage> {
               ),
               Center(
                 child: Text(
-                  'Choose your training',
+                  'Create your training',
                   style: GoogleFonts.robotoSlab(
                     fontSize: 35,
                     fontWeight: FontWeight.bold,
