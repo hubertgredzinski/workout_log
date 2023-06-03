@@ -14,7 +14,10 @@
 
 👉 Here I leave the video which includes action of application.  
 
-![Animation app](https://github.com/hubertgredzinski/workout_log/assets/100992112/99791850-66b8-4a82-8efb-0c6ba1e66fdb)
+![Animation app](https://github.com/hubertgredzinski/workout_log/assets/100992112/085033ce-ef85-4bc1-b315-7b5d4acfb0a1)
+
+
+Link to my app in Google play: https://play.google.com/store/apps/details?id=com.hubertgredzinski.workout_log
 
 
 
