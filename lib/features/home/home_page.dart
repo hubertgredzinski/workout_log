@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:workout_log/app/core/config.dart';
 import '../add_strength training/add_strength_training.dart';
 import '../auth/user_profile.dart';
 import '../add_cardio_training/add_cardio_training.dart';
@@ -67,6 +68,13 @@ class _HomePageState extends State<HomePage> {
           }
           return Column(
             children: [
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  Config.version,
+                  textAlign: TextAlign.right,
+                ),
+              ),
               const SizedBox(
                 height: 100,
               ),
@@ -145,9 +153,11 @@ class _HomePageState extends State<HomePage> {
         unselectedFontSize: 15,
         currentIndex: currentIndex,
         onTap: (newIndex) {
-          setState(() {
-            currentIndex = newIndex;
-          });
+          setState(
+            () {
+              currentIndex = newIndex;
+            },
+          );
         },
         items: const [
           BottomNavigationBarItem(

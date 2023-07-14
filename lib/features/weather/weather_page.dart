@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:workout_log/app/core/injection_container.dart';
+import '../../app/core/config.dart';
 import '../../app/core/enums/enums.dart';
 import '../../domain/models/weather_model.dart';
 import 'cubit/weather_cubit.dart';
@@ -130,46 +131,58 @@ class _SearchWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(
         horizontal: 20.0,
       ),
-      child: Row(
+      child: Column(
         children: [
-          const SizedBox(
-            height: 20,
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              Config.version,
+              textAlign: TextAlign.right,
+            ),
           ),
-          Expanded(
-            child: TextField(
-              controller: _controller,
-              decoration: const InputDecoration(
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Colors.white12,
-                    width: 3,
-                  ),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Color.fromARGB(255, 249, 199, 1),
-                  ),
-                ),
-                hintText: 'Write city e.g.: Wroclaw',
+          const SizedBox(height: 10),
+          Row(
+            children: [
+              const SizedBox(
+                height: 20,
               ),
-            ),
-          ),
-          const SizedBox(
-            width: 20,
-          ),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              backgroundColor:
-                  const Color.fromARGB(255, 249, 199, 1), // Background color
-            ),
-            onPressed: () {
-              context.read<WeatherCubit>().start(
-                    city: _controller.text,
-                  );
-            },
-            child: const Text(
-              'Get',
-            ),
+              Expanded(
+                child: TextField(
+                  controller: _controller,
+                  decoration: const InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.white12,
+                        width: 3,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color.fromARGB(255, 249, 199, 1),
+                      ),
+                    ),
+                    hintText: 'Write city e.g.: Wroclaw',
+                  ),
+                ),
+              ),
+              const SizedBox(
+                width: 20,
+              ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(
+                      255, 249, 199, 1), // Background color
+                ),
+                onPressed: () {
+                  context.read<WeatherCubit>().start(
+                        city: _controller.text,
+                      );
+                },
+                child: const Text(
+                  'Get',
+                ),
+              ),
+            ],
           ),
         ],
       ),
