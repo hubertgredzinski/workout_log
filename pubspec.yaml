@@ -42,7 +42,7 @@ dependencies:
   intl: ^0.18.0
   get_it: ^7.2.0
   injectable: ^2.1.0
-  google_fonts: ^4.0.4
+  google_fonts: ^5.1.0
   flutter_bloc: ^8.1.2
   bloc: ^8.1.1
   meta: ^1.8.0
