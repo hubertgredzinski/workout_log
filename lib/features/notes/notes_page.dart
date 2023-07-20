@@ -13,6 +13,15 @@ class NotesPage extends StatelessWidget {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.blue,
+        shape: RoundedRectangleBorder(
+          side: const BorderSide(
+            width: 1,
+            color: Colors.black,
+          ),
+          borderRadius: BorderRadius.circular(
+            100,
+          ),
+        ),
         onPressed: () {
           FirebaseFirestore.instance.collection('notes').add(
             {'title': controller.text},
@@ -107,6 +116,10 @@ class Note extends StatelessWidget {
           10,
         ),
         color: Colors.blue,
+        border: Border.all(
+          color: Colors.black,
+          width: 1,
+        ),
       ),
       child: Text(
         title,
