@@ -66,7 +66,7 @@ class _HomePageState extends State<HomePage> {
       body: Builder(
         builder: (context) {
           if (currentIndex == 3) {
-            return const NotesPage();
+            return NotesPage();
           }
           if (currentIndex == 2) {
             return const WeatherPage();
