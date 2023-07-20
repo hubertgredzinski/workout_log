@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import '../../app/core/config.dart';
 
 class NotesPage extends StatelessWidget {
-  const NotesPage({super.key});
+  NotesPage({super.key});
+
+  final controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -13,8 +15,9 @@ class NotesPage extends StatelessWidget {
         backgroundColor: Colors.blue,
         onPressed: () {
           FirebaseFirestore.instance.collection('notes').add(
-            {'title': 'Super kategoria'},
+            {'title': controller.text},
           );
+          controller.clear();
         },
         child: const Icon(
           Icons.add,
@@ -32,6 +35,10 @@ class NotesPage extends StatelessWidget {
 
           final documents = snapshot.data!.docs;
           return ListView(
+            padding: const EdgeInsets.only(
+              left: 20,
+              right: 20,
+            ),
             children: [
               Align(
                 alignment: Alignment.centerLeft,
@@ -42,6 +49,18 @@ class NotesPage extends StatelessWidget {
               ),
               const SizedBox(
                 height: 10,
+              ),
+              TextField(
+                controller: controller,
+                decoration: const InputDecoration(
+                  labelText: 'Notes',
+                  suffixIcon: Icon(
+                    Icons.notes_outlined,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 20,
               ),
               for (final document in documents) ...[
                 Dismissible(
@@ -76,12 +95,24 @@ class Note extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.blue,
-      padding: const EdgeInsets.all(20),
-      margin: const EdgeInsets.all(10),
+      padding: const EdgeInsets.all(
+        20,
+      ),
+      margin: const EdgeInsets.only(
+        bottom: 15,
+        top: 15,
+      ),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(
+          10,
+        ),
+        color: Colors.blue,
+      ),
       child: Text(
         title,
-        style: const TextStyle(color: Colors.black),
+        style: const TextStyle(
+          color: Colors.black,
+        ),
       ),
     );
   }
