@@ -124,6 +124,7 @@ class Note extends StatelessWidget {
       child: Text(
         title,
         style: const TextStyle(
+          fontSize: 15,
           color: Colors.black,
         ),
       ),
