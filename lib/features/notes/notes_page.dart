@@ -1,7 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:workout_log/features/notes/cubit/notes_cubit.dart';
 
 import '../../app/core/config.dart';
+import '../../app/core/enums/enums.dart';
 
 class NotesPage extends StatelessWidget {
   NotesPage({super.key});
@@ -32,80 +35,93 @@ class NotesPage extends StatelessWidget {
           Icons.add,
         ),
       ),
-      body: StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance.collection('notes').snapshots(),
-        builder: (context, snapshot) {
-          if (snapshot.hasError) {
-            return const Text('Wystąpił nieoczekiwany problem');
-          }
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            const Text('Proszę czeka trwa ładowanie danych');
-          }
-
-          final documents = snapshot.data!.docs;
-          return ListView(
-            padding: const EdgeInsets.only(
-              left: 20,
-              right: 20,
-            ),
-            children: [
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  Config.version,
-                  textAlign: TextAlign.right,
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              TextField(
-                controller: controller,
-                decoration: const InputDecoration(
-                  labelText: 'Notes',
-                  suffixIcon: Icon(
-                    Icons.notes_outlined,
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              for (final document in documents) ...[
-                Dismissible(
-                  key: ValueKey(
-                    document.id,
-                  ),
-                  background: const DecoratedBox(
-                    decoration: BoxDecoration(
-                      color: Colors.red,
+      body: BlocProvider(
+        create: (context) => NotesCubit(),
+        child: BlocBuilder<NotesCubit, NotesState>(
+          builder: (context, state) {
+            return StreamBuilder<QuerySnapshot>(
+              stream:
+                  FirebaseFirestore.instance.collection('notes').snapshots(),
+              builder: (context, snapshot) {
+                if (state.status == Status.error) {
+                  final errorMessage = state.errorMessage ?? 'Unkown error';
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        errorMessage,
+                      ),
+                      backgroundColor: Colors.red,
                     ),
-                    child: Align(
-                      alignment: Alignment.centerRight,
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                          right: 32.0,
-                        ),
-                        child: Icon(
-                          Icons.delete,
+                  );
+                }
+
+                final documents = snapshot.data!.docs;
+                return ListView(
+                  padding: const EdgeInsets.only(
+                    left: 20,
+                    right: 20,
+                  ),
+                  children: [
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        Config.version,
+                        textAlign: TextAlign.right,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    TextField(
+                      controller: controller,
+                      decoration: const InputDecoration(
+                        labelText: 'Notes',
+                        suffixIcon: Icon(
+                          Icons.notes_outlined,
                         ),
                       ),
                     ),
-                  ),
-                  onDismissed: (_) {
-                    FirebaseFirestore.instance
-                        .collection('notes')
-                        .doc(document.id)
-                        .delete();
-                  },
-                  child: Note(
-                    document['title'],
-                  ),
-                ),
-              ],
-            ],
-          );
-        },
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    for (final document in documents) ...[
+                      Dismissible(
+                        key: ValueKey(
+                          document.id,
+                        ),
+                        background: const DecoratedBox(
+                          decoration: BoxDecoration(
+                            color: Colors.red,
+                          ),
+                          child: Align(
+                            alignment: Alignment.centerRight,
+                            child: Padding(
+                              padding: EdgeInsets.only(
+                                right: 32.0,
+                              ),
+                              child: Icon(
+                                Icons.delete,
+                              ),
+                            ),
+                          ),
+                        ),
+                        onDismissed: (_) {
+                          FirebaseFirestore.instance
+                              .collection('notes')
+                              .doc(document.id)
+                              .delete();
+                        },
+                        child: Note(
+                          document['title'],
+                        ),
+                      ),
+                    ],
+                  ],
+                );
+              },
+            );
+          },
+        ),
       ),
     );
   }
