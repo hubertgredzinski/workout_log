@@ -4,9 +4,9 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:workout_log/app/core/config.dart';
 import 'package:workout_log/features/notes/notes_page.dart';
+import '../add_cardio_training/add_cardio_training_page.dart';
 import '../add_strength training/add_strength_training.dart';
 import '../auth/user_profile.dart';
-import '../add_cardio_training/add_cardio_training.dart';
 import '../history/history_training_page.dart';
 import '../weather/weather_page.dart';
 
@@ -66,7 +66,7 @@ class _HomePageState extends State<HomePage> {
       body: Builder(
         builder: (context) {
           if (currentIndex == 3) {
-            return NotesPage();
+            return const NotesPage();
           }
           if (currentIndex == 2) {
             return const WeatherPage();
