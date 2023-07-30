@@ -53,6 +53,7 @@ class CardioHistoryPage extends StatelessWidget {
                             ),
                             child: Icon(
                               Icons.delete,
+                              color: Colors.black,
                             ),
                           ),
                         ),

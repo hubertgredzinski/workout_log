@@ -55,6 +55,7 @@ class StrengthHistoryPage extends StatelessWidget {
                             ),
                             child: Icon(
                               Icons.delete,
+                              color: Colors.black,
                             ),
                           ),
                         ),

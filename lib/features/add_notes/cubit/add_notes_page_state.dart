@@ -1,13 +1,12 @@
-part of 'notes_cubit.dart';
+part of 'add_notes_page_cubit.dart';
 
-class NotesState {
-  final List<NotesModel> notes;
+@immutable
+class AddNotesPageState {
   final Status status;
   final String? errorMessage;
 
-  NotesState({
+  const AddNotesPageState({
     this.status = Status.initial,
     this.errorMessage,
-    required this.notes,
   });
 }

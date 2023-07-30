@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../app/core/config.dart';
 import '_strength_history/strength_history_page.dart';
 import 'cardio_history/cardio_history_page.dart';
 
@@ -15,13 +14,6 @@ class HistoryPage extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                Config.version,
-                textAlign: TextAlign.right,
-              ),
-            ),
             const SizedBox(
               height: 100,
             ),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:workout_log/app/core/injection_container.dart';
-import '../../app/core/config.dart';
 import '../../app/core/enums/enums.dart';
 import '../../domain/models/weather_model.dart';
 import 'cubit/weather_cubit.dart';
@@ -133,13 +132,6 @@ class _SearchWidget extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              Config.version,
-              textAlign: TextAlign.right,
-            ),
-          ),
           const SizedBox(height: 10),
           Row(
             children: [
