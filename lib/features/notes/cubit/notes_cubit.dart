@@ -1,20 +1,20 @@
 import 'dart:async';
-
 import 'package:bloc/bloc.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-
+import 'package:workout_log/domain/repositories/notes_repository.dart';
 import '../../../app/core/enums/enums.dart';
 import '../../../domain/models/notes_model.dart';
 
 part 'notes_state.dart';
 
 class NotesCubit extends Cubit<NotesState> {
-  NotesCubit()
+  NotesCubit(this._notesRepository)
       : super(
           NotesState(
             notes: [],
           ),
         );
+
+  final NotesRepository _notesRepository;
 
   StreamSubscription? _streamSubscription;
 
@@ -25,38 +25,33 @@ class NotesCubit extends Cubit<NotesState> {
         notes: [],
       ),
     );
-    _streamSubscription =
-        FirebaseFirestore.instance.collection('notes').snapshots().listen(
+    _streamSubscription = _notesRepository.getNotesStream().listen(
       (notes) {
-        final noteModels = notes.docs.map((note) {
-          return NotesModel(
-            id: note.id,
-            title: note['title'],
-          );
-        }).toList();
         emit(
           NotesState(
-            notes: noteModels,
+            notes: notes,
             status: Status.success,
           ),
         );
       },
     )..onError(
-            (error) {
-              emit(
-                NotesState(
-                  notes: [],
-                  status: Status.error,
-                  errorMessage: error.toString(),
-                ),
-              );
-            },
+        (error) {
+          emit(
+            NotesState(
+              notes: [],
+              status: Status.error,
+              errorMessage: error.toString(),
+            ),
           );
+        },
+      );
   }
 
   Future<void> remove({required String documentID}) async {
     try {
-      FirebaseFirestore.instance.collection('notes').doc(documentID).delete();
+      await _notesRepository.delete(
+        id: documentID,
+      );
     } catch (error) {
       emit(
         NotesState(

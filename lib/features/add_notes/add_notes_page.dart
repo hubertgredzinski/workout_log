@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:workout_log/domain/repositories/notes_repository.dart';
 import 'package:workout_log/features/add_notes/cubit/add_notes_page_cubit.dart';
 
 import '../../app/core/enums/enums.dart';
@@ -16,7 +17,9 @@ class _AddNotesPageState extends State<AddNotesPage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AddNotesPageCubit(),
+      create: (context) => AddNotesPageCubit(
+        NotesRepository(),
+      ),
       child: BlocListener<AddNotesPageCubit, AddNotesPageState>(
         listener: (context, state) {
           if (state.status == Status.success) {

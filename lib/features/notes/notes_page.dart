@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:workout_log/domain/repositories/notes_repository.dart';
 import 'package:workout_log/features/add_notes/add_notes_page.dart';
 import 'package:workout_log/features/notes/cubit/notes_cubit.dart';
 import '../../app/core/enums/enums.dart';
@@ -41,7 +42,7 @@ class _NotesPageState extends State<NotesPage> {
         ),
       ),
       body: BlocProvider(
-        create: (context) => NotesCubit()..start(),
+        create: (context) => NotesCubit(NotesRepository())..start(),
         child: BlocListener<NotesCubit, NotesState>(
           listener: (context, state) {
             if (state.status == Status.error) {
