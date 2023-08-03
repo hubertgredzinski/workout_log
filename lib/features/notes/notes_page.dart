@@ -42,7 +42,9 @@ class _NotesPageState extends State<NotesPage> {
         ),
       ),
       body: BlocProvider(
-        create: (context) => NotesCubit(NotesRepository())..start(),
+        create: (context) => NotesCubit(
+          NotesRepository(),
+        )..start(),
         child: BlocListener<NotesCubit, NotesState>(
           listener: (context, state) {
             if (state.status == Status.error) {
@@ -72,7 +74,7 @@ class _NotesPageState extends State<NotesPage> {
                   const SizedBox(
                     height: 20,
                   ),
-                  for (final noteModel in notesModels) ...[
+                  for (final noteModel in notesModels!) ...[
                     Dismissible(
                       key: ValueKey(
                         noteModel.id,

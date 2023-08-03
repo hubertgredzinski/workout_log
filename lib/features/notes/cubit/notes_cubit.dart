@@ -9,9 +9,7 @@ part 'notes_state.dart';
 class NotesCubit extends Cubit<NotesState> {
   NotesCubit(this._notesRepository)
       : super(
-          NotesState(
-            notes: [],
-          ),
+          NotesState(notes: []),
         );
 
   final NotesRepository _notesRepository;
@@ -22,7 +20,6 @@ class NotesCubit extends Cubit<NotesState> {
     emit(
       NotesState(
         status: Status.loading,
-        notes: [],
       ),
     );
     _streamSubscription = _notesRepository.getNotesStream().listen(
@@ -38,7 +35,6 @@ class NotesCubit extends Cubit<NotesState> {
         (error) {
           emit(
             NotesState(
-              notes: [],
               status: Status.error,
               errorMessage: error.toString(),
             ),
@@ -55,7 +51,6 @@ class NotesCubit extends Cubit<NotesState> {
     } catch (error) {
       emit(
         NotesState(
-          notes: [],
           status: Status.error,
           errorMessage: error.toString(),
         ),
