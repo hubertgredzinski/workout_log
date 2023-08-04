@@ -4,6 +4,7 @@ import 'package:workout_log/domain/repositories/notes_repository.dart';
 import 'package:workout_log/features/add_notes/cubit/add_notes_page_cubit.dart';
 
 import '../../app/core/enums/enums.dart';
+import '../../app/core/injection_container.dart';
 
 class AddNotesPage extends StatefulWidget {
   const AddNotesPage({super.key});
@@ -18,7 +19,7 @@ class _AddNotesPageState extends State<AddNotesPage> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => AddNotesPageCubit(
-        NotesRepository(),
+        getIt(),
       ),
       child: BlocListener<AddNotesPageCubit, AddNotesPageState>(
         listener: (context, state) {
