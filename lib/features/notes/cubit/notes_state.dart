@@ -1,13 +1,10 @@
 part of 'notes_cubit.dart';
 
-class NotesState {
-  final List<NotesModel>? notes;
-  final Status status;
-  final String? errorMessage;
-
-  NotesState({
-    this.status = Status.initial,
-    this.errorMessage,
-    this.notes,
-  });
+@freezed
+class NotesState with _$NotesState {
+  factory NotesState({
+    @Default([]) List<NotesModel> notes,
+    @Default(Status.initial) Status status,
+    String? errorMessage,
+  }) = _NotesState;
 }

@@ -1,15 +1,17 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:workout_log/domain/repositories/notes_repository.dart';
 import '../../../app/core/enums/enums.dart';
 import '../../../domain/models/notes_model.dart';
+part 'notes_cubit.freezed.dart';
 
 part 'notes_state.dart';
 
 class NotesCubit extends Cubit<NotesState> {
   NotesCubit(this._notesRepository)
       : super(
-          NotesState(notes: []),
+          NotesState(),
         );
 
   final NotesRepository _notesRepository;

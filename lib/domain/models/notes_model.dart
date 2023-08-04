@@ -1,6 +1,11 @@
-class NotesModel {
-  NotesModel({required this.title, required this.id});
+import 'package:freezed_annotation/freezed_annotation.dart';
+part 'notes_model.freezed.dart';
 
-  final String title;
-  final String id;
+@freezed
+class NotesModel with _$NotesModel {
+  const NotesModel._();
+  factory NotesModel({
+    required String title,
+    required String id,
+  }) = _NotesModel;
 }

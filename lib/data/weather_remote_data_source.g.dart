@@ -10,7 +10,10 @@ part of 'weather_remote_data_source.dart';
 
 class _WeatherRetrofitRemoteDataSource
     implements WeatherRetrofitRemoteDataSource {
-  _WeatherRetrofitRemoteDataSource(this._dio);
+  _WeatherRetrofitRemoteDataSource(
+    this._dio, {
+    this.baseUrl,
+  });
 
   final Dio _dio;
 
@@ -22,7 +25,7 @@ class _WeatherRetrofitRemoteDataSource
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>?>(_setStreamType<WeatherModel>(Options(
       method: 'GET',
@@ -35,7 +38,11 @@ class _WeatherRetrofitRemoteDataSource
               queryParameters: queryParameters,
               data: _data,
             )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
     final value =
         _result.data == null ? null : WeatherModel.fromJson(_result.data!);
     return value;
@@ -52,5 +59,22 @@ class _WeatherRetrofitRemoteDataSource
       }
     }
     return requestOptions;
+  }
+
+  String _combineBaseUrls(
+    String dioBaseUrl,
+    String? baseUrl,
+  ) {
+    if (baseUrl == null || baseUrl.trim().isEmpty) {
+      return dioBaseUrl;
+    }
+
+    final url = Uri.parse(baseUrl);
+
+    if (url.isAbsolute) {
+      return url.toString();
+    }
+
+    return Uri.parse(dioBaseUrl).resolveUri(url).toString();
   }
 }

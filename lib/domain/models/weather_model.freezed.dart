@@ -21,8 +21,7 @@ WeatherModel _$WeatherModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$WeatherModel {
   @JsonKey(name: 'current')
-  Current get temp =>
-      throw _privateConstructorUsedError; // keys sie pojawiają!!!
+  Current get temp => throw _privateConstructorUsedError;
   @JsonKey(name: 'location')
   Location get city => throw _privateConstructorUsedError;
 
@@ -148,7 +147,6 @@ class _$_WeatherModel implements _WeatherModel {
   @override
   @JsonKey(name: 'current')
   final Current temp;
-// keys sie pojawiają!!!
   @override
   @JsonKey(name: 'location')
   final Location city;
@@ -195,7 +193,7 @@ abstract class _WeatherModel implements WeatherModel {
   @override
   @JsonKey(name: 'current')
   Current get temp;
-  @override // keys sie pojawiają!!!
+  @override
   @JsonKey(name: 'location')
   Location get city;
   @override
