@@ -68,8 +68,8 @@ dev_dependencies:
   freezed: ^2.3.2
   mocktail: ^0.3.0
   retrofit_generator: ^7.0.0
-  bloc_test: ^9.1.1
   flutter_launcher_icons: ^0.13.1
+  bloc_test: ^9.1.4
 
 flutter_launcher_icons:
   android: "launcher_icon"
