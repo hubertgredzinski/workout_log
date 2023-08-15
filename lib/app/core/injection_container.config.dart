@@ -55,8 +55,9 @@ extension GetItInjectableX on _i1.GetIt {
     gh.factory<_i5.NotesRepository>(() => _i5.NotesRepository());
     gh.factory<_i6.StrengthHistoryDataSource>(
         () => _i6.StrengthHistoryDataSource());
-    gh.factory<_i7.StrengthRepository>(() => _i7.StrengthRepository(
-        strengthDataSource: gh<_i6.StrengthHistoryDataSource>()));
+    gh.factory<_i7.StrengthHistoryRepository>(() =>
+        _i7.StrengthHistoryRepository(
+            strengthDataSource: gh<_i6.StrengthHistoryDataSource>()));
     gh.factory<String>(
       () => registerModule.baseUrl,
       instanceName: 'BaseUrl',
@@ -65,8 +66,8 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i8.AddCardioTrainingCubit(gh<_i4.CardioRepository>()));
     gh.factory<_i9.AddNotesPageCubit>(
         () => _i9.AddNotesPageCubit(gh<_i5.NotesRepository>()));
-    gh.factory<_i10.AddStrengthTrainingCubit>(
-        () => _i10.AddStrengthTrainingCubit(gh<_i7.StrengthRepository>()));
+    gh.factory<_i10.AddStrengthTrainingCubit>(() =>
+        _i10.AddStrengthTrainingCubit(gh<_i7.StrengthHistoryRepository>()));
     gh.factory<_i11.CardioHistoryCubit>(
         () => _i11.CardioHistoryCubit(gh<_i4.CardioRepository>()));
     gh.lazySingleton<_i12.Dio>(
@@ -74,7 +75,7 @@ extension GetItInjectableX on _i1.GetIt {
     gh.factory<_i13.NotesCubit>(
         () => _i13.NotesCubit(gh<_i5.NotesRepository>()));
     gh.factory<_i14.StrengthHistoryCubit>(() => _i14.StrengthHistoryCubit(
-        strengthRepository: gh<_i7.StrengthRepository>()));
+        strengthHistoryRepository: gh<_i7.StrengthHistoryRepository>()));
     gh.factory<_i15.WeatherRetrofitRemoteDataSource>(
         () => _i15.WeatherRetrofitRemoteDataSource(gh<_i12.Dio>()));
     gh.factory<_i16.WeatherRepository>(() => _i16.WeatherRepository(

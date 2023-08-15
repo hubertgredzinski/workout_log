@@ -2,10 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:workout_log/data/strength_history_data_source.dart';
 import '../models/strength_history_model.dart';
 
-class StrengthRepository {
+class StrengthHistoryRepository {
   final StrengthHistoryDataSource strengthDataSource;
 
-  StrengthRepository({required this.strengthDataSource});
+  StrengthHistoryRepository({required this.strengthDataSource});
 
   Stream<List<StrengthHistoryModel>> getStrengthStream() {
     return strengthDataSource.getStrengthDataSource().map(

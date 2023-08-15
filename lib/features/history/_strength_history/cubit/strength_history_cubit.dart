@@ -9,12 +9,12 @@ part 'strength_history_cubit.freezed.dart';
 
 class StrengthHistoryCubit extends Cubit<StrengthHistoryState> {
   StrengthHistoryCubit({
-    required this.strengthRepository,
+    required this.strengthHistoryRepository,
   }) : super(
           StrengthHistoryState(),
         );
 
-  final StrengthRepository strengthRepository;
+  final StrengthHistoryRepository strengthHistoryRepository;
 
   StreamSubscription? _streamSubscription;
 
@@ -24,12 +24,12 @@ class StrengthHistoryCubit extends Cubit<StrengthHistoryState> {
         status: Status.loading,
       ),
     );
-    _streamSubscription = strengthRepository.getStrengthStream().listen(
+    _streamSubscription = strengthHistoryRepository.getStrengthStream().listen(
       (strengthData) {
         emit(
           StrengthHistoryState(
-            strengthDocuments: strengthData,
             status: Status.success,
+            strengthDocuments: strengthData,
           ),
         );
       },
@@ -47,7 +47,7 @@ class StrengthHistoryCubit extends Cubit<StrengthHistoryState> {
 
   Future<void> remove({required String documentID}) async {
     try {
-      await strengthRepository.delete(
+      await strengthHistoryRepository.delete(
         documentID: documentID,
       );
     } catch (error) {

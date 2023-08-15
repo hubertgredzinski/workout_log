@@ -1,28 +1,25 @@
 // import 'package:cloud_firestore/cloud_firestore.dart';
-// import 'package:firebase_core/firebase_core.dart';
 // import 'package:flutter_test/flutter_test.dart';
 // import 'package:mocktail/mocktail.dart';
 // import 'package:workout_log/data/strength_history_data_source.dart';
 // import 'package:workout_log/domain/models/strength_history_model.dart';
 // import 'package:workout_log/domain/repositories/strength_history_repository.dart';
-// import 'package:workout_log/firebase_options.dart';
 
-// class MockStrengthDataSource extends Mock implements StrengthDataSource {}
+// class MockStrengthDataSource extends Mock
+//     implements StrengthHistoryDataSource {}
 
 // void main() {
-
-
-//   late StrengthRepository sut;
+//   late StrengthHistoryRepository sut;
 //   late MockStrengthDataSource strengthDataSource;
 
 //   setUp(() {
 //     strengthDataSource = MockStrengthDataSource();
-//     sut = StrengthRepository(strengthDataSource: strengthDataSource);
+//     sut = StrengthHistoryRepository(strengthDataSource: strengthDataSource);
 //   });
 
 //   group('getStrengthStream', () {
 //     test('should call strengthDataSource.getStrengthStream method', () {
-//         final Stream<QuerySnapshot<Map<String, dynamic>>> querySnapshot;
+//       final Stream<QuerySnapshot<Map<String, dynamic>>> querySnapshot;
 //       //1
 //       when(
 //         () => strengthDataSource

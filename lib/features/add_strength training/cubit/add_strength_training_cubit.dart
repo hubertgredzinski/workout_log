@@ -12,7 +12,7 @@ class AddStrengthTrainingCubit extends Cubit<AddStrengthTrainingState> {
           AddStrengthTrainingState(),
         );
 
-  final StrengthRepository _strengthRepository;
+  final StrengthHistoryRepository _strengthRepository;
   Future<void> add(
     String? exercise,
     String? bodyPart,
