@@ -8,13 +8,15 @@
 
 ✅ Write your own cardio training and see it on cardio history training 🏃. 
 
+✅ Write notes to your training if you needed.
+
 ✅ See the temperature in the selected city 🌡.
 
 👉 Have a nice day 😃! 
 
 👉 Here I leave the video which includes action of application.  
 
-![Animation app](https://github.com/hubertgredzinski/workout_log/assets/100992112/085033ce-ef85-4bc1-b315-7b5d4acfb0a1)
+![Animation app](https://github.com/hubertgredzinski/workout_log/assets/100992112/6752ed8b-ec35-4410-9a69-c424c9ab11b6)
 
 
 Link to my app in Google play: https://play.google.com/store/apps/details?id=com.hubertgredzinski.workout_log
