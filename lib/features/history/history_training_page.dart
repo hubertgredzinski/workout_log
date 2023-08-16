@@ -18,7 +18,7 @@ class HistoryPage extends StatelessWidget {
               height: 100,
             ),
             Text(
-              'Choose your training',
+              'History',
               style: GoogleFonts.robotoSlab(
                   fontSize: 35, fontWeight: FontWeight.bold),
             ),
