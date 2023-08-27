@@ -72,44 +72,76 @@ class _DisplayWeatherWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<WeatherCubit, WeatherState>(
       builder: (context, state) {
-        return Column(
+        return Stack(
           children: [
-            Text(
-              weatherModel.city.name.toString(),
-              style: GoogleFonts.dosis(
-                fontSize: 60,
-                fontWeight: FontWeight.bold,
+            Container(
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(32),
+                ),
+                gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: <Color>[
+                    Colors.amberAccent,
+                    Colors.deepOrange,
+                  ],
+                ),
+              ),
+              margin: const EdgeInsets.all(
+                30,
+              ),
+              padding: const EdgeInsets.only(
+                bottom: 30,
+                top: 30,
+                left: 20,
+                right: 20,
+              ),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        weatherModel.temp.tempC.toString(),
+                        style: GoogleFonts.dosis(
+                          fontSize: 50,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        ' °',
+                        style: GoogleFonts.dosis(
+                          fontSize: 50,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        weatherModel.city.name.toString(),
+                        style: GoogleFonts.dosis(
+                          fontSize: 60,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
-            const SizedBox(
-              height: 70,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'Temperature :  ',
-                  style: GoogleFonts.dosis(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Text(
-                  weatherModel.temp.tempC.toString(),
-                  style: GoogleFonts.dosis(
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Text(
-                  ' °C',
-                  style: GoogleFonts.dosis(
-                    fontSize: 26,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
+            SizedBox(
+              width: 240,
+              height: 150,
+              child: Image.network(
+                  'https://www.transparentpng.com/thumb/weather-report/sun-cloud-rain-water-lightning-weather-report-png-0.png'),
+            )
           ],
         );
       },
