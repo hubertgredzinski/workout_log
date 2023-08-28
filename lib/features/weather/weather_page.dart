@@ -40,13 +40,20 @@ class WeatherPage extends StatelessWidget {
                       'Loading',
                     );
                   }
-                  return Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  return ListView(
+                    shrinkWrap: true,
                     children: [
                       if (weatherModel != null)
-                        _DisplayWeatherWidget(
+                        _FirstWeatherWidget(
                           weatherModel: weatherModel,
                         ),
+                      if (weatherModel != null)
+                        SecondWeatherDetails(
+                          weatherModel: weatherModel,
+                        ),
+                      const SizedBox(
+                        height: 10,
+                      ),
                       _SearchWidget(),
                     ],
                   );
@@ -60,8 +67,8 @@ class WeatherPage extends StatelessWidget {
   }
 }
 
-class _DisplayWeatherWidget extends StatelessWidget {
-  const _DisplayWeatherWidget({
+class _FirstWeatherWidget extends StatelessWidget {
+  const _FirstWeatherWidget({
     Key? key,
     required this.weatherModel,
   }) : super(key: key);
@@ -88,12 +95,15 @@ class _DisplayWeatherWidget extends StatelessWidget {
                   ],
                 ),
               ),
-              margin: const EdgeInsets.all(
-                30,
+              margin: const EdgeInsets.only(
+                bottom: 15,
+                top: 30,
+                left: 20,
+                right: 20,
               ),
               padding: const EdgeInsets.only(
-                bottom: 30,
-                top: 30,
+                bottom: 20,
+                top: 20,
                 left: 20,
                 right: 20,
               ),
@@ -119,17 +129,46 @@ class _DisplayWeatherWidget extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(
-                    height: 30,
+                    height: 15,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                  Column(
                     children: [
-                      Text(
-                        weatherModel.city.name.toString(),
-                        style: GoogleFonts.dosis(
-                          fontSize: 60,
-                          fontWeight: FontWeight.bold,
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: Text(
+                                weatherModel.city.name.toString(),
+                                style: GoogleFonts.dosis(
+                                  fontSize: 50,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Partly cloud',
+                            style: GoogleFonts.dosis(
+                              fontSize: 25,
+                            ),
+                          ),
+                          Text(
+                            'New Mexico',
+                            style: GoogleFonts.dosis(
+                              fontSize: 25,
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
@@ -138,7 +177,127 @@ class _DisplayWeatherWidget extends StatelessWidget {
             ),
             SizedBox(
               width: 240,
-              height: 150,
+              height: 140,
+              child: Image.network(
+                  'https://www.transparentpng.com/thumb/weather-report/sun-cloud-rain-water-lightning-weather-report-png-0.png'),
+            )
+          ],
+        );
+      },
+    );
+  }
+}
+
+class SecondWeatherDetails extends StatelessWidget {
+  const SecondWeatherDetails({
+    Key? key,
+    required this.weatherModel,
+  }) : super(key: key);
+
+  final WeatherModel weatherModel;
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<WeatherCubit, WeatherState>(
+      builder: (context, state) {
+        return Stack(
+          children: [
+            Container(
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(32),
+                ),
+                gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: <Color>[
+                    Colors.amberAccent,
+                    Colors.deepOrange,
+                  ],
+                ),
+              ),
+              margin: const EdgeInsets.only(
+                bottom: 30,
+                top: 15,
+                left: 20,
+                right: 20,
+              ),
+              padding: const EdgeInsets.only(
+                bottom: 20,
+                top: 20,
+                left: 20,
+                right: 20,
+              ),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        '456',
+                        style: GoogleFonts.dosis(
+                          fontSize: 50,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        ' °',
+                        style: GoogleFonts.dosis(
+                          fontSize: 50,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: Text(
+                                '123',
+                                style: GoogleFonts.dosis(
+                                  fontSize: 50,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Partly cloud',
+                            style: GoogleFonts.dosis(
+                              fontSize: 25,
+                            ),
+                          ),
+                          Text(
+                            'New Mexico',
+                            style: GoogleFonts.dosis(
+                              fontSize: 25,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              width: 240,
+              height: 140,
               child: Image.network(
                   'https://www.transparentpng.com/thumb/weather-report/sun-cloud-rain-water-lightning-weather-report-png-0.png'),
             )
@@ -162,51 +321,43 @@ class _SearchWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(
         horizontal: 20.0,
       ),
-      child: Column(
+      child: Row(
         children: [
-          const SizedBox(height: 10),
-          Row(
-            children: [
-              const SizedBox(
-                height: 20,
-              ),
-              Expanded(
-                child: TextField(
-                  controller: _controller,
-                  decoration: const InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Colors.white12,
-                        width: 3,
-                      ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Color.fromARGB(255, 249, 199, 1),
-                      ),
-                    ),
-                    hintText: 'Write city e.g.: Wroclaw',
+          Expanded(
+            child: TextField(
+              controller: _controller,
+              decoration: const InputDecoration(
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.white12,
+                    width: 3,
                   ),
                 ),
-              ),
-              const SizedBox(
-                width: 20,
-              ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromARGB(
-                      255, 249, 199, 1), // Background color
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Color.fromARGB(255, 249, 199, 1),
+                  ),
                 ),
-                onPressed: () {
-                  context.read<WeatherCubit>().start(
-                        city: _controller.text,
-                      );
-                },
-                child: const Text(
-                  'Get',
-                ),
+                hintText: 'Write city e.g.: Wroclaw',
               ),
-            ],
+            ),
+          ),
+          const SizedBox(
+            width: 20,
+          ),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor:
+                  const Color.fromARGB(255, 249, 199, 1), // Background color
+            ),
+            onPressed: () {
+              context.read<WeatherCubit>().start(
+                    city: _controller.text,
+                  );
+            },
+            child: const Text(
+              'Get',
+            ),
           ),
         ],
       ),
