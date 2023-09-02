@@ -34,30 +34,32 @@ class WeatherPage extends StatelessWidget {
             final weatherModel = state.model;
             return Scaffold(
               body: Center(
-                child: Builder(builder: (context) {
-                  if (state.status == Status.loading) {
-                    return const Text(
-                      'Loading',
+                child: Builder(
+                  builder: (context) {
+                    if (state.status == Status.loading) {
+                      return const Text(
+                        'Loading',
+                      );
+                    }
+                    return ListView(
+                      shrinkWrap: true,
+                      children: [
+                        if (weatherModel != null)
+                          _TopWeatherWidget(
+                            weatherModel: weatherModel,
+                          ),
+                        if (weatherModel != null)
+                          DetailsWeatherWidget(
+                            weatherModel: weatherModel,
+                          ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        _SearchWidget(),
+                      ],
                     );
-                  }
-                  return ListView(
-                    shrinkWrap: true,
-                    children: [
-                      if (weatherModel != null)
-                        _TopWeatherWidget(
-                          weatherModel: weatherModel,
-                        ),
-                      if (weatherModel != null)
-                        DetailsWeatherWidget(
-                          weatherModel: weatherModel,
-                        ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      _SearchWidget(),
-                    ],
-                  );
-                }),
+                  },
+                ),
               ),
             );
           },
@@ -90,8 +92,8 @@ class _TopWeatherWidget extends StatelessWidget {
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
                   colors: <Color>[
-                    Colors.amberAccent,
-                    Colors.deepOrange,
+                    Colors.lightBlueAccent,
+                    Colors.deepPurpleAccent
                   ],
                 ),
                 boxShadow: [
@@ -139,10 +141,11 @@ class _TopWeatherWidget extends StatelessWidget {
               ),
             ),
             SizedBox(
-              width: 240,
-              height: 140,
+              width: 260,
+              height: 145,
               child: Image.network(
-                  'https://www.transparentpng.com/thumb/weather-report/sun-cloud-rain-water-lightning-weather-report-png-0.png'),
+                  'https://cdn.weatherapi.com/weather/64x64/day/113.png',
+                  fit: BoxFit.fitHeight),
             ),
           ],
         );
@@ -239,7 +242,10 @@ class DetailsWeatherWidget extends StatelessWidget {
             gradient: const LinearGradient(
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
-              colors: <Color>[Colors.lightBlueAccent, Colors.deepPurpleAccent],
+              colors: <Color>[
+                Colors.orangeAccent,
+                Colors.red,
+              ],
             ),
             boxShadow: [
               BoxShadow(
@@ -273,8 +279,8 @@ class HeadLineMiddleWeatherWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      'Weather details',
-      style: GoogleFonts.rosario(
+      'Weather details'.toUpperCase(),
+      style: GoogleFonts.dosis(
         fontSize: 30,
         fontWeight: FontWeight.bold,
       ),
@@ -316,6 +322,7 @@ class GridDetailsElementLeft extends StatelessWidget {
       children: [
         Icon(
           Icons.air,
+          size: 30,
         ),
         SizedBox(
           height: 3,
@@ -338,6 +345,7 @@ class GridDetailsElementLeft extends StatelessWidget {
         ),
         Icon(
           Icons.compress_outlined,
+          size: 30,
         ),
         SizedBox(
           height: 3,
@@ -371,6 +379,7 @@ class GridDetailsElementRight extends StatelessWidget {
       children: [
         Icon(
           Icons.water_drop_outlined,
+          size: 30,
         ),
         SizedBox(
           height: 3,
@@ -393,6 +402,7 @@ class GridDetailsElementRight extends StatelessWidget {
         ),
         Icon(
           Icons.wb_cloudy_outlined,
+          size: 30,
         ),
         SizedBox(
           height: 3,
@@ -414,56 +424,6 @@ class GridDetailsElementRight extends StatelessWidget {
     );
   }
 }
-
-// class LowerGridDetailsElement extends StatelessWidget {
-//   const LowerGridDetailsElement({
-//     super.key,
-//   });
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return const Column(
-//       children: [
-//         Icon(
-//           Icons.water_drop_outlined,
-//         ),
-//         Icon(
-//           Icons.wb_cloudy_outlined,
-//         ),
-//         Row(
-//           mainAxisAlignment: MainAxisAlignment.spaceAround,
-//           children: [
-//             Text(
-//               'humidity',
-//             ),
-//             Text(
-//               'cloud',
-//             ),
-//           ],
-//         ),
-//         Row(
-//           mainAxisAlignment: MainAxisAlignment.spaceAround,
-//           children: [
-//             Text(
-//               '60',
-//               style: TextStyle(
-//                 fontSize: 18,
-//                 fontWeight: FontWeight.bold,
-//               ),
-//             ),
-//             Text(
-//               '75',
-//               style: TextStyle(
-//                 fontSize: 18,
-//                 fontWeight: FontWeight.bold,
-//               ),
-//             ),
-//           ],
-//         ),
-//       ],
-//     );
-//   }
-// }
 
 class _SearchWidget extends StatelessWidget {
   _SearchWidget({
