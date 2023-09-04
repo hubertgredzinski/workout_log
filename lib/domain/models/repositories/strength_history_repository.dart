@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:workout_log/data/strength_history_data_source.dart';
-import '../models/strength_history_model.dart';
+import '../strength_history_model.dart';
 
 class StrengthHistoryRepository {
   final StrengthHistoryDataSource strengthDataSource;

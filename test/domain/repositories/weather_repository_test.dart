@@ -1,8 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:workout_log/data/weather_remote_data_source.dart';
+import 'package:workout_log/domain/models/repositories/weather_repository.dart';
 import 'package:workout_log/domain/models/weather_model.dart';
-import 'package:workout_log/domain/repositories/weather_repository.dart';
 
 class MockWeatherDataSource extends Mock
     implements WeatherRetrofitRemoteDataSource {}
@@ -35,21 +35,24 @@ void main() {
     test('should getWeatherModel method give us correct data from model',
         () async {
       //1
-      when(() => weatherDataSource.getWeatherRemoteDataSource(city: 'Wroclaw'))
-          .thenAnswer(
+      when(
+        () => weatherDataSource.getWeatherRemoteDataSource(city: 'Wroclaw'),
+      ).thenAnswer(
         (_) async => WeatherModel(
           Current(10),
-          Location('Wroclaw'),
+          Location('Wroclaw', 'Poland'),
+          Location('Wroclaw', 'Poland'),
         ),
       );
       //2
       final results = await sut.getWeatherModel(city: 'Wroclaw');
-      //3
+      //3,
       expect(
         results,
         WeatherModel(
           Current(10),
-          Location('Wroclaw'),
+          Location('Wroclaw', 'Poland'),
+          Location('Wroclaw', 'Poland'),
         ),
       );
     });

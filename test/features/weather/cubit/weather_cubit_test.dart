@@ -2,8 +2,8 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:workout_log/app/core/enums/enums.dart';
+import 'package:workout_log/domain/models/repositories/weather_repository.dart';
 import 'package:workout_log/domain/models/weather_model.dart';
-import 'package:workout_log/domain/repositories/weather_repository.dart';
 import 'package:workout_log/features/weather/cubit/weather_cubit.dart';
 
 class MockWeatherRepository extends Mock implements WeatherRepository {}
@@ -27,11 +27,13 @@ void main() {
           setUp(
             () {
               //1
-              when(() => repository.getWeatherModel(city: 'Wroclaw'))
-                  .thenAnswer(
+              when(
+                () => repository.getWeatherModel(city: 'Wroclaw'),
+              ).thenAnswer(
                 (_) async => WeatherModel(
                   Current(10),
-                  Location('Wroclaw'),
+                  Location('Wroclaw', 'Poland'),
+                  Location('Wroclaw', 'Poland'),
                 ),
               );
             },
@@ -47,7 +49,14 @@ void main() {
               WeatherState(
                 model: WeatherModel(
                   Current(10),
-                  Location('Wroclaw'),
+                  Location(
+                    'Wroclaw',
+                    'Poland',
+                  ),
+                  Location(
+                    'Wroclaw',
+                    'Poland',
+                  ),
                 ),
                 status: Status.success,
               ),

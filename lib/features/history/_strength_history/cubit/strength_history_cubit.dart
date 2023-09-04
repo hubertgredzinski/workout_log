@@ -1,9 +1,10 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:workout_log/domain/repositories/strength_history_repository.dart';
 import '../../../../../domain/models/strength_history_model.dart';
 import '../../../../app/core/enums/enums.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import '../../../../domain/models/repositories/strength_history_repository.dart';
 part 'strength_history_state.dart';
 part 'strength_history_cubit.freezed.dart';
 
