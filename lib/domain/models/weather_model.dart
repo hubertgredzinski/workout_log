@@ -12,7 +12,8 @@ class WeatherModel with _$WeatherModel {
     @JsonKey(
       name: 'location',
     )
-        Location city,
+        Location country,
+    Location city,
   ) = _WeatherModel;
 
   factory WeatherModel.fromJson(
@@ -40,6 +41,7 @@ class Current with _$Current {
 class Location with _$Location {
   factory Location(
     String name,
+    String country,
   ) = _Location;
 
   factory Location.fromJson(

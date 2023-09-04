@@ -23,6 +23,7 @@ mixin _$WeatherModel {
   @JsonKey(name: 'current')
   Current get temp => throw _privateConstructorUsedError;
   @JsonKey(name: 'location')
+  Location get country => throw _privateConstructorUsedError;
   Location get city => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -39,9 +40,11 @@ abstract class $WeatherModelCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'current') Current temp,
-      @JsonKey(name: 'location') Location city});
+      @JsonKey(name: 'location') Location country,
+      Location city});
 
   $CurrentCopyWith<$Res> get temp;
+  $LocationCopyWith<$Res> get country;
   $LocationCopyWith<$Res> get city;
 }
 
@@ -59,6 +62,7 @@ class _$WeatherModelCopyWithImpl<$Res, $Val extends WeatherModel>
   @override
   $Res call({
     Object? temp = null,
+    Object? country = null,
     Object? city = null,
   }) {
     return _then(_value.copyWith(
@@ -66,6 +70,10 @@ class _$WeatherModelCopyWithImpl<$Res, $Val extends WeatherModel>
           ? _value.temp
           : temp // ignore: cast_nullable_to_non_nullable
               as Current,
+      country: null == country
+          ? _value.country
+          : country // ignore: cast_nullable_to_non_nullable
+              as Location,
       city: null == city
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
@@ -78,6 +86,14 @@ class _$WeatherModelCopyWithImpl<$Res, $Val extends WeatherModel>
   $CurrentCopyWith<$Res> get temp {
     return $CurrentCopyWith<$Res>(_value.temp, (value) {
       return _then(_value.copyWith(temp: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $LocationCopyWith<$Res> get country {
+    return $LocationCopyWith<$Res>(_value.country, (value) {
+      return _then(_value.copyWith(country: value) as $Val);
     });
   }
 
@@ -100,10 +116,13 @@ abstract class _$$_WeatherModelCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'current') Current temp,
-      @JsonKey(name: 'location') Location city});
+      @JsonKey(name: 'location') Location country,
+      Location city});
 
   @override
   $CurrentCopyWith<$Res> get temp;
+  @override
+  $LocationCopyWith<$Res> get country;
   @override
   $LocationCopyWith<$Res> get city;
 }
@@ -120,6 +139,7 @@ class __$$_WeatherModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? temp = null,
+    Object? country = null,
     Object? city = null,
   }) {
     return _then(_$_WeatherModel(
@@ -127,6 +147,10 @@ class __$$_WeatherModelCopyWithImpl<$Res>
           ? _value.temp
           : temp // ignore: cast_nullable_to_non_nullable
               as Current,
+      null == country
+          ? _value.country
+          : country // ignore: cast_nullable_to_non_nullable
+              as Location,
       null == city
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
@@ -139,7 +163,7 @@ class __$$_WeatherModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_WeatherModel implements _WeatherModel {
   _$_WeatherModel(@JsonKey(name: 'current') this.temp,
-      @JsonKey(name: 'location') this.city);
+      @JsonKey(name: 'location') this.country, this.city);
 
   factory _$_WeatherModel.fromJson(Map<String, dynamic> json) =>
       _$$_WeatherModelFromJson(json);
@@ -149,11 +173,13 @@ class _$_WeatherModel implements _WeatherModel {
   final Current temp;
   @override
   @JsonKey(name: 'location')
+  final Location country;
+  @override
   final Location city;
 
   @override
   String toString() {
-    return 'WeatherModel(temp: $temp, city: $city)';
+    return 'WeatherModel(temp: $temp, country: $country, city: $city)';
   }
 
   @override
@@ -162,12 +188,13 @@ class _$_WeatherModel implements _WeatherModel {
         (other.runtimeType == runtimeType &&
             other is _$_WeatherModel &&
             (identical(other.temp, temp) || other.temp == temp) &&
+            (identical(other.country, country) || other.country == country) &&
             (identical(other.city, city) || other.city == city));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, temp, city);
+  int get hashCode => Object.hash(runtimeType, temp, country, city);
 
   @JsonKey(ignore: true)
   @override
@@ -184,8 +211,10 @@ class _$_WeatherModel implements _WeatherModel {
 }
 
 abstract class _WeatherModel implements WeatherModel {
-  factory _WeatherModel(@JsonKey(name: 'current') final Current temp,
-      @JsonKey(name: 'location') final Location city) = _$_WeatherModel;
+  factory _WeatherModel(
+      @JsonKey(name: 'current') final Current temp,
+      @JsonKey(name: 'location') final Location country,
+      final Location city) = _$_WeatherModel;
 
   factory _WeatherModel.fromJson(Map<String, dynamic> json) =
       _$_WeatherModel.fromJson;
@@ -195,6 +224,8 @@ abstract class _WeatherModel implements WeatherModel {
   Current get temp;
   @override
   @JsonKey(name: 'location')
+  Location get country;
+  @override
   Location get city;
   @override
   @JsonKey(ignore: true)
@@ -341,6 +372,7 @@ Location _$LocationFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Location {
   String get name => throw _privateConstructorUsedError;
+  String get country => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -353,7 +385,7 @@ abstract class $LocationCopyWith<$Res> {
   factory $LocationCopyWith(Location value, $Res Function(Location) then) =
       _$LocationCopyWithImpl<$Res, Location>;
   @useResult
-  $Res call({String name});
+  $Res call({String name, String country});
 }
 
 /// @nodoc
@@ -370,11 +402,16 @@ class _$LocationCopyWithImpl<$Res, $Val extends Location>
   @override
   $Res call({
     Object? name = null,
+    Object? country = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      country: null == country
+          ? _value.country
+          : country // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -387,7 +424,7 @@ abstract class _$$_LocationCopyWith<$Res> implements $LocationCopyWith<$Res> {
       __$$_LocationCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name});
+  $Res call({String name, String country});
 }
 
 /// @nodoc
@@ -402,11 +439,16 @@ class __$$_LocationCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = null,
+    Object? country = null,
   }) {
     return _then(_$_Location(
       null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == country
+          ? _value.country
+          : country // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -415,17 +457,19 @@ class __$$_LocationCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Location implements _Location {
-  _$_Location(this.name);
+  _$_Location(this.name, this.country);
 
   factory _$_Location.fromJson(Map<String, dynamic> json) =>
       _$$_LocationFromJson(json);
 
   @override
   final String name;
+  @override
+  final String country;
 
   @override
   String toString() {
-    return 'Location(name: $name)';
+    return 'Location(name: $name, country: $country)';
   }
 
   @override
@@ -433,12 +477,13 @@ class _$_Location implements _Location {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Location &&
-            (identical(other.name, name) || other.name == name));
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.country, country) || other.country == country));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name);
+  int get hashCode => Object.hash(runtimeType, name, country);
 
   @JsonKey(ignore: true)
   @override
@@ -455,12 +500,14 @@ class _$_Location implements _Location {
 }
 
 abstract class _Location implements Location {
-  factory _Location(final String name) = _$_Location;
+  factory _Location(final String name, final String country) = _$_Location;
 
   factory _Location.fromJson(Map<String, dynamic> json) = _$_Location.fromJson;
 
   @override
   String get name;
+  @override
+  String get country;
   @override
   @JsonKey(ignore: true)
   _$$_LocationCopyWith<_$_Location> get copyWith =>

@@ -136,7 +136,7 @@ class _TopWeatherWidget extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-                  const ThirdLineTopWeatherWidget(),
+                  ThirdLineTopWeatherWidget(weatherModel: weatherModel),
                 ],
               ),
             ),
@@ -189,8 +189,10 @@ class FirstLineTopWeatherWidget extends StatelessWidget {
 class ThirdLineTopWeatherWidget extends StatelessWidget {
   const ThirdLineTopWeatherWidget({
     super.key,
+    required this.weatherModel,
   });
 
+  final WeatherModel weatherModel;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -203,7 +205,7 @@ class ThirdLineTopWeatherWidget extends StatelessWidget {
           ),
         ),
         Text(
-          'New Mexico',
+          weatherModel.country.country.toString(),
           style: GoogleFonts.dosis(
             fontSize: 25,
           ),

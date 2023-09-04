@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:workout_log/domain/repositories/notes_repository.dart';
 import '../../../app/core/enums/enums.dart';
 import '../../../domain/models/notes_model.dart';
+import '../../../domain/models/repositories/notes_repository.dart';
 part 'notes_cubit.freezed.dart';
 
 part 'notes_state.dart';
