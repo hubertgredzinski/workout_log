@@ -16,13 +16,12 @@ import 'package:workout_log/app/core/injection_container.dart' as _i18;
 import 'package:workout_log/data/cardio_history_data_source.dart' as _i3;
 import 'package:workout_log/data/strength_history_data_source.dart' as _i6;
 import 'package:workout_log/data/weather_remote_data_source.dart' as _i15;
-import 'package:workout_log/domain/models/repositories/cardio_history_repository.dart'
+import 'package:workout_log/domain/repositories/cardio_history_repository.dart'
     as _i4;
-import 'package:workout_log/domain/models/repositories/notes_repository.dart'
-    as _i5;
-import 'package:workout_log/domain/models/repositories/strength_history_repository.dart'
+import 'package:workout_log/domain/repositories/notes_repository.dart' as _i5;
+import 'package:workout_log/domain/repositories/strength_history_repository.dart'
     as _i7;
-import 'package:workout_log/domain/models/repositories/weather_repository.dart'
+import 'package:workout_log/domain/repositories/weather_repository.dart'
     as _i16;
 import 'package:workout_log/features/add_cardio_training/cubit/add_cardio_training_cubit.dart'
     as _i8;

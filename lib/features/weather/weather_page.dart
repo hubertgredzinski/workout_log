@@ -92,8 +92,8 @@ class _TopWeatherWidget extends StatelessWidget {
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
                   colors: <Color>[
-                    Colors.lightBlueAccent,
-                    Colors.deepPurpleAccent
+                    Colors.orangeAccent,
+                    Colors.red,
                   ],
                 ),
                 boxShadow: [
@@ -126,7 +126,7 @@ class _TopWeatherWidget extends StatelessWidget {
                   Align(
                     alignment: Alignment.center,
                     child: Text(
-                      weatherModel.city.name.toString(),
+                      weatherModel.location.name.toString(),
                       style: GoogleFonts.dosis(
                         fontSize: 50,
                         fontWeight: FontWeight.bold,
@@ -141,11 +141,11 @@ class _TopWeatherWidget extends StatelessWidget {
               ),
             ),
             SizedBox(
-              width: 260,
-              height: 145,
+              width: 230,
+              height: 120,
               child: Image.network(
-                  'https://cdn.weatherapi.com/weather/64x64/day/113.png',
-                  fit: BoxFit.fitHeight),
+                'https://cdn-icons-png.flaticon.com/256/4506/4506200.png',
+              ),
             ),
           ],
         );
@@ -168,7 +168,7 @@ class FirstLineTopWeatherWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         Text(
-          weatherModel.temp.tempC.toString(),
+          weatherModel.current.tempC.toString(),
           style: GoogleFonts.dosis(
             fontSize: 50,
             fontWeight: FontWeight.bold,
@@ -199,13 +199,13 @@ class ThirdLineTopWeatherWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          'Partly cloud',
+          weatherModel.location.country.toString(),
           style: GoogleFonts.dosis(
             fontSize: 25,
           ),
         ),
         Text(
-          weatherModel.country.country.toString(),
+          weatherModel.current.condition.text.toString(),
           style: GoogleFonts.dosis(
             fontSize: 25,
           ),
@@ -244,10 +244,7 @@ class DetailsWeatherWidget extends StatelessWidget {
             gradient: const LinearGradient(
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
-              colors: <Color>[
-                Colors.orangeAccent,
-                Colors.red,
-              ],
+              colors: <Color>[Colors.lightBlueAccent, Colors.deepPurpleAccent],
             ),
             boxShadow: [
               BoxShadow(
@@ -258,13 +255,15 @@ class DetailsWeatherWidget extends StatelessWidget {
               ),
             ],
           ),
-          child: const Column(
+          child: Column(
             children: [
-              HeadLineMiddleWeatherWidget(),
-              SizedBox(
+              const HeadLineMiddleWeatherWidget(),
+              const SizedBox(
                 height: 20,
               ),
-              WeatherDetailsMiddleWeatherWidget(),
+              WeatherDetailsMiddleWeatherWidget(
+                weatherModel: weatherModel,
+              ),
             ],
           ),
         );
@@ -293,19 +292,24 @@ class HeadLineMiddleWeatherWidget extends StatelessWidget {
 class WeatherDetailsMiddleWeatherWidget extends StatelessWidget {
   const WeatherDetailsMiddleWeatherWidget({
     super.key,
+    required this.weatherModel,
   });
-
+  final WeatherModel weatherModel;
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        SizedBox(
+        const SizedBox(
           height: 15,
         ),
-        GridDetailsElementLeft(),
-        GridDetailsElementRight(),
-        SizedBox(
+        GridDetailsElementLeft(
+          weatherModel: weatherModel,
+        ),
+        GridDetailsElementRight(
+          weatherModel: weatherModel,
+        ),
+        const SizedBox(
           height: 15,
         ),
       ],
@@ -316,51 +320,54 @@ class WeatherDetailsMiddleWeatherWidget extends StatelessWidget {
 class GridDetailsElementLeft extends StatelessWidget {
   const GridDetailsElementLeft({
     super.key,
+    required this.weatherModel,
   });
+
+  final WeatherModel weatherModel;
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       children: [
-        Icon(
+        const Icon(
           Icons.air,
           size: 30,
         ),
-        SizedBox(
+        const SizedBox(
           height: 3,
         ),
-        Text(
+        const Text(
           'wind_mph',
         ),
-        SizedBox(
+        const SizedBox(
           height: 5,
         ),
         Text(
-          '10.5',
-          style: TextStyle(
+          weatherModel.current.windMph.toString(),
+          style: const TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
-        Icon(
+        const Icon(
           Icons.compress_outlined,
           size: 30,
         ),
-        SizedBox(
+        const SizedBox(
           height: 3,
         ),
-        Text(
+        const Text(
           'pressure',
         ),
-        SizedBox(
+        const SizedBox(
           height: 5,
         ),
         Text(
-          '1010.0',
-          style: TextStyle(
+          weatherModel.current.pressureMb.toString(),
+          style: const TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
           ),
@@ -372,52 +379,55 @@ class GridDetailsElementLeft extends StatelessWidget {
 
 class GridDetailsElementRight extends StatelessWidget {
   const GridDetailsElementRight({
+    required this.weatherModel,
     super.key,
   });
 
+  final WeatherModel weatherModel;
+
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       children: [
-        Icon(
+        const Icon(
           Icons.water_drop_outlined,
           size: 30,
         ),
-        SizedBox(
+        const SizedBox(
           height: 3,
         ),
-        Text(
+        const Text(
           'humidity',
         ),
-        SizedBox(
+        const SizedBox(
           height: 5,
         ),
         Text(
-          '60',
-          style: TextStyle(
+          weatherModel.current.humidity.toString(),
+          style: const TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
-        Icon(
+        const Icon(
           Icons.wb_cloudy_outlined,
           size: 30,
         ),
-        SizedBox(
+        const SizedBox(
           height: 3,
         ),
-        Text(
+        const Text(
           'cloud',
         ),
-        SizedBox(
+        const SizedBox(
           height: 5,
         ),
         Text(
-          '40',
-          style: TextStyle(
+          weatherModel.current.cloud.toString(),
+          style: const TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
           ),

@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import '../../../app/core/enums/enums.dart';
-import '../../../domain/models/repositories/notes_repository.dart';
+import '../../../domain/repositories/notes_repository.dart';
 part 'add_notes_page_state.dart';
 
 class AddNotesPageCubit extends Cubit<AddNotesPageState> {

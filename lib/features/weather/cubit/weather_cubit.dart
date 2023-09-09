@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../../../app/core/enums/enums.dart';
-import '../../../domain/models/repositories/weather_repository.dart';
 import '../../../domain/models/weather_model.dart';
+import '../../../domain/repositories/weather_repository.dart';
 part 'weather_state.dart';
 part 'weather_cubit.freezed.dart';
 

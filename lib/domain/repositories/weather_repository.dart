@@ -1,5 +1,6 @@
 import 'package:workout_log/data/weather_remote_data_source.dart';
-import '../weather_model.dart';
+
+import '../models/weather_model.dart';
 
 class WeatherRepository {
   WeatherRepository({required this.weatherRemoteDataSource});

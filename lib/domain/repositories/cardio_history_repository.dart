@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../../data/cardio_history_data_source.dart';
-import '../cardio_history_model.dart';
+import '../models/cardio_history_model.dart';
 
 class CardioRepository {
   final CardioHistoryDataSource cardioDataSource;
