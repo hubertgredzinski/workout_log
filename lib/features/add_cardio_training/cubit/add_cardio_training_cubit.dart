@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../../../app/core/enums/enums.dart';
-import '../../../domain/models/repositories/cardio_history_repository.dart';
+import '../../../domain/repositories/cardio_history_repository.dart';
 part 'add_cardio_training_cubit.freezed.dart';
 part 'add_cardio_training_state.dart';
 

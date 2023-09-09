@@ -4,22 +4,15 @@ part 'weather_model.g.dart';
 
 @freezed
 class WeatherModel with _$WeatherModel {
-  factory WeatherModel(
-    @JsonKey(
-      name: 'current',
-    )
-        Current temp,
-    @JsonKey(
-      name: 'location',
-    )
-        Location country,
-    Location city,
-  ) = _WeatherModel;
+  factory WeatherModel(Current current, Location location) = _WeatherModel;
 
   factory WeatherModel.fromJson(
     Map<String, dynamic> json,
   ) =>
-      _$WeatherModelFromJson(json);
+      WeatherModel(
+        Current.fromJson(json["current"]),
+        Location.fromJson(json["location"]),
+      );
 }
 
 @freezed
@@ -29,6 +22,11 @@ class Current with _$Current {
   )
   factory Current(
     double tempC,
+    double windMph,
+    double pressureMb,
+    int humidity,
+    int cloud,
+    Condition condition,
   ) = _Current;
 
   factory Current.fromJson(
@@ -48,4 +46,16 @@ class Location with _$Location {
     Map<String, dynamic> json,
   ) =>
       _$LocationFromJson(json);
+}
+
+@freezed
+class Condition with _$Condition {
+  factory Condition(
+    String text,
+  ) = _Condition;
+
+  factory Condition.fromJson(
+    Map<String, dynamic> json,
+  ) =>
+      _$ConditionFromJson(json);
 }
