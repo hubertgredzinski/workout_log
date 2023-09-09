@@ -34,7 +34,7 @@ class _HomePageState extends State<HomePage> {
             }
             if (currentIndex == 2) {
               return const Text(
-                'Temperature',
+                'Weather',
               );
             }
             if (currentIndex == 1) {
