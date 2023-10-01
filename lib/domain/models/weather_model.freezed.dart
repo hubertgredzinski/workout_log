@@ -596,6 +596,7 @@ Condition _$ConditionFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Condition {
   String get text => throw _privateConstructorUsedError;
+  String get icon => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -608,7 +609,7 @@ abstract class $ConditionCopyWith<$Res> {
   factory $ConditionCopyWith(Condition value, $Res Function(Condition) then) =
       _$ConditionCopyWithImpl<$Res, Condition>;
   @useResult
-  $Res call({String text});
+  $Res call({String text, String icon});
 }
 
 /// @nodoc
@@ -625,11 +626,16 @@ class _$ConditionCopyWithImpl<$Res, $Val extends Condition>
   @override
   $Res call({
     Object? text = null,
+    Object? icon = null,
   }) {
     return _then(_value.copyWith(
       text: null == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
+              as String,
+      icon: null == icon
+          ? _value.icon
+          : icon // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -642,7 +648,7 @@ abstract class _$$_ConditionCopyWith<$Res> implements $ConditionCopyWith<$Res> {
       __$$_ConditionCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String text});
+  $Res call({String text, String icon});
 }
 
 /// @nodoc
@@ -657,11 +663,16 @@ class __$$_ConditionCopyWithImpl<$Res>
   @override
   $Res call({
     Object? text = null,
+    Object? icon = null,
   }) {
     return _then(_$_Condition(
       null == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == icon
+          ? _value.icon
+          : icon // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -670,17 +681,19 @@ class __$$_ConditionCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Condition implements _Condition {
-  _$_Condition(this.text);
+  _$_Condition(this.text, this.icon);
 
   factory _$_Condition.fromJson(Map<String, dynamic> json) =>
       _$$_ConditionFromJson(json);
 
   @override
   final String text;
+  @override
+  final String icon;
 
   @override
   String toString() {
-    return 'Condition(text: $text)';
+    return 'Condition(text: $text, icon: $icon)';
   }
 
   @override
@@ -688,12 +701,13 @@ class _$_Condition implements _Condition {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Condition &&
-            (identical(other.text, text) || other.text == text));
+            (identical(other.text, text) || other.text == text) &&
+            (identical(other.icon, icon) || other.icon == icon));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, text);
+  int get hashCode => Object.hash(runtimeType, text, icon);
 
   @JsonKey(ignore: true)
   @override
@@ -710,13 +724,15 @@ class _$_Condition implements _Condition {
 }
 
 abstract class _Condition implements Condition {
-  factory _Condition(final String text) = _$_Condition;
+  factory _Condition(final String text, final String icon) = _$_Condition;
 
   factory _Condition.fromJson(Map<String, dynamic> json) =
       _$_Condition.fromJson;
 
   @override
   String get text;
+  @override
+  String get icon;
   @override
   @JsonKey(ignore: true)
   _$$_ConditionCopyWith<_$_Condition> get copyWith =>

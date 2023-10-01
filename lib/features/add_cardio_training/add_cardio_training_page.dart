@@ -24,108 +24,118 @@ class AddCardioTrainingPageState extends State<AddCardioTrainingPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<AddCardioTrainingCubit>(
-      create: (context) => getIt(),
-      child: BlocListener<AddCardioTrainingCubit, AddCardioTrainingState>(
-        listener: (context, state) {
-          if (state.status == Status.success) {
-            Navigator.of(context).pop();
-          }
-          if (state.status == Status.error) {
-            final errorMessage = state.errorMessage ?? 'Unkown error';
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(
-                  errorMessage,
-                ),
-                backgroundColor: Colors.red,
-              ),
-            );
-          }
-        },
-        child: BlocBuilder<AddCardioTrainingCubit, AddCardioTrainingState>(
-          builder: (context, state) {
-            return Scaffold(
-              appBar: AppBar(
-                title: const Text(
-                  "Add Cardio Training",
-                ),
-                actions: [
-                  IconButton(
-                    onPressed: type == null ||
-                            time == null ||
-                            date == null ||
-                            intensity == null ||
-                            kcal == null ||
-                            distance == null
-                        ? null
-                        : () {
-                            context.read<AddCardioTrainingCubit>().add(
-                                  type!,
-                                  time!,
-                                  date!,
-                                  intensity!,
-                                  kcal!,
-                                  distance!,
-                                );
-                          },
-                    icon: const Icon(
-                      Icons.check,
-                    ),
+    return Container(
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/treadmill2.png'),
+          fit: BoxFit.cover,
+        ),
+      ),
+      child: BlocProvider<AddCardioTrainingCubit>(
+        create: (context) => getIt(),
+        child: BlocListener<AddCardioTrainingCubit, AddCardioTrainingState>(
+          listener: (context, state) {
+            if (state.status == Status.success) {
+              Navigator.of(context).pop();
+            }
+            if (state.status == Status.error) {
+              final errorMessage = state.errorMessage ?? 'Unkown error';
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(
+                    errorMessage,
                   ),
-                ],
-              ),
-              body: _AddCardioTrainingBody(
-                onTypeChanged: (newValue) {
-                  setState(
-                    () {
-                      type = newValue;
-                    },
-                  );
-                },
-                onTimeChanged: (newValue) {
-                  setState(
-                    () {
-                      time = newValue;
-                    },
-                  );
-                },
-                onIntensityChanged: (newValue) {
-                  setState(
-                    () {
-                      intensity = newValue;
-                    },
-                  );
-                },
-                onKcalChanged: (newValue) {
-                  setState(
-                    () {
-                      kcal = newValue;
-                    },
-                  );
-                },
-                onDistanceChanged: (newValue) {
-                  setState(
-                    () {
-                      distance = newValue;
-                    },
-                  );
-                },
-                onDateChanged: (newValue) {
-                  setState(
-                    () {
-                      date = newValue;
-                    },
-                  );
-                },
-                selectedDateFormatted: date == null
-                    ? null
-                    : DateFormat.yMMMMEEEEd().format(
-                        date!,
-                      ),
-              ),
-            );
+                  backgroundColor: Colors.red,
+                ),
+              );
+            }
           },
+          child: BlocBuilder<AddCardioTrainingCubit, AddCardioTrainingState>(
+            builder: (context, state) {
+              return Scaffold(
+                backgroundColor: Colors.transparent,
+                appBar: AppBar(
+                  backgroundColor: Colors.black87,
+                  title: const Text(
+                    "Add Cardio Training",
+                  ),
+                  actions: [
+                    IconButton(
+                      onPressed: type == null ||
+                              time == null ||
+                              date == null ||
+                              intensity == null ||
+                              kcal == null ||
+                              distance == null
+                          ? null
+                          : () {
+                              context.read<AddCardioTrainingCubit>().add(
+                                    type!,
+                                    time!,
+                                    date!,
+                                    intensity!,
+                                    kcal!,
+                                    distance!,
+                                  );
+                            },
+                      icon: const Icon(
+                        Icons.check,
+                      ),
+                    ),
+                  ],
+                ),
+                body: _AddCardioTrainingBody(
+                  onTypeChanged: (newValue) {
+                    setState(
+                      () {
+                        type = newValue;
+                      },
+                    );
+                  },
+                  onTimeChanged: (newValue) {
+                    setState(
+                      () {
+                        time = newValue;
+                      },
+                    );
+                  },
+                  onIntensityChanged: (newValue) {
+                    setState(
+                      () {
+                        intensity = newValue;
+                      },
+                    );
+                  },
+                  onKcalChanged: (newValue) {
+                    setState(
+                      () {
+                        kcal = newValue;
+                      },
+                    );
+                  },
+                  onDistanceChanged: (newValue) {
+                    setState(
+                      () {
+                        distance = newValue;
+                      },
+                    );
+                  },
+                  onDateChanged: (newValue) {
+                    setState(
+                      () {
+                        date = newValue;
+                      },
+                    );
+                  },
+                  selectedDateFormatted: date == null
+                      ? null
+                      : DateFormat.yMMMMEEEEd().format(
+                          date!,
+                        ),
+                ),
+              );
+            },
+          ),
         ),
       ),
     );
@@ -166,6 +176,8 @@ class _AddCardioTrainingBody extends StatelessWidget {
           TextField(
             onChanged: onTypeChanged,
             decoration: InputDecoration(
+              filled: true,
+              fillColor: Colors.black87,
               enabledBorder: enabledBorderView(),
               focusedBorder: focusedBorderView(),
               hintText: 'Write type of training e.g.: Running',
@@ -175,6 +187,8 @@ class _AddCardioTrainingBody extends StatelessWidget {
           TextField(
             onChanged: onTimeChanged,
             decoration: InputDecoration(
+              filled: true,
+              fillColor: Colors.black87,
               enabledBorder: enabledBorderView(),
               focusedBorder: focusedBorderView(),
               hintText: 'Write time of training e.g.: 10 minutes',
@@ -186,6 +200,8 @@ class _AddCardioTrainingBody extends StatelessWidget {
           TextField(
             onChanged: onIntensityChanged,
             decoration: InputDecoration(
+              filled: true,
+              fillColor: Colors.black87,
               enabledBorder: enabledBorderView(),
               focusedBorder: focusedBorderView(),
               hintText: 'Write intensity of training e.g.: 10 km/h',
@@ -195,6 +211,8 @@ class _AddCardioTrainingBody extends StatelessWidget {
           TextField(
             onChanged: onKcalChanged,
             decoration: InputDecoration(
+              filled: true,
+              fillColor: Colors.black87,
               enabledBorder: enabledBorderView(),
               focusedBorder: focusedBorderView(),
               hintText: 'Write number of calories burned',
@@ -206,17 +224,29 @@ class _AddCardioTrainingBody extends StatelessWidget {
           TextField(
             onChanged: onDistanceChanged,
             decoration: InputDecoration(
+              filled: true,
+              fillColor: Colors.black87,
               enabledBorder: enabledBorderView(),
               focusedBorder: focusedBorderView(),
               hintText: 'Write covered distance: 5 km',
             ),
           ),
           const SizedBox(
-            height: 30,
+            height: 40,
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.green,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(10),
+                ),
+                side: BorderSide(color: Colors.white70),
+              ),
+              backgroundColor: Colors.black87,
+              padding: const EdgeInsets.symmetric(
+                horizontal: 25,
+                vertical: 18,
+              ),
             ),
             onPressed: () async {
               final selectedDate = await showDatePicker(
@@ -230,6 +260,23 @@ class _AddCardioTrainingBody extends StatelessWidget {
                     days: 365 * 1,
                   ),
                 ),
+                builder: (context, child) {
+                  return Theme(
+                    data: Theme.of(context).copyWith(
+                      colorScheme: const ColorScheme.light(
+                        primary: Colors.black38,
+                        onPrimary: Colors.white,
+                        onSurface: Colors.white,
+                      ),
+                      textButtonTheme: TextButtonThemeData(
+                        style: TextButton.styleFrom(
+                          foregroundColor: Colors.white70, // button text color
+                        ),
+                      ),
+                    ),
+                    child: child!,
+                  );
+                },
               );
               onDateChanged(
                 selectedDate,
@@ -237,6 +284,10 @@ class _AddCardioTrainingBody extends StatelessWidget {
             },
             child: Text(
               selectedDateFormatted ?? 'Choose training date',
+              style: const TextStyle(
+                color: Colors.white70,
+                fontSize: 15,
+              ),
             ),
           ),
         ],
@@ -250,7 +301,7 @@ class _AddCardioTrainingBody extends StatelessWidget {
         15,
       ),
       borderSide: const BorderSide(
-        color: Colors.green,
+        color: Colors.grey,
         width: 3,
       ),
     );
@@ -262,8 +313,7 @@ class _AddCardioTrainingBody extends StatelessWidget {
         13,
       ),
       borderSide: const BorderSide(
-        color: Colors.white12,
-        width: 3,
+        color: Colors.grey,
       ),
     );
   }

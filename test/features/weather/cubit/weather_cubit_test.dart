@@ -41,9 +41,7 @@ void main() {
                     10,
                     10,
                     10,
-                    Condition(
-                      'sunny',
-                    ),
+                    Condition('sunny', '1'),
                   ),
                   Location(
                     'Wroclaw',
@@ -73,9 +71,7 @@ void main() {
                     10,
                     10,
                     10,
-                    Condition(
-                      'sunny',
-                    ),
+                    Condition('sunny', '1'),
                   ),
                   Location(
                     'Wroclaw',

@@ -20,8 +20,8 @@ class MyApp extends StatelessWidget {
       supportedLocales: const [
         Locale(
           'en',
-        ), // English
-        Locale('pl'), // Polish
+        ),
+        Locale('pl'),
       ],
       theme: ThemeData.dark(),
       home: const AuthGate(),

@@ -10,66 +10,111 @@ class HistoryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 100,
-            ),
-            Text(
-              'History',
-              style: GoogleFonts.robotoSlab(
-                  fontSize: 35, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(
-              height: 100,
-            ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.orange,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const StrengthHistoryPage(),
-                  ),
-                );
-              },
-              child: Text(
-                'Strength Training',
-                style: GoogleFonts.robotoSlab(
-                    fontSize: 30, fontWeight: FontWeight.bold),
-              ),
-            ),
-            const SizedBox(
-              height: 50,
-            ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.orange,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              ),
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const CardioHistoryPage(),
-                    fullscreenDialog: false,
-                  ),
-                );
-              },
-              child: Text(
-                'Cardio',
-                style: GoogleFonts.robotoSlab(
-                    fontSize: 30, fontWeight: FontWeight.bold),
-              ),
-            )
-          ],
+    return Container(
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/gym.png'),
+          fit: BoxFit.cover,
         ),
+      ),
+      child: const Scaffold(
+        backgroundColor: Colors.transparent,
+        body: Center(
+          child: Column(
+            children: [
+              SizedBox(
+                height: 220,
+              ),
+              FirstButton(),
+              SizedBox(
+                height: 60,
+              ),
+              SecondButton()
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class FirstButton extends StatelessWidget {
+  const FirstButton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(40),
+          ),
+          side: BorderSide(
+            color: Colors.black,
+            width: 2,
+          ),
+        ),
+        backgroundColor: Colors.grey,
+        padding: const EdgeInsets.symmetric(
+          horizontal: 25,
+          vertical: 12,
+        ),
+      ),
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const StrengthHistoryPage(),
+          ),
+        );
+      },
+      child: Text(
+        'Strength Training',
+        style: GoogleFonts.robotoSlab(
+            color: Colors.black, fontSize: 30, fontWeight: FontWeight.bold),
+      ),
+    );
+  }
+}
+
+class SecondButton extends StatelessWidget {
+  const SecondButton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(40),
+          ),
+          side: BorderSide(
+            color: Colors.black,
+            width: 2,
+          ),
+        ),
+        backgroundColor: Colors.grey,
+        padding: const EdgeInsets.symmetric(
+          horizontal: 25,
+          vertical: 12,
+        ),
+      ),
+      onPressed: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => const CardioHistoryPage(),
+            fullscreenDialog: false,
+          ),
+        );
+      },
+      child: Text(
+        'Cardio',
+        style: GoogleFonts.robotoSlab(
+            color: Colors.black, fontSize: 30, fontWeight: FontWeight.bold),
       ),
     );
   }

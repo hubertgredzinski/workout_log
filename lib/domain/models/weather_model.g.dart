@@ -50,9 +50,11 @@ Map<String, dynamic> _$$_LocationToJson(_$_Location instance) =>
 
 _$_Condition _$$_ConditionFromJson(Map<String, dynamic> json) => _$_Condition(
       json['text'] as String,
+      json['icon'] as String,
     );
 
 Map<String, dynamic> _$$_ConditionToJson(_$_Condition instance) =>
     <String, dynamic>{
       'text': instance.text,
+      'icon': instance.icon,
     };

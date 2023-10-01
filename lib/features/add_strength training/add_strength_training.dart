@@ -24,106 +24,117 @@ class _AddStrengthTrainingPageState extends State<AddStrengthTrainingPage> {
   DateTime? date;
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<AddStrengthTrainingCubit>(
-      create: (context) => getIt(),
-      child: BlocListener<AddStrengthTrainingCubit, AddStrengthTrainingState>(
-        listener: (context, state) {
-          if (state.status == Status.success) {
-            Navigator.of(context).pop();
-          }
-          if (state.status == Status.error) {
-            final errorMessage = state.errorMessage ?? 'Unkown error';
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(errorMessage),
-                backgroundColor: Colors.red,
-              ),
-            );
-          }
-        },
-        child: BlocBuilder<AddStrengthTrainingCubit, AddStrengthTrainingState>(
-          builder: (context, state) {
-            return Scaffold(
-              appBar: AppBar(
-                title: const Text(
-                  "Add Strength Training",
+    return Container(
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/dumbbell3.png'),
+          fit: BoxFit.cover,
+        ),
+      ),
+      child: BlocProvider<AddStrengthTrainingCubit>(
+        create: (context) => getIt(),
+        child: BlocListener<AddStrengthTrainingCubit, AddStrengthTrainingState>(
+          listener: (context, state) {
+            if (state.status == Status.success) {
+              Navigator.of(context).pop();
+            }
+            if (state.status == Status.error) {
+              final errorMessage = state.errorMessage ?? 'Unkown error';
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(errorMessage),
+                  backgroundColor: Colors.red,
                 ),
-                actions: [
-                  IconButton(
-                    onPressed: exercise == null ||
-                            bodyPart == null ||
-                            reps == null ||
-                            sets == null ||
-                            date == null ||
-                            weight == null
-                        ? null
-                        : () {
-                            context.read<AddStrengthTrainingCubit>().add(
-                                  exercise!,
-                                  bodyPart!,
-                                  reps!,
-                                  sets!,
-                                  weight!,
-                                  date!,
-                                );
-                          },
-                    icon: const Icon(
-                      Icons.check,
-                    ),
-                  ),
-                ],
-              ),
-              body: _AddStrengthTrainingBody(
-                onExerciseChanged: (newValue) {
-                  setState(
-                    () {
-                      exercise = newValue;
-                    },
-                  );
-                },
-                onBodyPartChanged: (newValue) {
-                  setState(
-                    () {
-                      bodyPart = newValue;
-                    },
-                  );
-                },
-                onSetsChanged: (newValue) {
-                  setState(
-                    () {
-                      sets = newValue;
-                    },
-                  );
-                },
-                onRepsChanged: (newValue) {
-                  setState(
-                    () {
-                      reps = newValue;
-                    },
-                  );
-                },
-                onWeightChanged: (newValue) {
-                  setState(
-                    () {
-                      weight = newValue;
-                    },
-                  );
-                },
-                onDateChanged: (newValue) {
-                  setState(
-                    () {
-                      date = newValue;
-                    },
-                  );
-                },
-                selectedDateFormatted: date == null
-                    ? null
-                    : DateFormat.yMMMMEEEEd().format(
-                        date!,
-                      ),
-              ),
-            );
+              );
+            }
           },
+          child:
+              BlocBuilder<AddStrengthTrainingCubit, AddStrengthTrainingState>(
+            builder: (context, state) {
+              return Scaffold(
+                backgroundColor: Colors.transparent,
+                appBar: AppBar(
+                  backgroundColor: Colors.black87,
+                  title: const Text(
+                    "Add Strength Training",
+                  ),
+                  actions: [
+                    IconButton(
+                      onPressed: exercise == null ||
+                              bodyPart == null ||
+                              reps == null ||
+                              sets == null ||
+                              date == null ||
+                              weight == null
+                          ? null
+                          : () {
+                              context.read<AddStrengthTrainingCubit>().add(
+                                    exercise!,
+                                    bodyPart!,
+                                    reps!,
+                                    sets!,
+                                    weight!,
+                                    date!,
+                                  );
+                            },
+                      icon: const Icon(
+                        Icons.check,
+                      ),
+                    ),
+                  ],
+                ),
+                body: _AddStrengthTrainingBody(
+                  onExerciseChanged: (newValue) {
+                    setState(
+                      () {
+                        exercise = newValue;
+                      },
+                    );
+                  },
+                  onBodyPartChanged: (newValue) {
+                    setState(
+                      () {
+                        bodyPart = newValue;
+                      },
+                    );
+                  },
+                  onSetsChanged: (newValue) {
+                    setState(
+                      () {
+                        sets = newValue;
+                      },
+                    );
+                  },
+                  onRepsChanged: (newValue) {
+                    setState(
+                      () {
+                        reps = newValue;
+                      },
+                    );
+                  },
+                  onWeightChanged: (newValue) {
+                    setState(
+                      () {
+                        weight = newValue;
+                      },
+                    );
+                  },
+                  onDateChanged: (newValue) {
+                    setState(
+                      () {
+                        date = newValue;
+                      },
+                    );
+                  },
+                  selectedDateFormatted: date == null
+                      ? null
+                      : DateFormat.yMMMMEEEEd().format(
+                          date!,
+                        ),
+                ),
+              );
+            },
+          ),
         ),
       ),
     );
@@ -164,6 +175,8 @@ class _AddStrengthTrainingBody extends StatelessWidget {
           TextField(
             onChanged: onExerciseChanged,
             decoration: InputDecoration(
+              filled: true,
+              fillColor: Colors.black87,
               enabledBorder: enabledBorderView(),
               focusedBorder: focusedBorderView(),
               hintText: 'Write exercise e.g.: Squats',
@@ -175,6 +188,8 @@ class _AddStrengthTrainingBody extends StatelessWidget {
           TextField(
             onChanged: onBodyPartChanged,
             decoration: InputDecoration(
+              filled: true,
+              fillColor: Colors.black87,
               enabledBorder: enabledBorderView(),
               focusedBorder: focusedBorderView(),
               hintText: 'Write part of working body e.g.: Legs',
@@ -186,6 +201,8 @@ class _AddStrengthTrainingBody extends StatelessWidget {
           TextField(
             onChanged: onSetsChanged,
             decoration: InputDecoration(
+              filled: true,
+              fillColor: Colors.black87,
               enabledBorder: enabledBorderView(),
               focusedBorder: focusedBorderView(),
               hintText: 'Write number of sets e.g.: 3',
@@ -197,6 +214,8 @@ class _AddStrengthTrainingBody extends StatelessWidget {
           TextField(
             onChanged: onRepsChanged,
             decoration: InputDecoration(
+              filled: true,
+              fillColor: Colors.black87,
               enabledBorder: enabledBorderView(),
               focusedBorder: focusedBorderView(),
               hintText: 'Write number of reps e.g.: 8',
@@ -208,17 +227,29 @@ class _AddStrengthTrainingBody extends StatelessWidget {
           TextField(
             onChanged: onWeightChanged,
             decoration: InputDecoration(
+              filled: true,
+              fillColor: Colors.black87,
               enabledBorder: enabledBorderView(),
               focusedBorder: focusedBorderView(),
               hintText: ' Write reps weight e.g.: 30 kg',
             ),
           ),
           const SizedBox(
-            height: 30,
+            height: 40,
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.green,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(10),
+                ),
+                side: BorderSide(color: Colors.white70),
+              ),
+              backgroundColor: Colors.black87,
+              padding: const EdgeInsets.symmetric(
+                horizontal: 25,
+                vertical: 18,
+              ),
             ),
             onPressed: () async {
               final selectedDate = await showDatePicker(
@@ -232,11 +263,32 @@ class _AddStrengthTrainingBody extends StatelessWidget {
                     days: 365 * 1,
                   ),
                 ),
+                builder: (context, child) {
+                  return Theme(
+                    data: Theme.of(context).copyWith(
+                      colorScheme: const ColorScheme.light(
+                        primary: Colors.black38,
+                        onPrimary: Colors.white,
+                        onSurface: Colors.white,
+                      ),
+                      textButtonTheme: TextButtonThemeData(
+                        style: TextButton.styleFrom(
+                          foregroundColor: Colors.white70, // button text color
+                        ),
+                      ),
+                    ),
+                    child: child!,
+                  );
+                },
               );
               onDateChanged(selectedDate);
             },
             child: Text(
               selectedDateFormatted ?? 'Choose training date',
+              style: const TextStyle(
+                color: Colors.white70,
+                fontSize: 15,
+              ),
             ),
           ),
         ],
@@ -250,7 +302,7 @@ class _AddStrengthTrainingBody extends StatelessWidget {
         15,
       ),
       borderSide: const BorderSide(
-        color: Colors.green,
+        color: Colors.white70,
         width: 3,
       ),
     );
@@ -262,8 +314,7 @@ class _AddStrengthTrainingBody extends StatelessWidget {
         13,
       ),
       borderSide: const BorderSide(
-        color: Colors.white12,
-        width: 3,
+        color: Colors.white70,
       ),
     );
   }

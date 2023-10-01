@@ -17,96 +17,106 @@ class _NotesPageState extends State<NotesPage> {
   final controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.blue,
-        shape: RoundedRectangleBorder(
-          side: const BorderSide(
-            width: 1,
-            color: Colors.black,
-          ),
-          borderRadius: BorderRadius.circular(
-            100,
-          ),
-        ),
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const AddNotesPage(),
-            ),
-          );
-        },
-        child: const Icon(
-          Icons.add,
+    return Container(
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/notes.png'),
+          fit: BoxFit.cover,
         ),
       ),
-      body: BlocProvider<NotesCubit>(
-        create: (context) => getIt()..start(),
-        child: BlocListener<NotesCubit, NotesState>(
-          listener: (context, state) {
-            if (state.status == Status.error) {
-              final errorMessage = state.errorMessage ?? 'Unkown error';
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(
-                    errorMessage,
-                  ),
-                  backgroundColor: Colors.red,
-                ),
-              );
-            }
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.black87,
+          foregroundColor: Colors.white70,
+          shape: RoundedRectangleBorder(
+            side: const BorderSide(
+              width: 2,
+              color: Colors.grey,
+            ),
+            borderRadius: BorderRadius.circular(
+              100,
+            ),
+          ),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const AddNotesPage(),
+              ),
+            );
           },
-          child: BlocBuilder<NotesCubit, NotesState>(
-            builder: (context, state) {
-              final notesModels = state.notes;
-              return ListView(
-                padding: const EdgeInsets.only(
-                  left: 20,
-                  right: 20,
-                ),
-                children: [
-                  const SizedBox(
-                    height: 10,
+          child: const Icon(
+            Icons.add,
+          ),
+        ),
+        body: BlocProvider<NotesCubit>(
+          create: (context) => getIt()..start(),
+          child: BlocListener<NotesCubit, NotesState>(
+            listener: (context, state) {
+              if (state.status == Status.error) {
+                final errorMessage = state.errorMessage ?? 'Unkown error';
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(
+                      errorMessage,
+                    ),
+                    backgroundColor: Colors.red,
                   ),
-                  const SizedBox(
-                    height: 20,
+                );
+              }
+            },
+            child: BlocBuilder<NotesCubit, NotesState>(
+              builder: (context, state) {
+                final notesModels = state.notes;
+                return ListView(
+                  padding: const EdgeInsets.only(
+                    left: 20,
+                    right: 20,
                   ),
-                  for (final noteModel in notesModels) ...[
-                    Dismissible(
-                      key: ValueKey(
-                        noteModel.id,
-                      ),
-                      background: const DecoratedBox(
-                        decoration: BoxDecoration(
-                          color: Colors.red,
+                  children: [
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    for (final noteModel in notesModels) ...[
+                      Dismissible(
+                        key: ValueKey(
+                          noteModel.id,
                         ),
-                        child: Align(
-                          alignment: Alignment.centerRight,
-                          child: Padding(
-                            padding: EdgeInsets.only(
-                              right: 32.0,
-                            ),
-                            child: Icon(
-                              Icons.delete,
-                              color: Colors.black,
+                        background: const DecoratedBox(
+                          decoration: BoxDecoration(
+                            color: Colors.red,
+                          ),
+                          child: Align(
+                            alignment: Alignment.centerRight,
+                            child: Padding(
+                              padding: EdgeInsets.only(
+                                right: 32.0,
+                              ),
+                              child: Icon(
+                                Icons.delete,
+                                color: Colors.black,
+                              ),
                             ),
                           ),
                         ),
+                        onDismissed: (_) {
+                          context.read<NotesCubit>().remove(
+                                documentID: noteModel.id,
+                              );
+                        },
+                        child: Note(
+                          noteModel: noteModel,
+                        ),
                       ),
-                      onDismissed: (_) {
-                        context.read<NotesCubit>().remove(
-                              documentID: noteModel.id,
-                            );
-                      },
-                      child: Note(
-                        noteModel: noteModel,
-                      ),
-                    ),
+                    ],
                   ],
-                ],
-              );
-            },
+                );
+              },
+            ),
           ),
         ),
       ),
@@ -128,23 +138,24 @@ class Note extends StatelessWidget {
       ),
       margin: const EdgeInsets.only(
         bottom: 15,
-        top: 15,
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(
           10,
         ),
-        color: Colors.blue,
+        color: Colors.black,
         border: Border.all(
-          color: Colors.black,
-          width: 1,
+          color: Colors.grey,
+          width: 2,
         ),
       ),
-      child: Text(
-        noteModel.title,
-        style: const TextStyle(
-          fontSize: 15,
-          color: Colors.black,
+      child: Align(
+        alignment: Alignment.topLeft,
+        child: Text(
+          noteModel.title,
+          style: const TextStyle(
+            fontSize: 15,
+          ),
         ),
       ),
     );

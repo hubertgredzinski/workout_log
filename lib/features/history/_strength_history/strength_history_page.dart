@@ -13,69 +13,79 @@ class StrengthHistoryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Strength Training History',
+    return Container(
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/dumbbell3.png'),
+          fit: BoxFit.cover,
         ),
       ),
-      body: BlocProvider<StrengthHistoryCubit>(
-        create: (context) => getIt()..start(),
-        child: BlocListener<StrengthHistoryCubit, StrengthHistoryState>(
-          listener: (context, state) {
-            if (state.status == Status.error) {
-              final errorMessage = state.errorMessage ?? 'Unkown error';
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(
-                    errorMessage,
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          backgroundColor: Colors.black,
+          title: const Text(
+            'Strength Training History',
+          ),
+        ),
+        body: BlocProvider<StrengthHistoryCubit>(
+          create: (context) => getIt()..start(),
+          child: BlocListener<StrengthHistoryCubit, StrengthHistoryState>(
+            listener: (context, state) {
+              if (state.status == Status.error) {
+                final errorMessage = state.errorMessage ?? 'Unkown error';
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(
+                      errorMessage,
+                    ),
+                    backgroundColor: Colors.red,
                   ),
-                  backgroundColor: Colors.red,
-                ),
-              );
-            }
-          },
-          child: BlocBuilder<StrengthHistoryCubit, StrengthHistoryState>(
-            builder: (context, state) {
-              final strengthModels = state.strengthDocuments;
-              return ListView(
-                children: [
-                  for (final strengthModel in strengthModels) ...[
-                    Dismissible(
-                      key: ValueKey(strengthModel.id),
-                      background: const DecoratedBox(
-                        decoration: BoxDecoration(
-                          color: Colors.red,
-                        ),
-                        child: Align(
-                          alignment: Alignment.centerRight,
-                          child: Padding(
-                            padding: EdgeInsets.only(
-                              right: 32.0,
-                            ),
-                            child: Icon(
-                              Icons.delete,
-                              color: Colors.black,
+                );
+              }
+            },
+            child: BlocBuilder<StrengthHistoryCubit, StrengthHistoryState>(
+              builder: (context, state) {
+                final strengthModels = state.strengthDocuments;
+                return ListView(
+                  children: [
+                    for (final strengthModel in strengthModels) ...[
+                      Dismissible(
+                        key: ValueKey(strengthModel.id),
+                        background: const DecoratedBox(
+                          decoration: BoxDecoration(
+                            color: Colors.red,
+                          ),
+                          child: Align(
+                            alignment: Alignment.centerRight,
+                            child: Padding(
+                              padding: EdgeInsets.only(
+                                right: 32.0,
+                              ),
+                              child: Icon(
+                                Icons.delete,
+                                color: Colors.black,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      confirmDismiss: (direction) async {
-                        return direction == DismissDirection.endToStart;
-                      },
-                      onDismissed: (direction) {
-                        context
-                            .read<StrengthHistoryCubit>()
-                            .remove(documentID: strengthModel.id);
-                      },
-                      child: StrengthTraining(
-                        strengthDocument: strengthModel,
-                      ),
-                    )
+                        confirmDismiss: (direction) async {
+                          return direction == DismissDirection.endToStart;
+                        },
+                        onDismissed: (direction) {
+                          context
+                              .read<StrengthHistoryCubit>()
+                              .remove(documentID: strengthModel.id);
+                        },
+                        child: StrengthTraining(
+                          strengthDocument: strengthModel,
+                        ),
+                      )
+                    ],
                   ],
-                ],
-              );
-            },
+                );
+              },
+            ),
           ),
         ),
       ),
@@ -97,6 +107,18 @@ class StrengthTraining extends StatelessWidget {
       padding: const EdgeInsets.symmetric(
         vertical: 10,
         horizontal: 20,
+      ),
+      margin: const EdgeInsets.only(
+        left: 15,
+        right: 15,
+        top: 10,
+        bottom: 5,
+      ),
+      decoration: BoxDecoration(
+        color: Colors.black87,
+        borderRadius: BorderRadius.circular(
+          30,
+        ),
       ),
       child: Column(
         children: [
@@ -200,10 +222,10 @@ class StrengthTraining extends StatelessWidget {
           ),
           const Divider(
             color: Color.fromARGB(255, 211, 3, 3),
-            indent: 20,
-            endIndent: 20,
-            height: 30,
-            thickness: 0.5,
+            indent: 10,
+            endIndent: 10,
+            height: 28,
+            thickness: 1.3,
           ),
         ],
       ),

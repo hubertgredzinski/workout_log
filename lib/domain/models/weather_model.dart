@@ -52,6 +52,7 @@ class Location with _$Location {
 class Condition with _$Condition {
   factory Condition(
     String text,
+    String icon,
   ) = _Condition;
 
   factory Condition.fromJson(

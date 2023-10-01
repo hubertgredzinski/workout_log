@@ -13,56 +13,65 @@ class WeatherPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<WeatherCubit>(
-      create: (context) => getIt(),
-      child: BlocListener<WeatherCubit, WeatherState>(
-        listener: (context, state) {
-          if (state.status == Status.error) {
-            final errorMessage = state.errorMessage ?? 'Unkown error';
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(
-                  errorMessage,
+    return Container(
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/sky.png'),
+          fit: BoxFit.cover,
+        ),
+      ),
+      child: BlocProvider<WeatherCubit>(
+        create: (context) => getIt(),
+        child: BlocListener<WeatherCubit, WeatherState>(
+          listener: (context, state) {
+            if (state.status == Status.error) {
+              final errorMessage = state.errorMessage ?? 'Unkown error';
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(
+                    errorMessage,
+                  ),
+                  backgroundColor: Colors.red,
                 ),
-                backgroundColor: Colors.red,
-              ),
-            );
-          }
-        },
-        child: BlocBuilder<WeatherCubit, WeatherState>(
-          builder: (context, state) {
-            final weatherModel = state.model;
-            return Scaffold(
-              body: Center(
-                child: Builder(
-                  builder: (context) {
-                    if (state.status == Status.loading) {
-                      return const Text(
-                        'Loading',
-                      );
-                    }
-                    return ListView(
-                      shrinkWrap: true,
-                      children: [
-                        if (weatherModel != null)
-                          _TopWeatherWidget(
-                            weatherModel: weatherModel,
-                          ),
-                        if (weatherModel != null)
-                          DetailsWeatherWidget(
-                            weatherModel: weatherModel,
-                          ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        _SearchWidget(),
-                      ],
-                    );
-                  },
-                ),
-              ),
-            );
+              );
+            }
           },
+          child: BlocBuilder<WeatherCubit, WeatherState>(
+            builder: (context, state) {
+              final weatherModel = state.model;
+              return Scaffold(
+                backgroundColor: Colors.transparent,
+                body: Center(
+                  child: Builder(
+                    builder: (context) {
+                      if (state.status == Status.loading) {
+                        return const Text(
+                          'Loading',
+                        );
+                      }
+                      return ListView(
+                        shrinkWrap: true,
+                        children: [
+                          if (weatherModel != null)
+                            _TopWeatherWidget(
+                              weatherModel: weatherModel,
+                            ),
+                          if (weatherModel != null)
+                            DetailsWeatherWidget(
+                              weatherModel: weatherModel,
+                            ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          _SearchWidget(),
+                        ],
+                      );
+                    },
+                  ),
+                ),
+              );
+            },
+          ),
         ),
       ),
     );
@@ -76,6 +85,7 @@ class _TopWeatherWidget extends StatelessWidget {
   }) : super(key: key);
 
   final WeatherModel weatherModel;
+  final String weatherIcon = 'weatherModel.current.condition.icon';
 
   @override
   Widget build(BuildContext context) {
@@ -92,8 +102,8 @@ class _TopWeatherWidget extends StatelessWidget {
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
                   colors: <Color>[
-                    Colors.orangeAccent,
-                    Colors.red,
+                    Colors.cyan,
+                    Color.fromARGB(255, 45, 77, 255),
                   ],
                 ),
                 boxShadow: [
@@ -141,10 +151,11 @@ class _TopWeatherWidget extends StatelessWidget {
               ),
             ),
             SizedBox(
-              width: 230,
-              height: 120,
+              width: 240,
+              height: 150,
               child: Image.network(
-                'https://cdn-icons-png.flaticon.com/256/4506/4506200.png',
+                "https:${weatherModel.current.condition.icon}",
+                fit: BoxFit.fitHeight,
               ),
             ),
           ],
@@ -198,14 +209,16 @@ class ThirdLineTopWeatherWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
-          weatherModel.location.country.toString(),
-          style: GoogleFonts.dosis(
-            fontSize: 25,
+        Expanded(
+          child: Text(
+            weatherModel.current.condition.text.toString(),
+            style: GoogleFonts.dosis(
+              fontSize: 25,
+            ),
           ),
         ),
         Text(
-          weatherModel.current.condition.text.toString(),
+          weatherModel.location.country.toString(),
           style: GoogleFonts.dosis(
             fontSize: 25,
           ),
@@ -241,11 +254,7 @@ class DetailsWeatherWidget extends StatelessWidget {
             borderRadius: const BorderRadius.all(
               Radius.circular(32),
             ),
-            gradient: const LinearGradient(
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight,
-              colors: <Color>[Colors.lightBlueAccent, Colors.deepPurpleAccent],
-            ),
+            color: Colors.white,
             boxShadow: [
               BoxShadow(
                 color: Colors.black.withOpacity(0.2),
@@ -279,11 +288,20 @@ class HeadLineMiddleWeatherWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      'Weather details'.toUpperCase(),
-      style: GoogleFonts.dosis(
-        fontSize: 30,
-        fontWeight: FontWeight.bold,
+    return Align(
+      alignment: Alignment.topCenter,
+      child: Container(
+        padding: const EdgeInsets.only(
+          bottom: 5,
+        ),
+        child: Text(
+          'Weather details'.toUpperCase(),
+          style: GoogleFonts.roboto(
+            color: Colors.black,
+            fontSize: 22,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
     );
   }
@@ -332,12 +350,16 @@ class GridDetailsElementLeft extends StatelessWidget {
         const Icon(
           Icons.air,
           size: 30,
+          color: Colors.cyan,
         ),
         const SizedBox(
           height: 3,
         ),
         const Text(
           'wind_mph',
+          style: TextStyle(
+            color: Colors.grey,
+          ),
         ),
         const SizedBox(
           height: 5,
@@ -347,6 +369,7 @@ class GridDetailsElementLeft extends StatelessWidget {
           style: const TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
+            color: Colors.black,
           ),
         ),
         const SizedBox(
@@ -355,12 +378,14 @@ class GridDetailsElementLeft extends StatelessWidget {
         const Icon(
           Icons.compress_outlined,
           size: 30,
+          color: Colors.cyan,
         ),
         const SizedBox(
           height: 3,
         ),
         const Text(
           'pressure',
+          style: TextStyle(color: Colors.grey),
         ),
         const SizedBox(
           height: 5,
@@ -370,6 +395,7 @@ class GridDetailsElementLeft extends StatelessWidget {
           style: const TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
+            color: Colors.black,
           ),
         ),
       ],
@@ -392,12 +418,16 @@ class GridDetailsElementRight extends StatelessWidget {
         const Icon(
           Icons.water_drop_outlined,
           size: 30,
+          color: Colors.cyan,
         ),
         const SizedBox(
           height: 3,
         ),
         const Text(
           'humidity',
+          style: TextStyle(
+            color: Colors.grey,
+          ),
         ),
         const SizedBox(
           height: 5,
@@ -407,6 +437,7 @@ class GridDetailsElementRight extends StatelessWidget {
           style: const TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
+            color: Colors.black,
           ),
         ),
         const SizedBox(
@@ -415,12 +446,16 @@ class GridDetailsElementRight extends StatelessWidget {
         const Icon(
           Icons.wb_cloudy_outlined,
           size: 30,
+          color: Colors.cyan,
         ),
         const SizedBox(
           height: 3,
         ),
         const Text(
           'cloud',
+          style: TextStyle(
+            color: Colors.grey,
+          ),
         ),
         const SizedBox(
           height: 5,
@@ -430,6 +465,7 @@ class GridDetailsElementRight extends StatelessWidget {
           style: const TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
+            color: Colors.black,
           ),
         ),
       ],
@@ -454,20 +490,27 @@ class _SearchWidget extends StatelessWidget {
         children: [
           Expanded(
             child: TextField(
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
               controller: _controller,
               decoration: const InputDecoration(
+                filled: true,
+                fillColor: Color.fromARGB(255, 45, 111, 255),
                 enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Colors.white12,
-                    width: 3,
-                  ),
+                  borderSide: BorderSide(),
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(
-                    color: Color.fromARGB(255, 249, 199, 1),
+                    color: Colors.black,
+                    width: 2,
                   ),
                 ),
                 hintText: 'Write city e.g.: Wroclaw',
+                hintStyle: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.normal,
+                ),
               ),
             ),
           ),
@@ -476,8 +519,10 @@ class _SearchWidget extends StatelessWidget {
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-              backgroundColor:
-                  const Color.fromARGB(255, 249, 199, 1), // Background color
+              side: const BorderSide(
+                color: Colors.black,
+              ),
+              backgroundColor: const Color.fromARGB(255, 45, 111, 255),
             ),
             onPressed: () {
               context.read<WeatherCubit>().start(
