@@ -74,7 +74,7 @@ dev_dependencies:
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/icon/dumbbell.png"
+  image_path: "assets/icon/iconapp.png"
   
 
 flutter:

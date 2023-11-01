@@ -20,7 +20,7 @@ class StrengthHistoryRepository {
               exercise: document['exercise'],
               reps: document['reps'],
               sets: document['sets'],
-              weight: document['weight'].toString(),
+              weight: document['weight'],
             );
           },
         ).toList();

@@ -5,7 +5,9 @@ class StrengthHistoryDataSource {
   Stream<QuerySnapshot<Map<String, dynamic>>> getStrengthDataSource() {
     final userID = FirebaseAuth.instance.currentUser?.uid;
     if (userID == null) {
-      Exception('User is not logged in');
+      Exception(
+        'User is not logged in',
+      );
     }
     return FirebaseFirestore.instance
         .collection('users')
@@ -30,11 +32,19 @@ class StrengthHistoryDataSource {
         .delete();
   }
 
-  Future<void> add(String exercise, String bodyPart, String reps, String sets,
-      String? weight, DateTime date) {
+  Future<void> add(
+    String exercise,
+    String bodyPart,
+    String reps,
+    String sets,
+    String? weight,
+    DateTime date,
+  ) {
     final userID = FirebaseAuth.instance.currentUser?.uid;
     if (userID == null) {
-      Exception('User is not logged in');
+      Exception(
+        'User is not logged in',
+      );
     }
     return FirebaseFirestore.instance
         .collection('users')
