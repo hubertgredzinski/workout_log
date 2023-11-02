@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:workout_log/features/history/_strength_history/strength_history_page.dart';
 import '../../app/core/enums/enums.dart';
 import '../../app/core/injection_container.dart';
 import 'cubit/add_strength_training_cubit.dart';
@@ -36,7 +37,11 @@ class _AddStrengthTrainingPageState extends State<AddStrengthTrainingPage> {
         child: BlocListener<AddStrengthTrainingCubit, AddStrengthTrainingState>(
           listener: (context, state) {
             if (state.status == Status.success) {
-              Navigator.of(context).pop();
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const StrengthHistoryPage(),
+                ),
+              );
             }
             if (state.status == Status.error) {
               final errorMessage = state.errorMessage ?? 'Unkown error';
@@ -64,8 +69,7 @@ class _AddStrengthTrainingPageState extends State<AddStrengthTrainingPage> {
                               bodyPart == null ||
                               reps == null ||
                               sets == null ||
-                              date == null ||
-                              weight == null
+                              date == null
                           ? null
                           : () {
                               context.read<AddStrengthTrainingCubit>().add(
@@ -73,7 +77,7 @@ class _AddStrengthTrainingPageState extends State<AddStrengthTrainingPage> {
                                     bodyPart!,
                                     reps!,
                                     sets!,
-                                    weight!,
+                                    weight,
                                     date!,
                                   );
                             },

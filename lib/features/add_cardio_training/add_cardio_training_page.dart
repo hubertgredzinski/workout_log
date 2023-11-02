@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:workout_log/app/core/injection_container.dart';
+import 'package:workout_log/features/history/cardio_history/cardio_history_page.dart';
 import '../../app/core/enums/enums.dart';
 import 'cubit/add_cardio_training_cubit.dart';
 
@@ -36,7 +37,11 @@ class AddCardioTrainingPageState extends State<AddCardioTrainingPage> {
         child: BlocListener<AddCardioTrainingCubit, AddCardioTrainingState>(
           listener: (context, state) {
             if (state.status == Status.success) {
-              Navigator.of(context).pop();
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const CardioHistoryPage(),
+                ),
+              );
             }
             if (state.status == Status.error) {
               final errorMessage = state.errorMessage ?? 'Unkown error';
