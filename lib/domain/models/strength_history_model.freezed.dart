@@ -16,12 +16,12 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$StrengthHistoryModel {
-  String get bodypart => throw _privateConstructorUsedError;
+  String? get bodypart => throw _privateConstructorUsedError;
   DateTime get date => throw _privateConstructorUsedError;
   String get exercise => throw _privateConstructorUsedError;
   String get reps => throw _privateConstructorUsedError;
   String get sets => throw _privateConstructorUsedError;
-  String get weight => throw _privateConstructorUsedError;
+  String? get weight => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -36,12 +36,12 @@ abstract class $StrengthHistoryModelCopyWith<$Res> {
       _$StrengthHistoryModelCopyWithImpl<$Res, StrengthHistoryModel>;
   @useResult
   $Res call(
-      {String bodypart,
+      {String? bodypart,
       DateTime date,
       String exercise,
       String reps,
       String sets,
-      String weight,
+      String? weight,
       String id});
 }
 
@@ -59,19 +59,19 @@ class _$StrengthHistoryModelCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? bodypart = null,
+    Object? bodypart = freezed,
     Object? date = null,
     Object? exercise = null,
     Object? reps = null,
     Object? sets = null,
-    Object? weight = null,
+    Object? weight = freezed,
     Object? id = null,
   }) {
     return _then(_value.copyWith(
-      bodypart: null == bodypart
+      bodypart: freezed == bodypart
           ? _value.bodypart
           : bodypart // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       date: null == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
@@ -88,10 +88,10 @@ class _$StrengthHistoryModelCopyWithImpl<$Res,
           ? _value.sets
           : sets // ignore: cast_nullable_to_non_nullable
               as String,
-      weight: null == weight
+      weight: freezed == weight
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -109,12 +109,12 @@ abstract class _$$_StrengthHistoryModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String bodypart,
+      {String? bodypart,
       DateTime date,
       String exercise,
       String reps,
       String sets,
-      String weight,
+      String? weight,
       String id});
 }
 
@@ -129,19 +129,19 @@ class __$$_StrengthHistoryModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? bodypart = null,
+    Object? bodypart = freezed,
     Object? date = null,
     Object? exercise = null,
     Object? reps = null,
     Object? sets = null,
-    Object? weight = null,
+    Object? weight = freezed,
     Object? id = null,
   }) {
     return _then(_$_StrengthHistoryModel(
-      bodypart: null == bodypart
+      bodypart: freezed == bodypart
           ? _value.bodypart
           : bodypart // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       date: null == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
@@ -158,10 +158,10 @@ class __$$_StrengthHistoryModelCopyWithImpl<$Res>
           ? _value.sets
           : sets // ignore: cast_nullable_to_non_nullable
               as String,
-      weight: null == weight
+      weight: freezed == weight
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -184,7 +184,7 @@ class _$_StrengthHistoryModel extends _StrengthHistoryModel {
       : super._();
 
   @override
-  final String bodypart;
+  final String? bodypart;
   @override
   final DateTime date;
   @override
@@ -194,7 +194,7 @@ class _$_StrengthHistoryModel extends _StrengthHistoryModel {
   @override
   final String sets;
   @override
-  final String weight;
+  final String? weight;
   @override
   final String id;
 
@@ -233,17 +233,17 @@ class _$_StrengthHistoryModel extends _StrengthHistoryModel {
 
 abstract class _StrengthHistoryModel extends StrengthHistoryModel {
   factory _StrengthHistoryModel(
-      {required final String bodypart,
+      {required final String? bodypart,
       required final DateTime date,
       required final String exercise,
       required final String reps,
       required final String sets,
-      required final String weight,
+      required final String? weight,
       required final String id}) = _$_StrengthHistoryModel;
   _StrengthHistoryModel._() : super._();
 
   @override
-  String get bodypart;
+  String? get bodypart;
   @override
   DateTime get date;
   @override
@@ -253,7 +253,7 @@ abstract class _StrengthHistoryModel extends StrengthHistoryModel {
   @override
   String get sets;
   @override
-  String get weight;
+  String? get weight;
   @override
   String get id;
   @override

@@ -156,7 +156,7 @@ class StrengthTraining extends StatelessWidget {
                       height: 5,
                     ),
                     Text(
-                      strengthDocument.bodypart,
+                      strengthDocument.bodypart!,
                     ),
                   ],
                 ),
@@ -213,7 +213,7 @@ class StrengthTraining extends StatelessWidget {
                       height: 5,
                     ),
                     Text(
-                      strengthDocument.weight,
+                      strengthDocument.weight!,
                     )
                   ],
                 ),

@@ -15,12 +15,12 @@ class StrengthHistoryRepository {
           (document) {
             return StrengthHistoryModel(
               id: document.id,
-              bodypart: document['body_part'],
+              bodypart: document['body_part'] ?? '-',
               date: (document['date'] as Timestamp).toDate(),
               exercise: document['exercise'],
               reps: document['reps'],
               sets: document['sets'],
-              weight: document['weight'],
+              weight: document['weight'] ?? '-',
             );
           },
         ).toList();
@@ -37,20 +37,20 @@ class StrengthHistoryRepository {
   }
 
   Future<void> add(
-    String? exercise,
+    String exercise,
     String? bodyPart,
-    String? reps,
-    String? sets,
+    String reps,
+    String sets,
     String? weight,
-    DateTime? date,
+    DateTime date,
   ) {
     return strengthDataSource.add(
-      exercise!,
-      bodyPart!,
-      reps!,
-      sets!,
-      weight!,
-      date!,
+      exercise,
+      bodyPart,
+      reps,
+      sets,
+      weight,
+      date,
     );
   }
 }

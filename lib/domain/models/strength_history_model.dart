@@ -6,12 +6,12 @@ part 'strength_history_model.freezed.dart';
 class StrengthHistoryModel with _$StrengthHistoryModel {
   const StrengthHistoryModel._();
   factory StrengthHistoryModel({
-    required String bodypart,
+    required String? bodypart,
     required DateTime date,
     required String exercise,
     required String reps,
     required String sets,
-    required String weight,
+    required String? weight,
     required String id,
   }) = _StrengthHistoryModel;
 

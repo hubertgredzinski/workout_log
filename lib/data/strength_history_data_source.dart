@@ -34,7 +34,7 @@ class StrengthHistoryDataSource {
 
   Future<void> add(
     String exercise,
-    String bodyPart,
+    String? bodyPart,
     String reps,
     String sets,
     String? weight,
