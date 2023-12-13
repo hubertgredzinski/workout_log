@@ -17,9 +17,9 @@ class CardioRepository {
               type: document['type'],
               time: document['time'],
               date: (document['date'] as Timestamp).toDate(),
-              intensity: document['intensity'].toString(),
-              kcal: document['kcal'].toString(),
-              distance: document['distance'].toString(),
+              intensity: document['intensity'] ?? '-'.toString(),
+              kcal: document['kcal'] ?? '-'.toString(),
+              distance: document['distance'] ?? '-'.toString(),
             );
           },
         ).toList();
@@ -36,20 +36,20 @@ class CardioRepository {
   }
 
   Future<void> add(
-    String? type,
-    String? time,
-    DateTime? date,
+    String type,
+    String time,
+    DateTime date,
     String? intensity,
     String? kcal,
     String? distance,
   ) {
     return cardioDataSource.add(
-      type!,
-      time!,
-      date!,
-      intensity!,
-      kcal!,
-      distance!,
+      type,
+      time,
+      date,
+      intensity,
+      kcal,
+      distance,
     );
   }
 }

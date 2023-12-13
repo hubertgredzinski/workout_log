@@ -66,21 +66,16 @@ class AddCardioTrainingPageState extends State<AddCardioTrainingPage> {
                   ),
                   actions: [
                     IconButton(
-                      onPressed: type == null ||
-                              time == null ||
-                              date == null ||
-                              intensity == null ||
-                              kcal == null ||
-                              distance == null
+                      onPressed: type == null || time == null || date == null
                           ? null
                           : () {
                               context.read<AddCardioTrainingCubit>().add(
                                     type!,
                                     time!,
                                     date!,
-                                    intensity!,
-                                    kcal!,
-                                    distance!,
+                                    intensity,
+                                    kcal,
+                                    distance,
                                   );
                             },
                       icon: const Icon(
@@ -161,9 +156,9 @@ class _AddCardioTrainingBody extends StatelessWidget {
 
   final Function(String) onTypeChanged;
   final Function(String) onTimeChanged;
-  final Function(String) onIntensityChanged;
-  final Function(String) onKcalChanged;
-  final Function(String) onDistanceChanged;
+  final Function(String?) onIntensityChanged;
+  final Function(String?) onKcalChanged;
+  final Function(String?) onDistanceChanged;
   final Function(DateTime?) onDateChanged;
   final String? selectedDateFormatted;
 

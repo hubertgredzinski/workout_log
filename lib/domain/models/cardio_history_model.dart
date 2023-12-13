@@ -10,9 +10,9 @@ class CardioHistoryModel with _$CardioHistoryModel {
     required String type,
     required String time,
     required DateTime date,
-    required String intensity,
-    required String kcal,
-    required String distance,
+    required String? intensity,
+    required String? kcal,
+    required String? distance,
   }) = _CardioHistoryModel;
   String dateFromatted() {
     return DateFormat.yMMMMEEEEd().format(date);

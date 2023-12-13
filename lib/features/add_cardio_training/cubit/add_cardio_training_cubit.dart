@@ -14,9 +14,9 @@ class AddCardioTrainingCubit extends Cubit<AddCardioTrainingState> {
 
   final CardioRepository _cardioRepository;
   Future<void> add(
-    String? type,
-    String? time,
-    DateTime? date,
+    String type,
+    String time,
+    DateTime date,
     String? intensity,
     String? kcal,
     String? distance,

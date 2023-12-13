@@ -20,9 +20,9 @@ mixin _$CardioHistoryModel {
   String get type => throw _privateConstructorUsedError;
   String get time => throw _privateConstructorUsedError;
   DateTime get date => throw _privateConstructorUsedError;
-  String get intensity => throw _privateConstructorUsedError;
-  String get kcal => throw _privateConstructorUsedError;
-  String get distance => throw _privateConstructorUsedError;
+  String? get intensity => throw _privateConstructorUsedError;
+  String? get kcal => throw _privateConstructorUsedError;
+  String? get distance => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CardioHistoryModelCopyWith<CardioHistoryModel> get copyWith =>
@@ -40,9 +40,9 @@ abstract class $CardioHistoryModelCopyWith<$Res> {
       String type,
       String time,
       DateTime date,
-      String intensity,
-      String kcal,
-      String distance});
+      String? intensity,
+      String? kcal,
+      String? distance});
 }
 
 /// @nodoc
@@ -62,9 +62,9 @@ class _$CardioHistoryModelCopyWithImpl<$Res, $Val extends CardioHistoryModel>
     Object? type = null,
     Object? time = null,
     Object? date = null,
-    Object? intensity = null,
-    Object? kcal = null,
-    Object? distance = null,
+    Object? intensity = freezed,
+    Object? kcal = freezed,
+    Object? distance = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -83,18 +83,18 @@ class _$CardioHistoryModelCopyWithImpl<$Res, $Val extends CardioHistoryModel>
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      intensity: null == intensity
+      intensity: freezed == intensity
           ? _value.intensity
           : intensity // ignore: cast_nullable_to_non_nullable
-              as String,
-      kcal: null == kcal
+              as String?,
+      kcal: freezed == kcal
           ? _value.kcal
           : kcal // ignore: cast_nullable_to_non_nullable
-              as String,
-      distance: null == distance
+              as String?,
+      distance: freezed == distance
           ? _value.distance
           : distance // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -112,9 +112,9 @@ abstract class _$$_CardioHistoryModelCopyWith<$Res>
       String type,
       String time,
       DateTime date,
-      String intensity,
-      String kcal,
-      String distance});
+      String? intensity,
+      String? kcal,
+      String? distance});
 }
 
 /// @nodoc
@@ -132,9 +132,9 @@ class __$$_CardioHistoryModelCopyWithImpl<$Res>
     Object? type = null,
     Object? time = null,
     Object? date = null,
-    Object? intensity = null,
-    Object? kcal = null,
-    Object? distance = null,
+    Object? intensity = freezed,
+    Object? kcal = freezed,
+    Object? distance = freezed,
   }) {
     return _then(_$_CardioHistoryModel(
       id: null == id
@@ -153,18 +153,18 @@ class __$$_CardioHistoryModelCopyWithImpl<$Res>
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      intensity: null == intensity
+      intensity: freezed == intensity
           ? _value.intensity
           : intensity // ignore: cast_nullable_to_non_nullable
-              as String,
-      kcal: null == kcal
+              as String?,
+      kcal: freezed == kcal
           ? _value.kcal
           : kcal // ignore: cast_nullable_to_non_nullable
-              as String,
-      distance: null == distance
+              as String?,
+      distance: freezed == distance
           ? _value.distance
           : distance // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -191,11 +191,11 @@ class _$_CardioHistoryModel extends _CardioHistoryModel {
   @override
   final DateTime date;
   @override
-  final String intensity;
+  final String? intensity;
   @override
-  final String kcal;
+  final String? kcal;
   @override
-  final String distance;
+  final String? distance;
 
   @override
   String toString() {
@@ -236,9 +236,9 @@ abstract class _CardioHistoryModel extends CardioHistoryModel {
       required final String type,
       required final String time,
       required final DateTime date,
-      required final String intensity,
-      required final String kcal,
-      required final String distance}) = _$_CardioHistoryModel;
+      required final String? intensity,
+      required final String? kcal,
+      required final String? distance}) = _$_CardioHistoryModel;
   _CardioHistoryModel._() : super._();
 
   @override
@@ -250,11 +250,11 @@ abstract class _CardioHistoryModel extends CardioHistoryModel {
   @override
   DateTime get date;
   @override
-  String get intensity;
+  String? get intensity;
   @override
-  String get kcal;
+  String? get kcal;
   @override
-  String get distance;
+  String? get distance;
   @override
   @JsonKey(ignore: true)
   _$$_CardioHistoryModelCopyWith<_$_CardioHistoryModel> get copyWith =>
