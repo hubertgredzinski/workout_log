@@ -4,7 +4,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:workout_log/features/notes/notes_page.dart';
 import '../add_cardio_training/add_cardio_training_page.dart';
-import '../add_strength training/add_strength_training.dart';
+import '../add_strength training/add_strength_training_page.dart';
 import '../auth/user_profile.dart';
 import '../history/history_training_page.dart';
 import '../weather/weather_page.dart';

@@ -66,7 +66,6 @@ class _AddStrengthTrainingPageState extends State<AddStrengthTrainingPage> {
                   actions: [
                     IconButton(
                       onPressed: exercise == null ||
-                              bodyPart == null ||
                               reps == null ||
                               sets == null ||
                               date == null
@@ -74,7 +73,7 @@ class _AddStrengthTrainingPageState extends State<AddStrengthTrainingPage> {
                           : () {
                               context.read<AddStrengthTrainingCubit>().add(
                                     exercise!,
-                                    bodyPart!,
+                                    bodyPart,
                                     reps!,
                                     sets!,
                                     weight,
@@ -158,10 +157,10 @@ class _AddStrengthTrainingBody extends StatelessWidget {
       : super(key: key);
 
   final Function(String) onExerciseChanged;
-  final Function(String) onBodyPartChanged;
+  final Function(String?) onBodyPartChanged;
   final Function(String) onSetsChanged;
   final Function(String) onRepsChanged;
-  final Function(String) onWeightChanged;
+  final Function(String?) onWeightChanged;
   final Function(DateTime?) onDateChanged;
   final String? selectedDateFormatted;
 
@@ -277,7 +276,7 @@ class _AddStrengthTrainingBody extends StatelessWidget {
                       ),
                       textButtonTheme: TextButtonThemeData(
                         style: TextButton.styleFrom(
-                          foregroundColor: Colors.white70, // button text color
+                          foregroundColor: Colors.white70,
                         ),
                       ),
                     ),
